@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+{% load bootstrap3 %}
+
+<html>
+    <head>
+        <title>Endüstriyel Bina İçi Lojistik Otonom Robot Sistemi</title>
+        {% bootstrap_css %}
+
+        {% block css %}{% endblock css %}
+
+        <link rel="stylesheet" href="/static/css/core.79b638b7e64a.css">
+
+        <script type="text/javascript" src="{% static 'static_jquery/js/jquery.js' %}" />
+
+        {% bootstrap_javascript %}
+
+        {% block javascript %}{% endblock javascript %}
+
+    </head>
+
+    <body>
+    <div id="rtfd-header">
+      <div class="wrapper">
+
+        <!-- BEGIN header title-->
+        <div class="rtfd-header-title">
+          <h1>
+            <a href="/">TELEPORT</a>
+          </h1>
+        </div>
+        <div class="rtfd-header-nav">
+          <ul>
+              <li>
+                  <a href="/robots/">Robotlar</a>
+              </li>
+              <li>
+                  <a href="/robots/mapping">Harita</a>
+              </li>
+               <li>
+                  <a href="/admin/login/">Giriş</a>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% block content %}{% endblock content %}
+    </body>
+</html>

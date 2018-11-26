@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1146850695">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="11" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.4" value="4" />
+          <entry key="project.open.time.5" value="6" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.opened" value="13" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="4" />
+          <entry key="html" value="21" />
+          <entry key="iml" value="1" />
+          <entry key="js" value="2" />
+          <entry key="py" value="91" />
+          <entry key="sqlite3" value="10" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="4" />
+          <entry key="HTML" value="21" />
+          <entry key="IDEA_MODULE" value="1" />
+          <entry key="JavaScript" value="2" />
+          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="Python" value="91" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Python Console" value="20" />
+          <entry key="css" value="25" />
+          <entry key="html" value="946" />
+          <entry key="py" value="3467" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="25" />
+          <entry key="HTML" value="946" />
+          <entry key="Python" value="3487" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/robots/templates/robot/mapping.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/static/css/core.79b638b7e64a.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1173">
+              <caret line="69" column="106" selection-start-line="69" selection-start-column="106" selection-end-line="69" selection-end-column="106" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/templates/Index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="25" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/templates/robot/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="17" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/templates/robot/detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db.sqlite3">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="850">
+              <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>INSTALLED_APPS</find>
+      <find>BOOTSTRAP_ADMIN_SIDEBAR_MENU</find>
+      <find>login</find>
+      <find>BASE_DIR</find>
+      <find>Django administration</find>
+      <find>django-admin-logo</find>
+      <find>font</find>
+      <find>stat</find>
+      <find>.svg</find>
+      <find>.rtfd-header-title h1</find>
+      <find>admin.site.site_header</find>
+      <find>channel</find>
+      <find>ws/iot</find>
+      <find>chat_message</find>
+      <find>iot</find>
+      <find>chat</find>
+      <find>Mapping</find>
+      <find>body-bg.944990822890.svg</find>
+      <find>944990822890</find>
+      <find>position: relative; text-align: center;</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+    <dirStrings>
+      <dir>F:\DjangoProjects\firstsite\robots\template</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/robots/template/robot/index.html" />
+        <option value="$PROJECT_DIR$/firstsite/templates/Index.html" />
+        <option value="$PROJECT_DIR$/firstsite/templates/admin/base_site.html" />
+        <option value="$PROJECT_DIR$/firstsite/templates/admin/login.html" />
+        <option value="$PROJECT_DIR$/firstsite/templates/home.html" />
+        <option value="$PROJECT_DIR$/robots/templates/admin/base.html" />
+        <option value="$PROJECT_DIR$/robots/templates/admin/login.html" />
+        <option value="$PROJECT_DIR$/robots/templates/admin/base_site.html" />
+        <option value="$PROJECT_DIR$/robots/templates/Index.html" />
+        <option value="$PROJECT_DIR$/channel/consumers.py" />
+        <option value="$PROJECT_DIR$/iot/templates/index.html" />
+        <option value="$PROJECT_DIR$/iot/views.py" />
+        <option value="$PROJECT_DIR$/iot/urls.py" />
+        <option value="$PROJECT_DIR$/firstsite/urls.py" />
+        <option value="$PROJECT_DIR$/firstsite/routing.py" />
+        <option value="$PROJECT_DIR$/robots/routing.py" />
+        <option value="$PROJECT_DIR$/robots/templates/iot/room.html" />
+        <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
+        <option value="$PROJECT_DIR$/robots/consumers.py" />
+        <option value="$PROJECT_DIR$/firstsite/settings.py" />
+        <option value="$PROJECT_DIR$/robots/tests.py" />
+        <option value="$PROJECT_DIR$/robots/urls.py" />
+        <option value="$PROJECT_DIR$/robots/views.py" />
+        <option value="$PROJECT_DIR$/robots/admin.py" />
+        <option value="$PROJECT_DIR$/robots/models.py" />
+        <option value="$PROJECT_DIR$/robots/templates/robot/index.html" />
+        <option value="$PROJECT_DIR$/robots/templates/robot/detail.html" />
+        <option value="$PROJECT_DIR$/robots/static/css/core.79b638b7e64a.css" />
+        <option value="$PROJECT_DIR$/robots/templates/robot/mapping.html" />
+        <option value="$PROJECT_DIR$/robots/templates/base.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyPep8Inspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="firstsite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="firstsite" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dig-master" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\DjangoProjects\firstsite\robots\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\DjangoProjects\firstsite\robots" />
+      <recent name="F:\DjangoProjects\firstsite\static" />
+      <recent name="F:\DjangoProjects\firstsite\robots\templates" />
+      <recent name="F:\DjangoProjects\firstsite\templates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="firstsite" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.manage" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="" />
+      <created>1542003091686</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542003091686</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.74151856" visible="true" weight="0.3097998" />
+      <window_info id="Structure" order="1" sideWeight="0.2584814" side_tool="true" visible="true" weight="0.3097998" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" weight="0.33152762" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934355" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49947312" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052685" side_tool="true" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32936078" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/templates/Index.html" />
+    <entry file="file://$PROJECT_DIR$/firstsite/.idea/firstsite.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/django/conf/urls/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/home.html" />
+    <entry file="file://$PROJECT_DIR$/robots/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/admin/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="62" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/admin/base_site.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/django/urls/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/channel/consumers.py" />
+    <entry file="file://$PROJECT_DIR$/iot/urls.py" />
+    <entry file="file://$PROJECT_DIR$/iot/views.py" />
+    <entry file="file://C:/python/Lib/site-packages/twisted/internet/_win32stdio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/twisted/internet/stdio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/twisted/internet/endpoints.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/daphne/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/channels/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/django/conf/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iot/templates/index.html" />
+    <entry file="file://$PROJECT_DIR$/firstsite/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firstsite/routing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/routing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="95" column="53" lean-forward="true" selection-start-line="95" selection-start-column="53" selection-end-line="95" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/asyncio/base_events.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="527" selection-start-line="527" selection-end-line="527" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/asyncio/events.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/channels/sessions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="178" selection-start-line="178" selection-end-line="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/channels/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/channels/consumer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/iot/room.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="15" column="33" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/channels/generic/websocket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3145">
+          <caret line="195" selection-start-line="195" selection-end-line="195" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/channels/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/importlib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0002_auto_20181113_1351.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/static/p5/p5.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/consumers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/p5/empty-example/sketch.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/p5/empty-example/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/robot/mapping.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/static/css/core.79b638b7e64a.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" column="106" selection-start-line="69" selection-start-column="106" selection-end-line="69" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="25" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/robot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="17" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/robot/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db.sqlite3">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

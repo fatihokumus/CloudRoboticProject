@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if all_robots %}
+    <h1>Sisteme Kayıtlı Tüm Robotlar : </h1>
+    <ul>
+        {% for robot in all_robots %}
+        <li>
+            <a href="/robots/{{robot.id}}/">{{robot.Name}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h1>Buralar çok ıssız.</h1>
+{% endif %}
+
+{% endblock content %}
+
+
+

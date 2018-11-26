@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>Seçilen Robota Ait Bilgiler : </h1>
+<img src="{{robot.RobotModel.Image.url}}">
+<br>
+<label>Robotun Adı: {{robot.Name}}</label>
+<br>
+<label>Robotun Kodu: {{robot.Code}}</label>
+<br>
+<label>Robotun Modeli: {{robot.RobotModel.Name}}</label>
+<br>
+<label>Robotun Sahibi: {{robot.Tenant.Name}}</label>
+<br>
+<label>Robotun Çalıştığı Yer: {{robot.SubNet.Name}}</label>
+
+
+{% endblock content %}
+
+
