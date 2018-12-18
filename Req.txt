@@ -1,0 +1,4 @@
+#iis üzerinde static isminde bir sanal dizin oluþtur ve static dosyasýna baðla
+#pip install django-redis
+#pip install pypiwin32
+# https://channels.readthedocs.io/en/latest/installation.html#installing-the-latest-development-version

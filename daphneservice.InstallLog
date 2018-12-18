@@ -1,0 +1,13 @@
+﻿'C:\DjangoProjects\doctoraproject\daphneservice.exe' derlemesi yükleniyor.
+Etkilenen parametreler şunlardır:
+   logtoconsole = 
+   assemblypath = C:\DjangoProjects\doctoraproject\daphneservice.exe
+   logfile = C:\DjangoProjects\doctoraproject\daphneservice.InstallLog
+daphneservice hizmeti yükleniyor...
+Application günlüğünde daphneservice EventLog kaynağı oluşturuluyor...
+'C:\DjangoProjects\doctoraproject\daphneservice.exe' derlemesi geri alınıyor.
+Etkilenen parametreler şunlardır:
+   logtoconsole = 
+   assemblypath = C:\DjangoProjects\doctoraproject\daphneservice.exe
+   logfile = C:\DjangoProjects\doctoraproject\daphneservice.InstallLog
+daphneservice kaynağı için olay günlüğü önceki duruma döndürülüyor.

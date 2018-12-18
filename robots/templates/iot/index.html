@@ -1,14 +1,17 @@
-<!-- iot/templates/iot/index.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>iOT Rooms</title>
-</head>
-<body>
-    What iOT room would you like to enter?<br/>
-    <input id="room-name-input" type="text" size="100"/><br/>
-    <input id="room-name-submit" type="button" value="Enter"/>
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br/>
+<div style="width:100%; text-align:center">
+Mesaj Gönderilecek Robotun Adını Gir
+    <br/>
+    <br/>
+    <input id="room-name-input" type="text" style="margin:auto;" size="100"/> <br/>
+    <input id="room-name-submit" type="button" style="margin:auto;" value="Enter"/>
+
+      </div>
+
 
     <script>
         document.querySelector('#room-name-input').focus();
@@ -23,5 +26,6 @@
             window.location.pathname = '/robots/iot/' + roomName + '/';
         };
     </script>
-</body>
-</html>
+
+{% endblock content %}
+

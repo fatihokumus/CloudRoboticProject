@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 {% load staticfiles %}
 
@@ -7,15 +7,16 @@
 <html>
     <head>
         <title>Endüstriyel Bina İçi Lojistik Otonom Robot Sistemi</title>
-        {% bootstrap_css %}
+        <link rel="stylesheet" href="/static/bootstrap/bootstrap.min.css">
 
         {% block css %}{% endblock css %}
 
         <link rel="stylesheet" href="/static/css/core.79b638b7e64a.css">
 
-        <script type="text/javascript" src="{% static 'static_jquery/js/jquery.js' %}" />
+        <script type="text/javascript" src="/static/static_jquery/js/jquery.js"> </script>
+       <script type="text/javascript" src="/static/bootstrap/bootstrap.min.js"> </script>
 
-        {% bootstrap_javascript %}
+      
 
         {% block javascript %}{% endblock javascript %}
 
@@ -33,11 +34,17 @@
         </div>
         <div class="rtfd-header-nav">
           <ul>
+                <li>
+                  <a href="/">Anasayfa</a>
+              </li>
               <li>
                   <a href="/robots/">Robotlar</a>
               </li>
               <li>
                   <a href="/robots/mapping">Harita</a>
+              </li>
+              <li>
+                  <a href="/robots/iot/">Robota Mesaj Gönder</a>
               </li>
                <li>
                   <a href="/admin/login/">Giriş</a>

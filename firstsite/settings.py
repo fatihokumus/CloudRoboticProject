@@ -25,7 +25,8 @@ SECRET_KEY = 'j7acw-0sytzmk@xpogl9)x-z44am4(9q90jqt=xu578zft&k_='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['10.1.1.44', 'localhost', '127.0.0.1', 'fatih.tuga.com.tr']
 
 
 # Application definition
@@ -79,13 +80,14 @@ WSGI_APPLICATION = 'firstsite.wsgi.application'
 ASGI_APPLICATION = 'firstsite.routing.application'
 
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+    "default": {
+        "CONFIG": {
+            "hosts": [('localhost','6379')],
         },
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
     },
 }
+
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
