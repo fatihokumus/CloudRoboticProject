@@ -1,0 +1,21 @@
+﻿# Python 3.7.1 (min)
+# Redis 3.2 (min)(with default port)
+# git.exe
+# pip install virtualenv
+# pip install django
+# github desktop 
+# pip install django-bootstrap3
+# pip install django-channels
+# pip install bootstrap-admin
+# pip install django-static-jquery
+
+# Apache için kurulacaklar
+# pip install mako
+# pip install django-mako-plus
+# pip install django-polymorphic
+
+# IIS fastWSCGI yapılandırması yapılacak. CGI kurulacak.  // IIS ten vaz geçtik
+# Microsoft Visual C++ Redistributable 2010,2013,2017 Kurulacak
+
+# pip install daphne
+# pip install whitenoise
