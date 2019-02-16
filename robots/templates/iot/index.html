@@ -1,30 +1,268 @@
 {% extends "base.html" %}
 
+{% block javascript %}
+    <style>
+    .mapcontainer {
+      position: relative;
+      background: #a1e4f9;
+    }
+    .animate {
+
+      position: absolute;
+
+    }
+    .labelRFID {
+      position: absolute;
+      background-color: #000;
+      width: 3px;
+      height: 3px;
+    }
+
+    .obstacle {
+      position: absolute;
+      background-color: #000;
+    }
+    </style>
+
+{% endblock javascript %}
+
 {% block content %}
 
-    <br/>
-<div style="width:100%; text-align:center">
-Mesaj Gönderilecek Robotun Adını Gir
-    <br/>
-    <br/>
-    <input id="room-name-input" type="text" style="margin:auto;" size="100"/> <br/>
-    <input id="room-name-submit" type="button" style="margin:auto;" value="Enter"/>
+    <div class = "row" style=" width: 100%; ">
+        <div class = "col-md-2" style="background-color:#0094de; ">
+            {% for map in MapList %}
+                <button class="btn-map" onclick='getrobotsofmap(this, {{ map.pk }}, {{ map.Width }}, {{ map.Height }}, {{ map.Distance|default_if_none:"50"  }})' style="margin:5px; width:100%; height:100px;">
+                    {{ map.Name }}
+                </button>
 
-      </div>
+            {% endfor %}
+        </div>
+        <div class = "col-md-10">
+            <div >
+                <div class="row" id="Robotlar" style="margin-top:5px; padding-left: 15px; overflow-x: scroll;overflow-y: hidden;height: 135px;white-space:nowrap" >
+                </div>
+            </div>
+            <br/>
+            <div id ="mapcanvas">
 
+            </div>
+
+        </div>
+    </div>
 
     <script>
-        document.querySelector('#room-name-input').focus();
-        document.querySelector('#room-name-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#room-name-submit').click();
-            }
-        };
 
-        document.querySelector('#room-name-submit').onclick = function(e) {
-            var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/robots/iot/' + roomName + '/';
-        };
+        var drewRobotList = [];
+        var drewGoalList = [];
+        var currentmapid = 0;
+
+        robotimageList = [];
+        var robotimage = 'http://fatih.tuga.com.tr:8180/static/images/turtlebot_2_lg.png';
+
+        function setupMap(x, y) {
+            $('#mapcanvas').html('');
+            var innerhtml = '<div id="canvas" class="mapcontainer" style="width:' + x + 'px; height:' + y + 'px;"></div>';
+            $('#mapcanvas').append(innerhtml);
+        }
+
+        function drawObstacle(left, right, top, bottom) {
+            var divhtml = "<div id='obstaclex" + left + "y" + top + "' class='obstacle' style='width:" + (right-left) + "px; height:" + (bottom-top) + "px;'></div>";
+            $('#canvas').append(divhtml)
+            $('#obstaclex' + left + 'y' + top).css('top', top+'px');
+            $('#obstaclex' + left + 'y' + top).css('left', left+ 'px');
+        }
+
+        function drawGoal(code, left, right, top, bottom) {
+            var html = "<div class='animate goalobject' id='goal-" + code + "'><span style='font-size: 12px;color: #002e80;position: inherit;top: 0px;'>" + code + "</span><img style='margin-top: 18px;'  src='/static/images/archer-clipart-archery-bullseye-15.png' width='30' height='30' /></div>";
+            $('#canvas').append(html)
+            $('#goal-' + code).css('top', top+'px');
+            $('#goal-' + code).css('left', left+ 'px');
+        }
+
+        function drawRobot(robotname, x,y) {
+            var model = {
+                name : robotname,
+                xp : x,
+                yp : y
+            };
+            robotimageList.push(model);
+            var html = "<div class='animate' id='robot-" + robotname + "'><span style='font-size: 12px;color: #002e80;position: inherit;top: 0px;'>" + robotname + "</span><img style='margin-top: 18px;'  src='/static/images/turtlebot_2_lg.png' width='35' height='45' /></div>";
+
+            $('#canvas').append(html);
+
+            $("#robot-" + robotname).css('top', y + 'px');
+            $("#robot-" + robotname).css('left', x + 'px');
+        }
+
+        function moveRobot(robotname, x,y) {
+            $("#robot-" + robotname).css('top', y + 'px');
+            $("#robot-" + robotname).css('left', x + 'px');
+        }
+
+        function drawMap(dis) {
+
+            var canvasWidth = $('#canvas').width();
+            var canvasHeight = $('#canvas').height();
+
+            for (var x = 0; x < canvasWidth/dis; x++ ) {
+                for (var y = 0; y < canvasHeight/dis; y++) {
+                    var divhtml = "<div id='labelx" + x + "y" + y + "' class='labelRFID'></div>";
+                    $('#canvas').append(divhtml)
+                    $('#labelx' + x + 'y' + y).css('top', (y*50)+ 'px');
+                    $('#labelx' + x + 'y' + y).css('left', (x*50)+ 'px');
+                }
+            }
+        }
+
+        function InitializeGoal()
+        {
+            var goalSocket = new WebSocket( 'ws://' + window.location.host + '/robots/iot/loadgoal/');
+            goalSocket.open;
+
+            goalSocket.onmessage = function(e) {
+                var data = JSON.parse(e.data);
+                var message = data['message'];
+                if(message == "Load Goals")
+                {
+                    $('.goalobject').remove();
+                    $.ajax({
+                        url: '/robots/getgoallist/' + currentmapid,
+                        dataType: 'json',
+                        success: function (data) {
+                            var obj = JSON.parse(data);
+                            for(var i = 0; i < obj.length; i++)
+                            {
+                                drawGoal(obj[i].fields["Code"], obj[i].fields["Left"], obj[i].fields["Right"], obj[i].fields["Top"], obj[i].fields["Bottom"])
+                            }
+                        }
+                    });
+                }
+            };
+            goalSocket.onclose = function(e) {
+                console.error('Goal socket closed unexpectedly');
+            };
+
+            goalSocket.onopen = function(e) {
+
+            };
+        }
+
+        function getrobotsofmap(btn, mapid, width, height, distance)
+        {
+            currentmapid = mapid;
+            if(distance == undefined || distance == null)
+                distance = 50;
+
+            setupMap(width,height);
+            drawMap(distance);
+
+            $('.btn-map').css('background-color', '#e6e6e6');
+            $(btn).css('background-color', '#77fb6d');
+            $("#Robotlar").html('');
+
+            $.ajax({
+                url: '/robots/getobstaclelist/' + mapid,
+                dataType: 'json',
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    for(var i = 0; i < obj.length; i++)
+                    {
+                        drawObstacle(obj[i].fields["Left"], obj[i].fields["Right"], obj[i].fields["Top"], obj[i].fields["Bottom"])
+                    }
+                }
+            });
+
+            InitializeGoal();
+
+            $.ajax({
+                url: '/robots/getrobotlist/' + mapid,
+                dataType: 'json',
+                success: function (data) {
+
+                    var obj = JSON.parse(data);
+                    for(var i = 0; i < obj.length; i++)
+                    {
+                        var innerhtml = '<div style="display: inline-block; margin-right:15px;">'
+                                 + '<div id="divRobot' + obj[i].fields["Name"] + '" style="width:100px; float: left; border: solid 5px #f00; text-align: center; padding: 0;">'
+                                 + '<div><span style="font-size: 12px;"> ' + obj[i].fields["Name"] + '</span></div>'
+                                 + '<img src="/static/images/turtlebot_2_lg.png" width="40" style="margin-left: 15px; margin-right: 15px;"/>'
+                                 + '<div id="durumBack' + obj[i].fields["Name"] + '" style="height:20px; text-align: center; background: #f00;">'
+                                 + '<span id="durum' + obj[i].fields["Name"] + '" style="font-size: 12px;color: #fff; font-weight: bold;"> Pasif </span>'
+                                 + '</div>'
+                                 + '</div>'
+                                 + '</div>';
+
+                        $("#Robotlar").append(innerhtml);
+
+                        var iotSocket = new WebSocket( 'ws://' + window.location.host + '/robots/iot/' + obj[i].fields["Name"] + '/');
+                        iotSocket.open;
+
+                        iotSocket.onmessage = function(e) {
+                            var data = JSON.parse(e.data);
+                            var message = data['message'];
+                            var num = this.url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
+
+                            if($('#durum'+ num) != undefined && $('#durum'+ num) != null)
+                            {
+                                if((data['message'] == 'Evet' || data['message'] == 'Merhaba') && drewRobotList.includes(num) == false)
+                                {
+                                    $('#durum'+ num).html('Aktif');
+                                    $('#durumBack'+ num).css('background', 'rgb(0, 179, 0)');
+                                    $('#divRobot'+ num).css('border-color', 'rgb(0, 179, 0)');
+                                    drawRobot(num, 0, 0);
+                                    drewRobotList.push(num);
+                                }
+                                else if(data['message'] == 'Evet' && drewRobotList.includes(num) == true)
+                                {
+                                    $('#durum'+ num).html('Aktif');
+                                    $('#durumBack'+ num).css('background', 'rgb(0, 179, 0)');
+                                    $('#divRobot'+ num).css('border-color', 'rgb(0, 179, 0)');
+                                }
+                                else if(data['message'] != 'Orada misin?')
+                                {
+                                    if(data['message'].includes("Son Konumum"))
+                                    {
+                                        var points = data['message'].replace('Son Konumum: x:', '').replace(' y:','').split(";");
+                                        moveRobot(num, points[0], points[1]);
+                                    }
+
+                                }
+                            }
+
+                        };
+                        iotSocket.onclose = function(e) {
+                            console.error('iOT socket closed unexpectedly');
+                        };
+
+                        iotSocket.onopen = function(e) {
+                            var _this = this;
+                            var num = this.url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
+
+                            if($('#durum'+ num) != undefined && $('#durum'+ num) != null)
+                            {
+                                $('#durum'+ num).html('Pasif');
+                                $('#durumBack'+ num).css('background', '#f00');
+                                $('#divRobot'+ num).css('border-color', '#f00');
+                                _this.send(JSON.stringify({
+                                    'message': 'Orada misin?'
+                                }));
+
+                                setInterval(function(){
+
+                                    $('#durum'+ num).html('Pasif');
+                                    $('#durumBack'+ num).css('background', '#f00');
+                                    $('#divRobot'+ num).css('border-color', '#f00');
+                                    _this.send(JSON.stringify({
+                                        'message': 'Orada misin?'
+                                    }));
+                                }, 10000);
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
     </script>
 
 {% endblock content %}

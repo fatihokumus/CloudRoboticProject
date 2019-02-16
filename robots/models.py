@@ -28,13 +28,21 @@ class RobotModel(models.Model):
         return self.Name + ' - ' + self.Producer
 
 
+class Map(models.Model):
+    Name = models.CharField(max_length=250)
+    SubNet = models.ForeignKey(SubNet, on_delete=models.CASCADE)
+    Width = models.IntegerField(null=True)
+    Height = models.IntegerField(null=True)
+    Distance = models.IntegerField(null=True)
+    def __str__(self):
+        return self.Name
+
+
 class Robot(models.Model):
     Name = models.CharField(max_length=250)
     Code = models.CharField(max_length=50)
     RobotModel = models.ForeignKey(RobotModel, on_delete=models.CASCADE)
-    Tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE)
-    SubNet = models.ForeignKey(SubNet, on_delete=models.DO_NOTHING)
-
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     def __str__(self):
         return self.Name + ' - ' + self.Code
 
@@ -44,14 +52,24 @@ class RobotActivity(models.Model):
     Robot = models.ForeignKey(Robot, on_delete=models.CASCADE)
 
 
-class Map(models.Model):
-    Name = models.CharField(max_length=250)
-    SubNet = models.ForeignKey(SubNet, on_delete=models.CASCADE)
-
+class MapObstaclePoint(models.Model):
+    Left = models.IntegerField()
+    Right = models.IntegerField()
+    Top = models.IntegerField()
+    Bottom = models.IntegerField()
+    Map = models.ForeignKey(Map, on_delete=models.CASCADE)
     def __str__(self):
-        return self.Name
+        return "Map: " + self.Map.Name + "   /   Location: " + str(self.Left) + " - " + str(self.Right) + " - " + str(self.Top) + " - " + str(self.Bottom)
 
-
+class MapGoalPoint(models.Model):
+    Code = models.CharField(max_length=50)
+    Left = models.IntegerField()
+    Right = models.IntegerField()
+    Top = models.IntegerField()
+    Bottom = models.IntegerField()
+    Map = models.ForeignKey(Map, on_delete=models.CASCADE)
+    def __str__(self):
+        return "Map: " + self.Map.Name + "   /   Code: " + str(self.Code) + "   /   Location: " + str(self.Left) + " - " + str(self.Right) + " - " + str(self.Top) + " - " + str(self.Bottom)
 
 class Sticker(models.Model):
     Code = models.CharField(max_length=250)
@@ -69,9 +87,9 @@ class Mapping(models.Model):
     Top = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING, related_name='top_sticker', blank=True, null=True)
     Down = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING, related_name='down_sticker', blank=True, null=True)
     Map = models.ForeignKey(Map, on_delete=models.CASCADE)
-
     def __str__(self):
         return self.CurrentSticker.Code
+
 
 class RobotLocation(models.Model):
     RobotActivity = models.ForeignKey(RobotActivity, on_delete=models.CASCADE)
