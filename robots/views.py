@@ -11,11 +11,12 @@ from django.core import serializers
 
 from .models import Robot
 from .models import Map
-from .models import MapObstaclePoint
+from .models import ObstaclePoint
 from .models import MapGoalPoint
+from .PathPlanning.AStar.a_star import astar
 
 import json
-
+import numpy
 
 def index(request):
     all_robots = Robot.objects.all()
@@ -48,13 +49,48 @@ def getrobotlist(request, mapid):
 
 def getobstaclelist(request, mapid):
     map = Map.objects.get(pk=mapid)
-    data = serializers.serialize('json', MapObstaclePoint.objects.filter(Map=map).all())
+    data = serializers.serialize('json', ObstaclePoint.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
 
 def getgoallist(request, mapid):
     map = Map.objects.get(pk=mapid)
     data = serializers.serialize('json', MapGoalPoint.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
+
+
+def setrobotposition(request):
+    map = Map.objects.get(pk=request.GET.get('mapid'))
+    robot = Robot.objects.filter(Name=request.GET.get('robotname'), Map=map)
+    robot.update(isActive = request.GET.get('isactive'), LastCoordX = request.GET.get('lastcoordx'), LastCoordY = request.GET.get('lastcoordy'))
+
+    return JsonResponse("ok", safe=False)
+
+
+def getpathplan(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    goals = MapGoalPoint.objects.filter(Map=map).all()
+    obstacles = ObstaclePoint.objects.filter(Map=map).all()
+    robots = Robot.objects.filter(Map=map).all()
+
+    sx = int(robots[0].LastCoordX/map.Distance)
+    sy = int(robots[0].LastCoordY/map.Distance)
+    gx = int(goals[0].Left/map.Distance)
+    gy = int(goals[0].Top/map.Distance)
+    width = int(map.Width/map.Distance)
+    height = int(map.Height/map.Distance)
+
+    maze = [[0 for x in range(height)] for y in range(width)]
+
+    for i in range(len(obstacles)):
+        maze[obstacles[i].CenterX][obstacles[i].CenterY] = 1
+
+    start = (sx, sy)
+    end = (gx, gy)
+    nmap = numpy.array(maze)
+
+    path = astar(nmap, start, end)
+    path.append(start)
+    return JsonResponse(path, safe=False)
 
 
 def mapping(request):
@@ -80,10 +116,10 @@ def maplist(request):
         map.Distance = request.data["Distance"]
         map.save()
 
-        MapObstaclePoint.objects.filter(Map = map).delete()
+        ObstaclePoint.objects.filter(Map = map).delete()
         gridMap = request.data["ObstaclePoints"]
         for point in gridMap:
-            p1 = MapObstaclePoint(Left = point["Left"], Right = point["Right"], Top = point["Top"], Bottom = point["Bottom"], Map = map)
+            p1 = ObstaclePoint(Left = point["Left"], Right = point["Right"], Top = point["Top"], Bottom = point["Bottom"], CenterX = point["CenterX"], CenterY = point["CenterY"], Map = map)
             p1.save()
 
         return Response("ok", status=status.HTTP_200_OK)

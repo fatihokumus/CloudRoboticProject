@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^getrobotlist/(?P<mapid>[0-9]+)/$', views.getrobotlist, name='getrobotlist'),
     url(r'^getobstaclelist/(?P<mapid>[0-9]+)/$', views.getobstaclelist, name='getobstaclelist'),
     url(r'^getgoallist/(?P<mapid>[0-9]+)/$', views.getgoallist, name='getgoallist'),
+    url(r'^getpathplan/(?P<mapid>[0-9]+)/$', views.getpathplan, name='getpathplan'),
+    url(r'^setrobotposition/$', views.setrobotposition, name='setrobotposition'),
 ]

@@ -42,6 +42,9 @@ class Robot(models.Model):
     Name = models.CharField(max_length=250)
     Code = models.CharField(max_length=50)
     RobotModel = models.ForeignKey(RobotModel, on_delete=models.CASCADE)
+    isActive = models.BooleanField(default=False)
+    LastCoordX = models.IntegerField(null=True)
+    LastCoordY = models.IntegerField(null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     def __str__(self):
         return self.Name + ' - ' + self.Code
@@ -51,12 +54,13 @@ class RobotActivity(models.Model):
     Time = models.DateField()
     Robot = models.ForeignKey(Robot, on_delete=models.CASCADE)
 
-
-class MapObstaclePoint(models.Model):
+class ObstaclePoint(models.Model):
     Left = models.IntegerField()
     Right = models.IntegerField()
     Top = models.IntegerField()
     Bottom = models.IntegerField()
+    CenterX = models.IntegerField()
+    CenterY = models.IntegerField()
     Map = models.ForeignKey(Map, on_delete=models.CASCADE)
     def __str__(self):
         return "Map: " + self.Map.Name + "   /   Location: " + str(self.Left) + " - " + str(self.Right) + " - " + str(self.Top) + " - " + str(self.Bottom)
