@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^iot/(?P<room_name>[^/]+)/$', views.room, name='room'),
     url(r'^mapping/$', views.mapping, name='mapping'),
     url(r'^maplist/$', views.maplist),
+    url(r'^getmap/(?P<mapid>[0-9]+)/$', views.getmap),
     url(r'^goallist/$', views.goallist),
     url(r'^getrobotlist/(?P<mapid>[0-9]+)/$', views.getrobotlist, name='getrobotlist'),
     url(r'^getobstaclelist/(?P<mapid>[0-9]+)/$', views.getobstaclelist, name='getobstaclelist'),

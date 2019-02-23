@@ -50,7 +50,7 @@
                 </div>
             </div>
             <br/>
-            <button class="btn btn-success" onclick="PathPlan()">Path Planning</button>
+            <button class="btn btn-success" onclick="PathPlan()">A* Path Planning</button>
             <div id ="mapcanvas">
 
             </div>
@@ -64,7 +64,9 @@
         var drewGoalList = [];
         var currentmapid = 0;
         var currentdistance = 0;
-
+        var currentwidth = 0;
+        var currentheight = 0;
+        var socketList = [];
         robotimageList = [];
         var robotimage = 'http://fatih.tuga.com.tr:8180/static/images/turtlebot_2_lg.png';
 
@@ -168,6 +170,13 @@
 
         function getrobotsofmap(btn, mapid, width, height, distance)
         {
+            drewRobotList = [];
+            drewGoalList = [];
+            socketList = [];
+            robotimageList = [];
+            currentheight = height;
+            currentwidth = width;
+
             currentmapid = mapid;
             if(distance == undefined || distance == null)
                 distance = 50;
@@ -199,6 +208,7 @@
                 url: '/robots/getrobotlist/' + mapid,
                 dataType: 'json',
                 success: function (data) {
+                    socketList = [];
 
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
@@ -217,6 +227,8 @@
 
                         var iotSocket = new WebSocket( 'ws://' + window.location.host + '/robots/iot/' + obj[i].fields["Name"] + '/');
                         iotSocket.open;
+
+                        socketList.push(iotSocket);
 
                         iotSocket.onmessage = function(e) {
                             var data = JSON.parse(e.data);
@@ -294,35 +306,56 @@
         function PathPlan(mapid)
         {
             if(mapid == undefined || mapid == null)
-                mapid = 1;
+                mapid = currentmapid;
 
+            mapid = 1;
             $.ajax({
                 url: '/robots/getpathplan/' + mapid,
                 dataType: 'json',
                 success: function (data) {
-                    $('#svgHtml').remove();
+                    $('.svgHtml').remove();
                     $('.path').remove();
 
                     if(data.length>0)
                     {
-                        var svgHtml = '<svg id="svgHtml" width="1000" height="1000" style="margin-left:-820px;">';
-                        for(var i = 0; i < data.length; i++)
+
+                        var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" style="position: absolute;">';
+
+                        for(var j = 0; j < data.length; j++)
                         {
-                            drawPath(data[i][0], data[i][1])
-                            if(i>0)
+
+
+                            for(var i = 0; i < data[j]['path'].length; i++)
                             {
-                                var xpoint = ((data[i][0]*currentdistance) + (currentdistance/2));
-                                var ypoint = ((data[i][1]*currentdistance) + (currentdistance/2));
-                                var oldxpoint = ((data[i-1][0]*currentdistance) + (currentdistance/2));
-                                var oldypoint = ((data[i-1][1]*currentdistance) + (currentdistance/2));
-                                svgHtml += '<line x1="' + xpoint + '" y1="' + ypoint + '" x2="' + oldxpoint + '" y2="' + oldypoint + '" stroke="red"/>'
+                                drawPath(data[j]['path'][i][0], data[j]['path'][i][1])
+                                if(i>0)
+                                {
+                                    var xpoint = ((data[j]['path'][i][0]*currentdistance) + (currentdistance/2));
+                                    var ypoint = ((data[j]['path'][i][1]*currentdistance) + (currentdistance/2));
+                                    var oldxpoint = ((data[j]['path'][i-1][0]*currentdistance) + (currentdistance/2));
+                                    var oldypoint = ((data[j]['path'][i-1][1]*currentdistance) + (currentdistance/2));
+                                    svgHtml += '<line x1="' + xpoint + '" y1="' + ypoint + '" x2="' + oldxpoint + '" y2="' + oldypoint + '" stroke="red"/>'
+                                }
                             }
+
+
+                             jsondata = JSON.stringify(data[j]['path']);
+                             for(var t = 0; t < socketList.length; t++)
+                             {
+                                var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
+                                if(num == data[j]['robot'])
+                                {
+                                    socketList[t].send(JSON.stringify({
+                                            'message': 'Rota:' + jsondata
+                                        }));
+                                }
+                             }
                         }
 
-                         svgHtml +="</svg>";
-                         $('#canvas').append(svgHtml);
+                        svgHtml +="</svg>";
+                        $('#canvas').append(svgHtml);
+                        $('#svgHtml').css('left','0')
                     }
-
                 }
             });
         }

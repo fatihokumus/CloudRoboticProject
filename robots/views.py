@@ -66,31 +66,67 @@ def setrobotposition(request):
     return JsonResponse("ok", safe=False)
 
 
+def getmin(list, field):
+    counter = -1
+    minlen = 1000000
+    for i in range(len(list)):
+        if len(list[i][field]) < minlen:
+            minlen = len(list[i][field])
+            counter = i
+    return counter
+
+
 def getpathplan(request, mapid):
     map = Map.objects.get(pk=mapid)
     goals = MapGoalPoint.objects.filter(Map=map).all()
     obstacles = ObstaclePoint.objects.filter(Map=map).all()
     robots = Robot.objects.filter(Map=map).all()
 
-    sx = int(robots[0].LastCoordX/map.Distance)
-    sy = int(robots[0].LastCoordY/map.Distance)
-    gx = int(goals[0].Left/map.Distance)
-    gy = int(goals[0].Top/map.Distance)
-    width = int(map.Width/map.Distance)
-    height = int(map.Height/map.Distance)
+    models=[]
+    tasks = []
 
-    maze = [[0 for x in range(height)] for y in range(width)]
+    #TODO: görevler veritabanından gelecek
+    for r in range(len(robots)):
+        task = {}
+        task["robot"]= robots[r]
+        task["goals"]= []
+        tasks.append(task);
 
-    for i in range(len(obstacles)):
-        maze[obstacles[i].CenterX][obstacles[i].CenterY] = 1
+    for g in range(len(goals)):
+        rob = getmin(tasks, "goals")
 
-    start = (sx, sy)
-    end = (gx, gy)
-    nmap = numpy.array(maze)
+        if len(tasks[rob]["goals"])> 0:
+            sx = int(tasks[rob]["goals"][len(tasks[rob]["goals"]) - 1].Left / map.Distance)
+            sy = int(tasks[rob]["goals"][len(tasks[rob]["goals"]) - 1].Top / map.Distance)
+        else:
+            sx = int(tasks[rob]["robot"].LastCoordX/map.Distance)
+            sy = int(tasks[rob]["robot"].LastCoordY/map.Distance)
 
-    path = astar(nmap, start, end)
-    path.append(start)
-    return JsonResponse(path, safe=False)
+        gx = int(goals[g].Left/map.Distance)
+        gy = int(goals[g].Top/map.Distance)
+        width = int(map.Width/map.Distance)
+        height = int(map.Height/map.Distance)
+
+        tasks[rob]["goals"].append(goals[g])
+
+        maze = [[0 for x in range(height)] for y in range(width)]
+
+        for i in range(len(obstacles)):
+            maze[obstacles[i].CenterX][obstacles[i].CenterY] = 1
+
+        start = (sx, sy)
+        end = (gx, gy)
+        nmap = numpy.array(maze)
+
+        path = astar(nmap, start, end)
+        path.append(start)
+        model = {}
+        model["robot"] = tasks[rob]["robot"].Name
+        model["goal"] = goals[g].Code
+        model["path"] = path
+        models.append(model)
+
+    return JsonResponse(models, safe=False)
 
 
 def mapping(request):
@@ -123,6 +159,15 @@ def maplist(request):
             p1.save()
 
         return Response("ok", status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def getmap(request, mapid):
+    if request.method == 'GET':
+        map = Map.objects.get(pk=mapid)
+        data = serializers.serialize('json', ObstaclePoint.objects.filter(Map=map).all())
+        return Response(data)
+
 
 @api_view(['GET', 'POST'])
 def goallist(request):
