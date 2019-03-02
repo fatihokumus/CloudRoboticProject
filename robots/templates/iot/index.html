@@ -50,7 +50,8 @@
                 </div>
             </div>
             <br/>
-            <button class="btn btn-success" onclick="PathPlan()">A* Path Planning</button>
+            <button class="btn btn-success" onclick="PathPlan('astar')">A* Path Planning</button>
+            <button class="btn btn-success" onclick="PathPlan('dijkstra')">Dijkstra Path Planning</button>
             <div id ="mapcanvas">
 
             </div>
@@ -303,14 +304,12 @@
             });
         }
 
-        function PathPlan(mapid)
+        function PathPlan(algo)
         {
-            if(mapid == undefined || mapid == null)
-                mapid = currentmapid;
+            var mapid = currentmapid;
 
-            mapid = 1;
             $.ajax({
-                url: '/robots/getpathplan/' + mapid,
+                url: '/robots/getpathplan/' + mapid +'?algo=' + algo,
                 dataType: 'json',
                 success: function (data) {
                     $('.svgHtml').remove();
@@ -346,7 +345,7 @@
                                 if(num == data[j]['robot'])
                                 {
                                     socketList[t].send(JSON.stringify({
-                                            'message': 'Rota:' + jsondata
+                                            'message': 'Rota:' + num + ':' + jsondata
                                         }));
                                 }
                              }

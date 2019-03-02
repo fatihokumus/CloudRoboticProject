@@ -14,6 +14,7 @@ from .models import Map
 from .models import ObstaclePoint
 from .models import MapGoalPoint
 from .PathPlanning.AStar.a_star import astar
+from .PathPlanning.Dijkstra.dijkstra import dijkstras
 
 import json
 import numpy
@@ -77,6 +78,7 @@ def getmin(list, field):
 
 
 def getpathplan(request, mapid):
+    algo = request.GET.get('algo')
     map = Map.objects.get(pk=mapid)
     goals = MapGoalPoint.objects.filter(Map=map).all()
     obstacles = ObstaclePoint.objects.filter(Map=map).all()
@@ -111,20 +113,36 @@ def getpathplan(request, mapid):
 
         maze = [[0 for x in range(height)] for y in range(width)]
 
-        for i in range(len(obstacles)):
-            maze[obstacles[i].CenterX][obstacles[i].CenterY] = 1
-
         start = (sx, sy)
         end = (gx, gy)
         nmap = numpy.array(maze)
 
-        path = astar(nmap, start, end)
-        path.append(start)
-        model = {}
-        model["robot"] = tasks[rob]["robot"].Name
-        model["goal"] = goals[g].Code
-        model["path"] = path
-        models.append(model)
+        path = []
+        if algo == "astar":
+            path = astar(nmap, start, end)
+        elif algo == "dijkstra":
+            #grid_size = 1.0  # [m]
+            #robot_size = 1.0  # [m]
+            #rx, ry = dijkstra_planning(sx, sy, gx, gy, ox, oy, grid_size, robot_size)
+            npstart = numpy.array([[sx], [sy], [1.5707963267948966]])
+            npgoal = numpy.array([[gx], [gy], [-1.5707963267948966]])
+            x_spacing2 = 1
+            y_spacing2 = 1
+            path2 = dijkstras(nmap, x_spacing2, y_spacing2, npstart, npgoal).tolist()
+
+            for ii in range(len(path2)):
+                path.append((int(path2[ii][0]), int(path2[ii][1])))
+
+
+
+        if path != False:
+            if algo == "astar":
+                path.append(start)
+            model = {}
+            model["robot"] = tasks[rob]["robot"].Name
+            model["goal"] = goals[g].Code
+            model["path"] = path
+            models.append(model)
 
     return JsonResponse(models, safe=False)
 
