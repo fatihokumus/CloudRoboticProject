@@ -52,6 +52,7 @@
             <br/>
             <button class="btn btn-success" onclick="PathPlan('astar')">A* Path Planning</button>
             <button class="btn btn-success" onclick="PathPlan('dijkstra')">Dijkstra Path Planning</button>
+            <button class="btn btn-success" onclick="PathPlan('apf')">APF Path Planning</button>
             <div id ="mapcanvas">
 
             </div>
@@ -306,7 +307,15 @@
 
         function PathPlan(algo)
         {
+
             var mapid = currentmapid;
+            if(socketList.length>0)
+            {
+                socketList[0].send(JSON.stringify({
+                                            'message': 'ClearPath'
+                                        }));
+            }
+
 
             $.ajax({
                 url: '/robots/getpathplan/' + mapid +'?algo=' + algo,
@@ -345,7 +354,7 @@
                                 if(num == data[j]['robot'])
                                 {
                                     socketList[t].send(JSON.stringify({
-                                            'message': 'Rota:' + num + ':' + jsondata
+                                            'message': 'Rota:' + algo + ':' + num + ':' + jsondata
                                         }));
                                 }
                              }

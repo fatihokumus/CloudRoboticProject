@@ -15,6 +15,7 @@ from .models import ObstaclePoint
 from .models import MapGoalPoint
 from .PathPlanning.AStar.a_star import astar
 from .PathPlanning.Dijkstra.dijkstra import dijkstras
+from .PathPlanning.PotentialFieldPlanning.potential_field_planning import potential_field_planning
 
 import json
 import numpy
@@ -80,9 +81,9 @@ def getmin(list, field):
 def getpathplan(request, mapid):
     algo = request.GET.get('algo')
     map = Map.objects.get(pk=mapid)
-    goals = MapGoalPoint.objects.filter(Map=map).all()
+    goals = MapGoalPoint.objects.filter(Map=map).order_by('Code').all()
     obstacles = ObstaclePoint.objects.filter(Map=map).all()
-    robots = Robot.objects.filter(Map=map).all()
+    robots = Robot.objects.filter(Map=map).order_by('Name').all()
 
     models=[]
     tasks = []
@@ -113,6 +114,14 @@ def getpathplan(request, mapid):
 
         maze = [[0 for x in range(height)] for y in range(width)]
 
+        ox = []
+        oy = []
+
+        for i in range(len(obstacles)):
+            maze[obstacles[i].CenterX][obstacles[i].CenterY] = 1
+            ox.append(obstacles[i].CenterY)
+            oy.append(obstacles[i].CenterX)
+
         start = (sx, sy)
         end = (gx, gy)
         nmap = numpy.array(maze)
@@ -132,6 +141,13 @@ def getpathplan(request, mapid):
 
             for ii in range(len(path2)):
                 path.append((int(path2[ii][0]), int(path2[ii][1])))
+        elif algo == "apf":
+
+            grid_size = 1
+            robot_radius = 1 #
+
+            rx, ry = potential_field_planning(
+                sx, sy, gx, gy, ox, oy, grid_size, robot_radius)
 
 
 
