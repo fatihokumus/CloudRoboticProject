@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/robots/PathPlanning/Dijkstra/dijkstra.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/PathPlanning/PotentialFieldPlanning/potential_field_planning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LogFile.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/templates/iot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/robots/templates/iot/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/attr/py.typed" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/automat/_test/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firstsite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/firstsite/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,14 +119,42 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="753732385">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="4" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2176">
-              <caret line="148" selection-start-line="148" selection-end-line="148" />
+            <state relative-caret-position="425">
+              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -136,8 +162,17 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python/Lib/site-packages/django/core/handlers/base.py">
+        <entry file="file://C:/python/Lib/site-packages/django/core/handlers/base.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1887">
               <caret line="121" column="62" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="62" />
@@ -157,8 +192,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/PathPlanning/AStar/a_star.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="49" column="45" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="45" />
+            <state relative-caret-position="255">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -166,11 +201,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="336" column="29" selection-start-line="336" selection-start-column="29" selection-end-line="336" selection-end-column="29" />
+            <state relative-caret-position="227">
+              <caret line="339" column="33" selection-start-line="339" selection-start-column="33" selection-end-line="339" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -182,46 +217,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/PathPlanning/RRTstar/rrt_star.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3893">
-              <caret line="232" column="17" selection-start-line="232" selection-start-column="17" selection-end-line="232" selection-end-column="17" />
-              <folding>
-                <element signature="e#82#95#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/PathPlanning/Dijkstra/dijkstra.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="53" column="40" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/PathPlanning/PotentialFieldPlanning/potential_field_planning.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2261">
-              <caret line="133" column="4" selection-start-line="133" selection-start-column="4" selection-end-line="147" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1156">
               <caret line="68" column="8" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="8" />
-              <folding>
-                <marker date="1550477426051" expanded="true" signature="3487:3489" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -250,7 +249,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>InitializeGoal</find>
       <find>goalobje</find>
       <find>drawRobot</find>
       <find>moveRobot</find>
@@ -280,6 +278,7 @@
       <find>obstacles</find>
       <find>Dijkstra</find>
       <find>obstacle</find>
+      <find>10.1.1</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -318,7 +317,6 @@
         <option value="$PROJECT_DIR$/firstsite/asgi.py" />
         <option value="$PROJECT_DIR$/robots/routing.py" />
         <option value="$PROJECT_DIR$/firstsite/urls.py" />
-        <option value="$PROJECT_DIR$/firstsite/settings.py" />
         <option value="$PROJECT_DIR$/robots/consumers.py" />
         <option value="$PROJECT_DIR$/robots/templates/base.html" />
         <option value="$PROJECT_DIR$/robots/models.py" />
@@ -330,14 +328,15 @@
         <option value="$PROJECT_DIR$/robots/PathPlanning/PotentialFieldPlanning/potential_field_planning.py" />
         <option value="$PROJECT_DIR$/robots/views.py" />
         <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
+        <option value="$PROJECT_DIR$/firstsite/settings.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="892" />
-    <option name="y" value="3" />
-    <option name="width" value="960" />
-    <option name="height" value="1040" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -362,7 +361,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -391,28 +389,7 @@
               <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
               <item name="robots" type="462c0819:PsiDirectoryNode" />
               <item name="PathPlanning" type="462c0819:PsiDirectoryNode" />
-              <item name="AStar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="PathPlanning" type="462c0819:PsiDirectoryNode" />
-              <item name="Dijkstra" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="PathPlanning" type="462c0819:PsiDirectoryNode" />
               <item name="PotentialFieldPlanning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="PathPlanning" type="462c0819:PsiDirectoryNode" />
-              <item name="RRTstar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
@@ -422,6 +399,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,17 +409,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\DjangoProjects\doctoraproject\robots\PathPlanning\PotentialFieldPlanning" />
+      <recent name="F:\DjangoProjects\doctoraproject\robots\PathPlanning" />
+      <recent name="F:\DjangoProjects\doctoraproject\robots\PathPlanning\Dijkstra" />
+      <recent name="C:\DjangoProjects\doctoraproject\robots\PathPlanning" />
+      <recent name="C:\DjangoProjects\doctoraproject\robots\PathPlanning\AStar" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\DjangoProjects\doctoraproject\robots\static\images" />
       <recent name="C:\DjangoProjects\doctoraproject\firstsite" />
       <recent name="F:\DjangoProjects\firstsite\robots\static" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\DjangoProjects\doctoraproject\robots\PathPlanning" />
-      <recent name="C:\DjangoProjects\doctoraproject\robots\PathPlanning\AStar" />
-      <recent name="C:\DjangoProjects\doctoraproject\robots\static\images" />
-      <recent name="F:\DjangoProjects\firstsite\robots" />
-      <recent name="F:\DjangoProjects\firstsite\static" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -573,21 +551,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6990991" visible="true" weight="0.24499473" />
-      <window_info id="Structure" order="1" sideWeight="0.3009009" side_tool="true" visible="true" weight="0.24499473" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6965944" visible="true" weight="0.24499473" />
+      <window_info id="Structure" order="1" sideWeight="0.30340558" side_tool="true" visible="true" weight="0.24499473" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49315068" weight="0.30010834" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4910432" visible="true" weight="0.39869988" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4926238" visible="true" weight="0.30010834" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4910432" weight="0.39869988" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4963119" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.48630136" weight="0.45178765" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5089568" side_tool="true" visible="true" weight="0.39869988" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5073762" side_tool="true" visible="true" weight="0.30010834" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49841937" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -677,14 +656,14 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python/Lib/asyncio/base_events.py" />
-    <entry file="file://C:/Python/Lib/asyncio/events.py" />
-    <entry file="file://C:/Python/Lib/site-packages/channels/sessions.py" />
-    <entry file="file://C:/Python/Lib/site-packages/channels/middleware.py" />
-    <entry file="file://C:/Python/Lib/site-packages/channels/consumer.py" />
-    <entry file="file://C:/Python/Lib/site-packages/channels/generic/websocket.py" />
-    <entry file="file://C:/Python/Lib/site-packages/channels/utils.py" />
-    <entry file="file://C:/Python/Lib/importlib/__init__.py" />
+    <entry file="file://C:/python/Lib/asyncio/base_events.py" />
+    <entry file="file://C:/python/Lib/asyncio/events.py" />
+    <entry file="file://C:/python/Lib/site-packages/channels/sessions.py" />
+    <entry file="file://C:/python/Lib/site-packages/channels/middleware.py" />
+    <entry file="file://C:/python/Lib/site-packages/channels/consumer.py" />
+    <entry file="file://C:/python/Lib/site-packages/channels/generic/websocket.py" />
+    <entry file="file://C:/python/Lib/site-packages/channels/utils.py" />
+    <entry file="file://C:/python/Lib/importlib/__init__.py" />
     <entry file="file://$PROJECT_DIR$/robots/migrations/0002_auto_20181113_1351.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -697,7 +676,7 @@
     </entry>
     <entry file="file://$USER_HOME$/Downloads/p5/empty-example/sketch.js" />
     <entry file="file://$USER_HOME$/Downloads/p5/empty-example/index.html" />
-    <entry file="file://C:/Python/Lib/site-packages/pip/_internal/vcs/git.py" />
+    <entry file="file://C:/python/Lib/site-packages/pip/_internal/vcs/git.py" />
     <entry file="file://$PROJECT_DIR$/db.sqlite3">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -774,13 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="108" column="54" selection-start-line="108" selection-start-column="54" selection-end-line="108" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/firstsite/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -788,17 +760,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python/Lib/site-packages/django/db/models/__init__.py">
+    <entry file="file://C:/python/Lib/site-packages/django/db/models/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://C:/Python/Lib/site-packages/rest_framework/decorators.py">
+    <entry file="file://C:/python/Lib/site-packages/rest_framework/decorators.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="53" selection-start-line="53" selection-end-line="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python/Lib/site-packages/rest_framework/views.py">
+    <entry file="file://C:/python/Lib/site-packages/rest_framework/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="496" selection-start-line="496" selection-end-line="496" />
@@ -819,13 +791,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0014_mapobstaclepoint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0014_mapobstaclepoint.py" />
     <entry file="file://$PROJECT_DIR$/robots/static/images/archer-clipart-archery-bullseye-15.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -843,7 +809,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python/Lib/site-packages/django/core/handlers/exception.py">
+    <entry file="file://C:/python/Lib/site-packages/django/core/handlers/exception.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-578">
           <caret line="36" selection-start-line="36" selection-end-line="36" />
@@ -852,17 +818,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/robots/PathPlanning/__init__.py" />
     <entry file="file://$PROJECT_DIR$/robots/PathPlanning/Dijkstra/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/robots/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="148" selection-start-line="148" selection-end-line="148" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python/Lib/site-packages/django/core/handlers/base.py">
+    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/RRTstar/rrt_star.py" />
+    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/Dijkstra/dijkstra.py" />
+    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/PotentialFieldPlanning/potential_field_planning.py" />
+    <entry file="file://C:/python/Lib/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1887">
           <caret line="121" column="62" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="62" />
@@ -876,50 +835,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/AStar/a_star.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="49" column="45" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/RRTstar/rrt_star.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3893">
-          <caret line="232" column="17" selection-start-line="232" selection-start-column="17" selection-end-line="232" selection-end-column="17" />
-          <folding>
-            <element signature="e#82#95#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/Dijkstra/dijkstra.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="53" column="40" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/PotentialFieldPlanning/potential_field_planning.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="133" column="4" selection-start-line="133" selection-start-column="4" selection-end-line="147" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/robots/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1156">
           <caret line="68" column="8" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="8" />
-          <folding>
-            <marker date="1550477426051" expanded="true" signature="3487:3489" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -935,14 +854,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="336" column="29" selection-start-line="336" selection-start-column="29" selection-end-line="336" selection-end-column="29" />
+        <state relative-caret-position="227">
+          <caret line="339" column="33" selection-start-line="339" selection-start-column="33" selection-end-line="339" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/AStar/a_star.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
         </state>
       </provider>
     </entry>
