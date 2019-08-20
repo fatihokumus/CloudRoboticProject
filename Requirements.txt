@@ -19,3 +19,8 @@
 
 # pip install daphne
 # pip install whitenoise
+# pip install channels
+# pip install djangorestframework
+# pip install numpy
+# pip install matplotlib
+# pip install channels-redis
