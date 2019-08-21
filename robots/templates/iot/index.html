@@ -4,7 +4,7 @@
     <style>
     .mapcontainer {
       position: relative;
-      background: #a1e4f9;
+      background: #ffffff;
     }
     .animate {
 
@@ -27,37 +27,55 @@
 
     .obstacle {
       position: absolute;
-      background-color: #000;
+      background-color: #808080;
+    }
+    .row {
+      margin-left:0px;
+    }
+    a:hover {
+     cursor:pointer;
     }
     </style>
 
 {% endblock javascript %}
 
 {% block content %}
+    <div class="row" style="width: 100%; margin-right: 0px; margin-left: 0px;">
+        <div style="margin-left: auto;margin-right: auto;width: 1140px;height: 40px;">
+            <nav class="navbar navbar-inverse" style="border-radius: 0px;">
+              <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                     {% for map in MapList %}
+                       <li> <a onclick='getrobotsofmap(this, {{ map.pk }}, {{ map.Width }}, {{ map.Height }}, {{ map.Distance|default_if_none:"49"  }})' style="float:left;height: 40px;margin:0px; margin-right:5px;">
+                            {{ map.Name }}
+                        </a></li>
 
-    <div class = "row" style=" width: 100%; ">
-        <div class = "col-md-2" style="background-color:#0094de; ">
-            {% for map in MapList %}
-                <button class="btn-map" onclick='getrobotsofmap(this, {{ map.pk }}, {{ map.Width }}, {{ map.Height }}, {{ map.Distance|default_if_none:"50"  }})' style="margin:5px; width:100%; height:100px;">
-                    {{ map.Name }}
-                </button>
-
-            {% endfor %}
-        </div>
-        <div class = "col-md-10">
-            <div >
-                <div class="row" id="Robotlar" style="margin-top:5px; padding-left: 15px; overflow-x: scroll;overflow-y: hidden;height: 135px;white-space:nowrap" >
-                </div>
-            </div>
-            <br/>
-            <button class="btn btn-success" onclick="PathPlan('astar')">A* Path Planning</button>
-            <button class="btn btn-success" onclick="PathPlan('dijkstra')">Dijkstra Path Planning</button>
-            <button class="btn btn-success" onclick="PathPlan('apf')">APF Path Planning</button>
-            <div id ="mapcanvas">
-
-            </div>
+                    {% endfor %}
+                </ul>
+              </div>
+            </nav>
 
         </div>
+    </div>
+    <div class = "row" style=" width: 100%;">
+        <div >
+            <div class="row" id="Robotlar" style="margin-top:15px; padding-left: 15px; overflow-x: scroll;overflow-y: hidden;height: 135px;white-space:nowrap" >
+            </div>
+        </div>
+
+        <nav class="navbar navbar-inverse" style="border-radius: 0px;">
+          <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li><a onclick="PathPlan('astar')" style="float:left;height: 40px;margin:0px; margin-right:5px;">A* Path Planning</a></li>
+              <li><a onclick="PathPlan('dijkstra')" style="float:left;height: 40px;margin:0px; margin-right:5px;">Dijkstra Path Planning</a></li>
+              <li><a onclick="PathPlan('apf')" style="float:left;height: 40px;margin:0px; margin-right:5px;">APF Path Planning</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div id ="mapcanvas" style="margin-left:35px;">
+
+        </div>
+        <br/>
     </div>
 
     <script>
@@ -124,11 +142,12 @@
 
         function drawMap(dis) {
 
-            var canvasWidth = $('#canvas').width();
-            var canvasHeight = $('#canvas').height();
-
-            for (var x = 0; x < canvasWidth/dis; x++ ) {
-                for (var y = 0; y < canvasHeight/dis; y++) {
+            var canvasWidth = $('#canvas').width() - 10;
+            var canvasHeight = $('#canvas').height() - 10;
+            var numX = parseInt(canvasWidth/dis);
+            var numY = parseInt(canvasHeight/dis);
+            for (var x = 0; x < numX; x++ ) {
+                for (var y = 0; y < numY; y++) {
                     var divhtml = "<div id='labelx" + x + "y" + y + "' class='labelRFID'></div>";
                     $('#canvas').append(divhtml)
                     $('#labelx' + x + 'y' + y).css('top', ((y*dis) + (dis/2))+ 'px');
@@ -188,8 +207,8 @@
             setupMap(width,height);
             drawMap(distance);
 
-            $('.btn-map').css('background-color', '#e6e6e6');
-            $(btn).css('background-color', '#77fb6d');
+            $(btn).parent().parent().children().prop('class', '');
+            $(btn).parent().prop('class', 'active');
             $("#Robotlar").html('');
 
             $.ajax({

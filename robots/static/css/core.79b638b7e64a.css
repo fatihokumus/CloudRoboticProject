@@ -16,7 +16,7 @@ hr { height: 1px; border: 0; border: none; width: 100%; background: #bfbfbf; col
 /* general layout */
 
 body { position: relative; text-align: center; z-index: 0; background-color: #fafafa; }
-.wrapper { position: relative; text-align: left; margin: 0 auto; padding: 0 10px; width: 800px; }
+.wrapper { position: relative; text-align: left; margin: 0 auto; padding: 0 10px; width: 1140px; }
 
 div.wrapper > div.col-major {
     display: block;
@@ -172,7 +172,7 @@ i { display: inline-block; padding:0; margin:0; padding-right:6px; position: rel
     width: 180px;
 }
   .rtfd-header-title h1 { background: url("../images/logo.8add1c892c45.png") top left no-repeat; position: absolute; top: 0; left: -30px; padding: 0; font-size: 20px; line-height: 20px; color: #fff; margin: 20px 0 0 20px}
-  .rtfd-header-title h1 a { display: block; color: #fff; text-decoration: none; height: 50px; width: 200px; }
+  .rtfd-header-title h1 a { display: block; color: #fff; text-decoration: none; height: 50px; width: 450px; }
 
   /* header search */
   .rtfd-header-search { position: absolute; top: 12px; left: 190px; width: 320px; }
@@ -182,7 +182,7 @@ i { display: inline-block; padding:0; margin:0; padding-right:6px; position: rel
   .rtfd-header-search input[type="submit"]:hover { text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); background-color: #8ECC4C; color: #fff; }
 
   /* header nav */
-  .rtfd-header-nav { position: absolute; top: 0; right: 10px; }
+  .rtfd-header-nav { position: absolute; top: 0; right: 0px; }
   .rtfd-header-nav ul li { float: left; }
   .rtfd-header-nav ul li a { font-size: 14px; font-weight: bold; display: block; text-decoration: none; padding: 4px 10px; margin: 15px 0 0 10px; color: #fff; text-shadow: 0 1px 0px rgba(0, 0, 0, 0.5); background: #7C8F99 url("../images/gradient-light.da72bd534549.png") bottom left repeat-x; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); }
   .rtfd-header-nav ul li a:hover { background-color: #8CA1AF; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2); }

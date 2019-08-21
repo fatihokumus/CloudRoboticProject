@@ -30,6 +30,6 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-admin.site.site_header = "Teleport"
-admin.site.site_title = "Teleport Project Admin Portal"
+admin.site.site_header = "Endüstriyel Bina İçi Lojistik Otonom Robot Sistemi"
+admin.site.site_title = "Endüstriyel Bina İçi Lojistik Otonom Robot Sistemi Project Admin Portal"
 admin.site.index_title = "Endüstriyel Bina İçi Lojistik Otonom Robot Sistemi"
