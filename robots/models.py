@@ -61,6 +61,8 @@ class ObstaclePoint(models.Model):
     Bottom = models.IntegerField()
     CenterX = models.IntegerField()
     CenterY = models.IntegerField()
+    Position = models.CharField(blank=True, max_length=2000),
+    Position2 = models.CharField(blank=True, max_length=2000),
     Map = models.ForeignKey(Map, on_delete=models.CASCADE)
     def __str__(self):
         return "Map: " + self.Map.Name + "   /   Location: " + str(self.Left) + " - " + str(self.Right) + " - " + str(self.Top) + " - " + str(self.Bottom)
@@ -102,4 +104,94 @@ class RobotLocation(models.Model):
     PositionY = models.FloatField()
 
 
+class TransferredObjects(models.Model):
+    Borcode = models.CharField(max_length=250)
+    isActive = models.BooleanField(default=False)
+    LastPosX = models.IntegerField(null=True)
+    LastPosY = models.IntegerField(null=True)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
 
+    def __str__(self):
+        return self.Borcode
+
+
+class TransferredObjectsTask(models.Model):
+    Code = models.CharField(max_length=250)
+    TransferredObjects = models.ForeignKey(TransferredObjects, on_delete=models.CASCADE)
+    isCompleted = models.BooleanField(default=False)
+    isActive = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.Code
+
+
+class WorkStation(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    Position = models.CharField(max_length=2000, blank=True)
+    EnterPosX = models.FloatField()
+    EnterPosY = models.FloatField()
+    ExitPosX = models.FloatField()
+    ExitPosY = models.FloatField()
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.Code
+
+
+class TaskHistory(models.Model):
+    TransferredObjectsTask = models.ForeignKey(TransferredObjectsTask, on_delete=models.CASCADE, blank=False, null=False)
+    WorkStation = models.ForeignKey(WorkStation, on_delete=models.DO_NOTHING, related_name='WorkStation_TOTask', blank=True, null=True)
+    Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, related_name='Robot_TOTask', blank=True, null=True)
+    WorkOrder = models.IntegerField(null=True)
+    isCompleted = models.BooleanField(default=False)
+    isActive = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.TransferredObjectsTask.Code + " - " + str(self.WorkOrder)
+
+
+class WaitingStation(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.Code
+
+class WaitingStationSection(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    isFull = models.BooleanField(default=False)
+    WaitingStation = models.ForeignKey(WaitingStation, on_delete=models.CASCADE)
+    TransferredObjects = models.ForeignKey(TransferredObjects, on_delete=models.DO_NOTHING, blank=True,null=True)
+    Position = models.CharField(max_length=2000, blank=True)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.Code
+
+class ChargingStation(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.Code
+
+
+class ChargingStationSection(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    isFull = models.BooleanField(default=False)
+    ChargingStation = models.ForeignKey(ChargingStation, on_delete=models.CASCADE)
+    Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, blank=True,null=True)
+    Position = models.CharField(max_length=2000, blank=True)
+
+    def __str__(self):
+        return self.Code
