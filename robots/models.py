@@ -156,42 +156,43 @@ class WaitingStation(models.Model):
     Code = models.CharField(max_length=250)
     Name = models.CharField(max_length=500)
     isActive = models.BooleanField(default=False)
-    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
-
-    def __str__(self):
-        return self.Code
-
-class WaitingStationSection(models.Model):
-    Code = models.CharField(max_length=250)
-    Name = models.CharField(max_length=500)
-    isActive = models.BooleanField(default=False)
     isFull = models.BooleanField(default=False)
-    WaitingStation = models.ForeignKey(WaitingStation, on_delete=models.CASCADE)
-    TransferredObjects = models.ForeignKey(TransferredObjects, on_delete=models.DO_NOTHING, blank=True,null=True)
     Position = models.CharField(max_length=2000, blank=True)
+    CenterX = models.IntegerField(default=0)
+    CenterY = models.IntegerField(default=0)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return self.Code
+
+
+class TObjectWaiting(models.Model):
+    StartDateTime = models.DateTimeField()
+    EnfDateTime = models.DateTimeField()
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+    TransferredObjects = models.ForeignKey(TransferredObjects, on_delete=models.DO_NOTHING, blank=True, null=True)
+    WaitingStation = models.ForeignKey(WaitingStation, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+
 
 class ChargingStation(models.Model):
     Code = models.CharField(max_length=250)
     Name = models.CharField(max_length=500)
     isActive = models.BooleanField(default=False)
+    isFull = models.BooleanField(default=False)
+    Position = models.CharField(max_length=2000, blank=True)
+    CenterX = models.IntegerField(default=0)
+    CenterY = models.IntegerField(default=0)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return self.Code
 
 
-class ChargingStationSection(models.Model):
-    Code = models.CharField(max_length=250)
-    Name = models.CharField(max_length=500)
-    isActive = models.BooleanField(default=False)
-    isFull = models.BooleanField(default=False)
-    ChargingStation = models.ForeignKey(ChargingStation, on_delete=models.CASCADE)
-    Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, blank=True,null=True)
-    Position = models.CharField(max_length=2000, blank=True)
 
-    def __str__(self):
-        return self.Code
+class RobotCharging(models.Model):
+    StartDateTime = models.DateTimeField()
+    EnfDateTime = models.DateTimeField()
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+    Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, blank=True, null=True)
+    ChargingStation = models.ForeignKey(ChargingStation, on_delete=models.DO_NOTHING, blank=True, null=True)
