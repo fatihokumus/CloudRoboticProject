@@ -9,9 +9,10 @@ from rest_framework.response import Response
 from django.utils.safestring import mark_safe
 from django.core import serializers
 
-from .models import Robot
+from .models import Robot, WorkStation
 from .models import Map
 from .models import ObstaclePoint
+from .models import WorkStation
 from .models import MapGoalPoint
 from .PathPlanning.AStar.a_star import astar
 from .PathPlanning.Dijkstra.dijkstra import dijkstras
@@ -187,9 +188,16 @@ def maplist(request):
         map.save()
 
         ObstaclePoint.objects.filter(Map = map).delete()
-        gridMap = request.data["ObstaclePoints"]
-        for point in gridMap:
+        mapObstacle = request.data["ObstaclePoints"]
+        for point in mapObstacle:
             p1 = ObstaclePoint(Left = point["Left"], Right = point["Right"], Top = point["Top"], Bottom = point["Bottom"], CenterX = point["CenterX"], CenterY = point["CenterY"], Map = map)
+            p1.save()
+
+        mapDok = request.data["WorkStationPoints"]
+        for point in mapDok:
+            p1 = WorkStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"], Position=point["Position"],
+                             EnterPosX=point["EnterPosX"], EnterPosY=point["EnterPosY"],
+                             ExitPosX=point["ExitPosX"], ExitPosY=point["ExitPosY"], Map=map)
             p1.save()
 
         return Response("ok", status=status.HTTP_200_OK)
