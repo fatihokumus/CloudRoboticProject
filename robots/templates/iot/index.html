@@ -80,6 +80,12 @@
 
     <script>
 
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.split(search).join(replacement);
+        };
+
+
         var drewRobotList = [];
         var drewGoalList = [];
         var currentmapid = 0;
@@ -101,6 +107,36 @@
             $('#canvas').append(divhtml)
             $('#obstaclex' + left + 'y' + top).css('top', top+'px');
             $('#obstaclex' + left + 'y' + top).css('left', left+ 'px');
+        }
+
+        function drawWorkStation(position) {
+
+            var str = position.replaceAll('[', '');
+            str = str.replaceAll(']', '');
+            str = str.replaceAll('},', ' ');
+
+            str = str.replaceAll('{', '');
+            str = str.replaceAll('}', '');
+
+            var svgHtml = '<svg width="' + currentwidth + '" height="' + currentheight + '">' +
+                              '<polygon points="' + str + '" style="fill:lime;stroke:purple;stroke-width:1" />' +
+                            '</svg>';
+            $('#canvas').append(svgHtml)
+
+        }
+
+        function drawWatingStation(left, right, top, bottom) {
+            var divhtml = "<div id='waitingstationx" + left + "y" + top + "' class='waitingstation' style='width:" + (right-left) + "px; height:" + (bottom-top) + "px;'></div>";
+            $('#canvas').append(divhtml)
+            $('#waitingstationx' + left + 'y' + top).css('top', top+'px');
+            $('#waitingstationx' + left + 'y' + top).css('left', left+ 'px');
+        }
+
+        function drawChargingStation(left, right, top, bottom) {
+            var divhtml = "<div id='chargingstationx" + left + "y" + top + "' class='chargingstation' style='width:" + (right-left) + "px; height:" + (bottom-top) + "px;'></div>";
+            $('#canvas').append(divhtml)
+            $('#chargingstationx' + left + 'y' + top).css('top', top+'px');
+            $('#chargingstationx' + left + 'y' + top).css('left', left+ 'px');
         }
 
         function drawGoal(code, left, right, top, bottom) {
@@ -219,6 +255,42 @@
                     for(var i = 0; i < obj.length; i++)
                     {
                         drawObstacle(obj[i].fields["Left"], obj[i].fields["Right"], obj[i].fields["Top"], obj[i].fields["Bottom"])
+                    }
+                }
+            });
+
+             $.ajax({
+                url: '/robots/getworkstationlist/' + mapid,
+                dataType: 'json',
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    for(var i = 0; i < obj.length; i++)
+                    {
+                        drawWorkStation(obj[i].fields["Position"])
+                    }
+                }
+            });
+
+            $.ajax({
+                url: '/robots/getwaitingstationlist/' + mapid,
+                dataType: 'json',
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    for(var i = 0; i < obj.length; i++)
+                    {
+                        drawWatingStation(obj[i].fields["Left"], obj[i].fields["Right"], obj[i].fields["Top"], obj[i].fields["Bottom"])
+                    }
+                }
+            });
+
+            $.ajax({
+                url: '/robots/getchargingstationlist/' + mapid,
+                dataType: 'json',
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    for(var i = 0; i < obj.length; i++)
+                    {
+                        drawChargingStation(obj[i].fields["Left"], obj[i].fields["Right"], obj[i].fields["Top"], obj[i].fields["Bottom"])
                     }
                 }
             });

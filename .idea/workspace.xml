@@ -4,83 +4,15 @@
     <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/templates/iot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/robots/templates/iot/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="753732385">
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="css" value="1" />
-          <entry key="html" value="7" />
-          <entry key="png" value="2" />
-          <entry key="py" value="16" />
-          <entry key="xml" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="1" />
-          <entry key="HTML" value="7" />
-          <entry key="Image" value="2" />
-          <entry key="Python" value="16" />
-          <entry key="XML" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="css" value="2" />
-          <entry key="html" value="74" />
-          <entry key="py" value="472" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CSS" value="2" />
-          <entry key="HTML" value="74" />
-          <entry key="Python" value="472" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="201" selection-start-line="201" selection-end-line="201" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/robots/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -90,43 +22,8 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>hari</find>
-      <find>Endüstriyel Bina İçi Lojistik Otonom Robot Sistemi</find>
-      <find>Robot</find>
-      <find>SubNet</find>
-      <find>robots_mapgoalpoint</find>
-      <find>migrations.DeleteModel</find>
-      <find>MapGoalPoint</find>
-      <find>obstaclepoint</find>
-      <find>../static/images/logo.8add1c892c45.png</find>
-      <find>labelRFID</find>
-      <find>maplist</find>
-      <find>ObstaclePoint</find>
-      <find>WorkStation</find>
-      <find>work</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/robots/static/css/core.79b638b7e64a.css" />
-        <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
-        <option value="$PROJECT_DIR$/robots/migrations/0011_auto_20190823_1818.py" />
-        <option value="$PROJECT_DIR$/robots/migrations/0011_auto_20190823_1820.py" />
-        <option value="$PROJECT_DIR$/robots/admin.py" />
-        <option value="$PROJECT_DIR$/robots/migrations/0012_auto_20190823_1828.py" />
-        <option value="$PROJECT_DIR$/robots/templates/base.html" />
-        <option value="$PROJECT_DIR$/robots/templates/admin/login.html" />
-        <option value="$PROJECT_DIR$/robots/templates/admin/base_site.html" />
-        <option value="$PROJECT_DIR$/robots/views.py" />
-        <option value="$PROJECT_DIR$/robots/models.py" />
-      </list>
-    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1699" />
@@ -153,40 +50,12 @@
     </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="git&#9;null&#9;null" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -236,6 +105,16 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -349,59 +228,18 @@
     <option name="localTasksCounter" value="15" />
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.68577075" visible="true" weight="0.24499473" />
-      <window_info id="Structure" order="1" sideWeight="0.31422925" side_tool="true" visible="true" weight="0.24499473" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4926238" visible="true" weight="0.30010834" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4910432" weight="0.39869988" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4963119" weight="0.32936078" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49947312" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.48366702" visible="true" weight="0.45178765" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.516333" side_tool="true" visible="true" weight="0.45178765" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49841937" weight="0.32936078" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deployment" />
@@ -425,6 +263,9 @@
         <watch expression="len(goals)" />
         <watch expression="path2.tolist()[0]" language="Python" />
         <watch expression="int(path2[0][0])" language="Python" />
+        <watch expression="point" />
+        <watch expression="point[&quot;Code&quot;]" />
+        <watch expression="point[&quot;Position&quot;]" />
       </configuration>
     </watches-manager>
   </component>
@@ -481,134 +322,5 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://C:/python/Lib/site-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="121" column="62" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/static/images/logo.8add1c892c45.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-544">
-          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/PathPlanning/AStar/a_star.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/static/css/core.79b638b7e64a.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="173" column="43" selection-start-line="173" selection-start-column="43" selection-end-line="173" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1224">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0011_auto_20190823_1521.py" />
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0011_auto_20190823_1818.py" />
-    <entry file="file://$PROJECT_DIR$/robots/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/python/Lib/site-packages/django/db/backends/sqlite3/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="295" selection-start-line="295" selection-end-line="295" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0011_auto_20190823_1820.py" />
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0014_chargingstationsection_position.py" />
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0012_auto_20190823_1828.py" />
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0013_mapgoalpoint_obstaclepoint.py" />
-    <entry file="file://C:/python/Lib/site-packages/django/db/migrations/operations/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="167" selection-end-line="1" selection-end-column="167" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0010_auto_20181126_1437.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/admin/base_site.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/admin/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0009_auto_20181126_1434.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="201" selection-start-line="201" selection-end-line="201" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

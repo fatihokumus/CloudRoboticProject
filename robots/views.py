@@ -9,11 +9,13 @@ from rest_framework.response import Response
 from django.utils.safestring import mark_safe
 from django.core import serializers
 
-from .models import Robot, WorkStation
+from .models import Robot
 from .models import Map
 from .models import ObstaclePoint
 from .models import WorkStation
 from .models import MapGoalPoint
+from .models import ChargingStation
+from .models import WaitingStation
 from .PathPlanning.AStar.a_star import astar
 from .PathPlanning.Dijkstra.dijkstra import dijkstras
 from .PathPlanning.PotentialFieldPlanning.potential_field_planning import potential_field_planning
@@ -53,6 +55,21 @@ def getrobotlist(request, mapid):
 def getobstaclelist(request, mapid):
     map = Map.objects.get(pk=mapid)
     data = serializers.serialize('json', ObstaclePoint.objects.filter(Map=map).all())
+    return JsonResponse(data, safe=False)
+
+def getworkstationlist(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    data = serializers.serialize('json', WorkStation.objects.filter(Map=map).all())
+    return JsonResponse(data, safe=False)
+
+def getwaitingstationlist(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    data = serializers.serialize('json', WaitingStation.objects.filter(Map=map).all())
+    return JsonResponse(data, safe=False)
+
+def getchargingstationlist(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    data = serializers.serialize('json', ChargingStation.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
 
 def getgoallist(request, mapid):
@@ -193,12 +210,23 @@ def maplist(request):
             p1 = ObstaclePoint(Left = point["Left"], Right = point["Right"], Top = point["Top"], Bottom = point["Bottom"], CenterX = point["CenterX"], CenterY = point["CenterY"], Map = map)
             p1.save()
 
-        mapDok = request.data["WorkStationPoints"]
-        for point in mapDok:
-            p1 = WorkStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"], Position=point["Position"],
-                             EnterPosX=point["EnterPosX"], EnterPosY=point["EnterPosY"],
-                             ExitPosX=point["ExitPosX"], ExitPosY=point["ExitPosY"], Map=map)
-            p1.save()
+        WorkStation.objects.filter(Map=map).delete()
+        mapWorkStation = request.data["WorkStationPoints"]
+        for point in mapWorkStation:
+            workS = WorkStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"], Position=point["Position"], EnterPosX=point["EnterPosX"], EnterPosY=point["EnterPosY"], ExitPosX=point["ExitPosX"], ExitPosY=point["ExitPosY"], Map=map)
+            workS.save()
+
+        WaitingStation.objects.filter(Map=map).delete()
+        mapWaitingStation = request.data["WaitingStationPoints"]
+        for point in mapWaitingStation:
+            waitingS = WaitingStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"], isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"], CenterY=point["CenterY"], Map=map)
+            waitingS.save()
+
+        ChargingStation.objects.filter(Map=map).delete()
+        mapChargeStation = request.data["ChargeStationPoints"]
+        for point in mapChargeStation:
+            chargingS = ChargingStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"], isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"], CenterY=point["CenterY"], Map=map)
+            chargingS.save()
 
         return Response("ok", status=status.HTTP_200_OK)
 
