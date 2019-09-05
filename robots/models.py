@@ -130,10 +130,10 @@ class WorkStation(models.Model):
     Name = models.CharField(max_length=500)
     isActive = models.BooleanField(default=False)
     Position = models.CharField(max_length=2000, blank=True)
-    EnterPosX = models.FloatField()
-    EnterPosY = models.FloatField()
-    ExitPosX = models.FloatField()
-    ExitPosY = models.FloatField()
+    EnterPosX = models.IntegerField()
+    EnterPosY = models.IntegerField()
+    ExitPosX = models.IntegerField()
+    ExitPosY = models.IntegerField()
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):

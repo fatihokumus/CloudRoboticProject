@@ -109,7 +109,7 @@
             $('#obstaclex' + left + 'y' + top).css('left', left+ 'px');
         }
 
-        function drawWorkStation(position) {
+        function drawWorkStation(position, x,y,code) {
 
             var str = position.replaceAll('[', '');
             str = str.replaceAll(']', '');
@@ -118,25 +118,77 @@
             str = str.replaceAll('{', '');
             str = str.replaceAll('}', '');
 
-            var svgHtml = '<svg width="' + currentwidth + '" height="' + currentheight + '">' +
-                              '<polygon points="' + str + '" style="fill:lime;stroke:purple;stroke-width:1" />' +
-                            '</svg>';
-            $('#canvas').append(svgHtml)
+            if($('#svgHtml').length <=0)
+            {
+                var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
+                $('#canvas').append(svgHtml);
+            }
+
+            var newPolygon = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+            newPolygon.setAttribute('points',str);
+            newPolygon.setAttribute('style',"fill:lime;stroke:purple;stroke-width:1");
+            newPolygon.setAttribute("class", "polygon");
+
+
+
+            $("#svgHtml").append(newPolygon);
+
+            var newText = document.createElementNS('http://www.w3.org/2000/svg','text');
+            newText.setAttribute('x',x+3);
+            newText.setAttribute('y',y+15);
+            newText.setAttribute('fill',"black");
+            newText.setAttribute('font-size','14');
+            newText.setAttribute('font-weight','bold');
+            newText.textContent  = 'M' + code;
+            $("#svgHtml").append(newText);
+
+            //var polygonHtml = '<polygon points="' + str + '" style="fill:lime;stroke:purple;stroke-width:1" />';
+            //$('#svgHtml').append(polygonHtml);
 
         }
 
-        function drawWatingStation(left, right, top, bottom) {
-            var divhtml = "<div id='waitingstationx" + left + "y" + top + "' class='waitingstation' style='width:" + (right-left) + "px; height:" + (bottom-top) + "px;'></div>";
-            $('#canvas').append(divhtml)
-            $('#waitingstationx' + left + 'y' + top).css('top', top+'px');
-            $('#waitingstationx' + left + 'y' + top).css('left', left+ 'px');
+        function drawWatingStation(position) {
+            var str = position.replaceAll('[', '');
+            str = str.replaceAll(']', '');
+            str = str.replaceAll('},', ' ');
+
+            str = str.replaceAll('{', '');
+            str = str.replaceAll('}', '');
+
+            if($('#svgHtml').length <=0)
+            {
+                var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
+                $('#canvas').append(svgHtml);
+            }
+
+
+            var newPolygon = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+            newPolygon.setAttribute('points',str);
+            newPolygon.setAttribute('style',"fill:#ff00e5;stroke:purple;stroke-width:1");
+            newPolygon.setAttribute("class", "polygon");
+            $("#svgHtml").append(newPolygon);
         }
 
-        function drawChargingStation(left, right, top, bottom) {
-            var divhtml = "<div id='chargingstationx" + left + "y" + top + "' class='chargingstation' style='width:" + (right-left) + "px; height:" + (bottom-top) + "px;'></div>";
-            $('#canvas').append(divhtml)
-            $('#chargingstationx' + left + 'y' + top).css('top', top+'px');
-            $('#chargingstationx' + left + 'y' + top).css('left', left+ 'px');
+        function drawChargingStation(position) {
+            var str = position.replaceAll('[', '');
+            str = str.replaceAll(']', '');
+            str = str.replaceAll('},', ' ');
+
+            str = str.replaceAll('{', '');
+            str = str.replaceAll('}', '');
+
+            if($('#svgHtml').length <=0)
+            {
+                var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
+                $('#canvas').append(svgHtml);
+            }
+
+
+            var newPolygon = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+            newPolygon.setAttribute('points',str);
+            newPolygon.setAttribute('style',"fill:yellow;stroke:purple;stroke-width:1");
+            newPolygon.setAttribute("class", "polygon");
+            $("#svgHtml").append(newPolygon);
         }
 
         function drawGoal(code, left, right, top, bottom) {
@@ -266,7 +318,7 @@
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
                     {
-                        drawWorkStation(obj[i].fields["Position"])
+                        drawWorkStation(obj[i].fields["Position"],obj[i].fields["EnterPosX"],obj[i].fields["EnterPosY"],obj[i].fields["Code"])
                     }
                 }
             });
@@ -278,7 +330,7 @@
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
                     {
-                        drawWatingStation(obj[i].fields["Left"], obj[i].fields["Right"], obj[i].fields["Top"], obj[i].fields["Bottom"])
+                        drawWatingStation(obj[i].fields["Position"])
                     }
                 }
             });
@@ -290,7 +342,7 @@
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
                     {
-                        drawChargingStation(obj[i].fields["Left"], obj[i].fields["Right"], obj[i].fields["Top"], obj[i].fields["Bottom"])
+                        drawChargingStation(obj[i].fields["Position"])
                     }
                 }
             });
@@ -412,28 +464,43 @@
                 url: '/robots/getpathplan/' + mapid +'?algo=' + algo,
                 dataType: 'json',
                 success: function (data) {
-                    $('.svgHtml').remove();
+                    $('.pathline').remove();
                     $('.path').remove();
 
                     if(data.length>0)
                     {
+                        if($('#svgHtml').length <=0)
+                        {
+                            var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
+                            $('#canvas').append(svgHtml);
+                        }
 
-                        var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" style="position: absolute;">';
-
+                        var lineHtml ='';
                         for(var j = 0; j < data.length; j++)
                         {
 
 
                             for(var i = 0; i < data[j]['path'].length; i++)
                             {
-                                drawPath(data[j]['path'][i][0], data[j]['path'][i][1])
+                                //drawPath(data[j]['path'][i][0], data[j]['path'][i][1])
                                 if(i>0)
                                 {
                                     var xpoint = ((data[j]['path'][i][0]*currentdistance) + (currentdistance/2));
                                     var ypoint = ((data[j]['path'][i][1]*currentdistance) + (currentdistance/2));
                                     var oldxpoint = ((data[j]['path'][i-1][0]*currentdistance) + (currentdistance/2));
                                     var oldypoint = ((data[j]['path'][i-1][1]*currentdistance) + (currentdistance/2));
-                                    svgHtml += '<line x1="' + xpoint + '" y1="' + ypoint + '" x2="' + oldxpoint + '" y2="' + oldypoint + '" stroke="red"/>'
+
+                                    var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+                                    newLine.setAttribute('id','line' + i);
+                                    newLine.setAttribute('x1',xpoint);
+                                    newLine.setAttribute('y1',ypoint);
+                                    newLine.setAttribute('x2',oldxpoint);
+                                    newLine.setAttribute('y2',oldypoint);
+                                    newLine.setAttribute("stroke", "red");
+                                    newLine.setAttribute("class", "pathline");
+                                    $("#svgHtml").append(newLine);
+
+                                    //lineHtml += '<line class="pathline" x1="' + xpoint + '" y1="' + ypoint + '" x2="' + oldxpoint + '" y2="' + oldypoint + '" stroke="red"/>'
                                 }
                             }
 
@@ -450,10 +517,8 @@
                                 }
                              }
                         }
-
-                        svgHtml +="</svg>";
-                        $('#canvas').append(svgHtml);
-                        $('#svgHtml').css('left','0')
+                        //$('#svgHtml').append(lineHtml);
+                        //$('#svgHtml').css('left','0');
                     }
                 }
             });

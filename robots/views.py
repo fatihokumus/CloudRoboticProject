@@ -235,7 +235,11 @@ def maplist(request):
 def getmap(request, mapid):
     if request.method == 'GET':
         map = Map.objects.get(pk=mapid)
-        data = serializers.serialize('json', ObstaclePoint.objects.filter(Map=map).all())
+        data = {}
+        data["obstacle"] = serializers.serialize('json', ObstaclePoint.objects.filter(Map=map).all())
+        data["workstation"] = serializers.serialize('json', WorkStation.objects.filter(Map=map).all())
+        data["waitingstation"] = serializers.serialize('json', WaitingStation.objects.filter(Map=map).all())
+        data["chargingstation"] = serializers.serialize('json', ChargingStation.objects.filter(Map=map).all())
         return Response(data)
 
 
