@@ -126,10 +126,8 @@
 
             var newPolygon = document.createElementNS('http://www.w3.org/2000/svg','polygon');
             newPolygon.setAttribute('points',str);
-            newPolygon.setAttribute('style',"fill:lime;stroke:purple;stroke-width:1");
+            newPolygon.setAttribute('style',"fill:#e0e0e0;stroke:purple;stroke-width:1");
             newPolygon.setAttribute("class", "polygon");
-
-
 
             $("#svgHtml").append(newPolygon);
 
@@ -137,17 +135,13 @@
             newText.setAttribute('x',x+3);
             newText.setAttribute('y',y+15);
             newText.setAttribute('fill',"black");
-            newText.setAttribute('font-size','14');
+            newText.setAttribute('font-size','13');
             newText.setAttribute('font-weight','bold');
             newText.textContent  = 'M' + code;
             $("#svgHtml").append(newText);
-
-            //var polygonHtml = '<polygon points="' + str + '" style="fill:lime;stroke:purple;stroke-width:1" />';
-            //$('#svgHtml').append(polygonHtml);
-
         }
 
-        function drawWatingStation(position) {
+        function drawWatingStation(position, x, y,code) {
             var str = position.replaceAll('[', '');
             str = str.replaceAll(']', '');
             str = str.replaceAll('},', ' ');
@@ -167,9 +161,18 @@
             newPolygon.setAttribute('style',"fill:#ff00e5;stroke:purple;stroke-width:1");
             newPolygon.setAttribute("class", "polygon");
             $("#svgHtml").append(newPolygon);
+
+            var newText = document.createElementNS('http://www.w3.org/2000/svg','text');
+            newText.setAttribute('x',x-13);
+            newText.setAttribute('y',y+5);
+            newText.setAttribute('fill',"black");
+            newText.setAttribute('font-size','13');
+            newText.setAttribute('font-weight','bold');
+            newText.textContent  = 'W' + code;
+            $("#svgHtml").append(newText);
         }
 
-        function drawChargingStation(position) {
+        function drawChargingStation(position, x, y,code) {
             var str = position.replaceAll('[', '');
             str = str.replaceAll(']', '');
             str = str.replaceAll('},', ' ');
@@ -189,6 +192,15 @@
             newPolygon.setAttribute('style',"fill:yellow;stroke:purple;stroke-width:1");
             newPolygon.setAttribute("class", "polygon");
             $("#svgHtml").append(newPolygon);
+
+            var newText = document.createElementNS('http://www.w3.org/2000/svg','text');
+            newText.setAttribute('x',x-13);
+            newText.setAttribute('y',y+5);
+            newText.setAttribute('fill',"black");
+            newText.setAttribute('font-size','13');
+            newText.setAttribute('font-weight','bold');
+            newText.textContent  = 'C' + code;
+            $("#svgHtml").append(newText);
         }
 
         function drawGoal(code, left, right, top, bottom) {
@@ -330,7 +342,7 @@
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
                     {
-                        drawWatingStation(obj[i].fields["Position"])
+                        drawWatingStation(obj[i].fields["Position"],obj[i].fields["CenterX"],obj[i].fields["CenterY"],obj[i].fields["Code"])
                     }
                 }
             });
@@ -342,7 +354,7 @@
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
                     {
-                        drawChargingStation(obj[i].fields["Position"])
+                        drawChargingStation(obj[i].fields["Position"],obj[i].fields["CenterX"],obj[i].fields["CenterY"],obj[i].fields["Code"])
                     }
                 }
             });
