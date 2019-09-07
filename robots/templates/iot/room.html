@@ -23,6 +23,12 @@
         document.querySelector('#iot-log').value += (message + '\n');
     };
 
+    iotSocket.onopen = function() {
+        iotSocket.send(JSON.stringify({
+            'message': "Merhaba"
+        }));
+    }
+
     iotSocket.onclose = function(e) {
         console.error('iOT socket closed unexpectedly');
     };

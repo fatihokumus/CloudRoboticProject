@@ -75,6 +75,9 @@
         <div id ="mapcanvas" style="margin-left:35px;">
 
         </div>
+        <div id ="messageLog" style="margin-left:35px;">
+            <textarea id="txtMessageLogs"></textarea>
+        </div>
         <br/>
     </div>
 
@@ -122,6 +125,7 @@
             {
                 var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
                 $('#canvas').append(svgHtml);
+                svgPanZoom('#svgHtml');
             }
 
             var newPolygon = document.createElementNS('http://www.w3.org/2000/svg','polygon');
@@ -153,6 +157,7 @@
             {
                 var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
                 $('#canvas').append(svgHtml);
+                svgPanZoom('#svgHtml');
             }
 
 
@@ -184,6 +189,7 @@
             {
                 var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
                 $('#canvas').append(svgHtml);
+                svgPanZoom('#svgHtml');
             }
 
 
@@ -371,18 +377,18 @@
                     for(var i = 0; i < obj.length; i++)
                     {
                         var innerhtml = '<div style="display: inline-block; margin-right:15px;">'
-                                 + '<div id="divRobot' + obj[i].fields["Name"] + '" style="width:100px; float: left; border: solid 5px #f00; text-align: center; padding: 0;">'
-                                 + '<div><span style="font-size: 12px;"> ' + obj[i].fields["Name"] + '</span></div>'
+                                 + '<div id="divRobot' + obj[i].fields["Code"] + '" style="width:100px; float: left; border: solid 5px #f00; text-align: center; padding: 0;">'
+                                 + '<div><span style="font-size: 12px;"> ' + obj[i].fields["Code"] + '</span></div>'
                                  + '<img src="/static/images/turtlebot_2_lg.png" width="40" style="margin-left: 15px; margin-right: 15px;"/>'
-                                 + '<div id="durumBack' + obj[i].fields["Name"] + '" style="height:20px; text-align: center; background: #f00;">'
-                                 + '<span id="durum' + obj[i].fields["Name"] + '" style="font-size: 12px;color: #fff; font-weight: bold;"> Pasif </span>'
+                                 + '<div id="durumBack' + obj[i].fields["Code"] + '" style="height:20px; text-align: center; background: #f00;">'
+                                 + '<span id="durum' + obj[i].fields["Code"] + '" style="font-size: 12px;color: #fff; font-weight: bold;"> Pasif </span>'
                                  + '</div>'
                                  + '</div>'
                                  + '</div>';
 
                         $("#Robotlar").append(innerhtml);
 
-                        var iotSocket = new WebSocket( 'ws://' + window.location.host + '/robots/iot/' + obj[i].fields["Name"] + '/');
+                        var iotSocket = new WebSocket( 'ws://' + window.location.host + '/robots/iot/' + obj[i].fields["Code"] + '/');
                         iotSocket.open;
 
                         socketList.push(iotSocket);
@@ -391,7 +397,8 @@
                             var data = JSON.parse(e.data);
                             var message = data['message'];
                             var num = this.url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
-
+                            var txt = $("#txtMessageLogs");
+                            txt.val( txt.val() + data['message']);
                             if($('#durum'+ num) != undefined && $('#durum'+ num) != null)
                             {
                                 if((data['message'] == 'Evet' || data['message'] == 'Merhaba') && drewRobotList.includes(num) == false)
@@ -485,6 +492,7 @@
                         {
                             var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
                             $('#canvas').append(svgHtml);
+                            svgPanZoom('#svgHtml');
                         }
 
                         var lineHtml ='';
@@ -535,6 +543,8 @@
                 }
             });
         }
+
+
 
     </script>
 
