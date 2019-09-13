@@ -15,7 +15,7 @@ hr { height: 1px; border: 0; border: none; width: 100%; background: #bfbfbf; col
 
 /* general layout */
 
-body { position: relative; text-align: center; z-index: 0; background-color: #fafafa; }
+body { position: relative; text-align: center; z-index: 0; background-color: #b1e6ff; }
 .wrapper { position: relative; text-align: left; margin: 0 auto; padding: 0 10px; width: 1140px; }
 
 div.wrapper > div.col-major {
