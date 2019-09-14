@@ -35,6 +35,39 @@
     a:hover {
      cursor:pointer;
     }
+
+    .robotdiv{
+        width: 100px;
+        border: solid 5px #f77;
+        text-align: center;
+        padding: 0;
+        height: auto;
+        margin: 0 auto;
+        position: relative;
+        border-radius: 4px;
+    }
+
+    .tObjectdiv{
+        width: 75px;
+        border: solid 5px #f77;
+        text-align: center;
+        padding: 0;
+        height: 88px;
+        margin: 0 auto;
+        position: relative;
+        margin-left: 16px;
+        border-radius: 4px;
+    }
+
+    #DokAraclari {
+      margin:0px;
+      margin-top:10px;
+      height: 100%;
+      display: -webkit-flex;
+      -webkit-flex-wrap: wrap;
+      display: flex;
+      flex-wrap: wrap;
+    }
     </style>
 
 {% endblock javascript %}
@@ -75,11 +108,19 @@
 
             </div>
         </div>
-        <div style="width:200px;float:left; right:0px; height:100%; background-color:aliceblue;">
-            <span style="font-weight: bold; ">Haritadaki Robotlar</span>
-            <div class="row" id="Robotlar" style="margin:0px; margin-top:10px;height: 100%;white-space:nowrap; " >
+        <div class="pull-right" style="height:100%; background-color:aliceblue;">
+            <div style="width:200px;float:left; right:0px; height:100%; border: 1px solid #39454b;padding-bottom: 100px;">
+                <span style="font-weight: bold; ">Haritadaki Dok Araçları</span>
+                <div class="row" id="DokAraclari">
+                </div>
+            </div>
+            <div style="width:200px;float:left; right:0px; height:100%; border: 1px solid #39454b;">
+                <span style="font-weight: bold; ">Haritadaki Robotlar</span>
+                <div class="row" id="Robotlar" style="margin:0px; margin-top:10px;height: 100%;white-space:nowrap; " >
+                </div>
             </div>
         </div>
+
         <br/>
     </div>
 
@@ -92,6 +133,7 @@
 
 
         var drewRobotList = [];
+        var drewTObjectList = [];
         var drewGoalList = [];
         var currentmapid = 0;
         var currentdistance = 0;
@@ -99,7 +141,6 @@
         var currentheight = 0;
         var socketList = [];
         robotimageList = [];
-        var robotimage = 'http://fatih.tuga.com.tr:8180/static/images/turtlebot_2_lg.png';
 
         function setupMap(x, y) {
             $('#mapcanvas').html('');
@@ -127,7 +168,6 @@
             {
                 var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
                 $('#canvas').append(svgHtml);
-                svgPanZoom('#svgHtml');
             }
 
             var newPolygon = document.createElementNS('http://www.w3.org/2000/svg','polygon');
@@ -159,7 +199,6 @@
             {
                 var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
                 $('#canvas').append(svgHtml);
-                svgPanZoom('#svgHtml');
             }
 
 
@@ -191,7 +230,6 @@
             {
                 var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
                 $('#canvas').append(svgHtml);
-                svgPanZoom('#svgHtml');
             }
 
 
@@ -243,9 +281,28 @@
             $("#robot-" + robotname).css('left', x + 'px');
         }
 
+        function drawTObject(name, x,y) {
+            var model = {
+                name : name,
+                xp : x,
+                yp : y
+            };
+            var html = "<div class='animate' id='tobject-" + name + "'><span style='font-size: 12px;color: #002e80;position: inherit;top: 0px;'>" + name + "</span><img style='margin-top: 18px;'  src='/static/images/dok-arabasi.png' width='"+ currentdistance +"' height='"+ currentdistance +"' /></div>";
+
+            $('#canvas').append(html);
+
+            $("#tobject-" + name).css('top', (y-18) + 'px');
+            $("#tobject-" + name).css('left', x + 'px');
+        }
+
         function moveRobot(robotname, x,y) {
             $("#robot-" + robotname).css('top', (y-18) + 'px');
             $("#robot-" + robotname).css('left', x + 'px');
+        }
+
+        function moveTObject(robotname, x,y) {
+            $("#tobject-" + robotname).css('top', (y-18) + 'px');
+            $("#tobject-" + robotname).css('left', x + 'px');
         }
 
         function drawMap(dis) {
@@ -300,6 +357,7 @@
         function getrobotsofmap(btn, mapid, width, height, distance)
         {
             drewRobotList = [];
+            drewTObjectList = [];
             drewGoalList = [];
             socketList = [];
             robotimageList = [];
@@ -379,10 +437,10 @@
                     for(var i = 0; i < obj.length; i++)
                     {
                         var innerhtml = '<div style=" margin-bottom:15px;">'
-                                 + '<div id="divRobot' + obj[i].fields["Code"] + '" style="width:100px; border: solid 5px #f00; text-align: center; padding: 0;">'
+                                 + '<div id="divRobot' + obj[i].fields["Code"] + '" class="robotdiv">'
                                  + '<div><span style="font-size: 12px;"> ' + obj[i].fields["Code"] + '</span></div>'
                                  + '<img src="/static/images/turtlebot_2_lg.png" width="40" style="margin-left: 15px; margin-right: 15px;"/>'
-                                 + '<div id="durumBack' + obj[i].fields["Code"] + '" style="height:20px; text-align: center; background: #f00;">'
+                                 + '<div id="durumBack' + obj[i].fields["Code"] + '" style="height:20px; text-align: center; background: #f77;">'
                                  + '<span id="durum' + obj[i].fields["Code"] + '" style="font-size: 12px;color: #fff; font-weight: bold;"> Pasif </span>'
                                  + '</div>'
                                  + '</div>'
@@ -424,7 +482,7 @@
                                         moveRobot(num, points[0], points[1]);
 
                                         $.ajax({
-                                            url: '/robots/setrobotposition/?robotname=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
+                                            url: '/robots/settobjectposition/?name=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
                                             dataType: 'json',
                                             success: function (data) {
                                             }
@@ -446,8 +504,8 @@
                             if($('#durum'+ num) != undefined && $('#durum'+ num) != null)
                             {
                                 $('#durum'+ num).html('Pasif');
-                                $('#durumBack'+ num).css('background', '#f00');
-                                $('#divRobot'+ num).css('border-color', '#f00');
+                                $('#durumBack'+ num).css('background', '#f77');
+                                $('#divRobot'+ num).css('border-color', '#f77');
                                 _this.send(JSON.stringify({
                                     'message': 'Orada misin?'
                                 }));
@@ -455,8 +513,107 @@
                                 setInterval(function(){
 
                                     $('#durum'+ num).html('Pasif');
-                                    $('#durumBack'+ num).css('background', '#f00');
-                                    $('#divRobot'+ num).css('border-color', '#f00');
+                                    $('#durumBack'+ num).css('background', '#f77');
+                                    $('#divRobot'+ num).css('border-color', '#f77');
+                                    _this.send(JSON.stringify({
+                                        'message': 'Orada misin?'
+                                    }));
+                                }, 10000);
+                            }
+                        }
+                    }
+                }
+            });
+
+
+            $.ajax({
+                url: '/robots/gettransferredobjectlist/' + mapid,
+                dataType: 'json',
+                success: function (data) {
+                    socketList = [];
+
+                    var obj = JSON.parse(data);
+                    for(var i = 0; i < obj.length; i++)
+                    {
+                        var innerhtml = '<div>'
+                                 + '<div id="divTransferredObject' + obj[i].fields["Borcode"] + '" class="tObjectdiv">'
+                                 + '<div style="height: 19px;margin-top: -4px;"><span style="font-size: 12px;"> ' + obj[i].fields["Borcode"] + '</span></div>'
+                                 + '<img src="/static/images/dok-arabasi.png" width="40" style="margin-left: 15px; margin-right: 15px;"/>'
+                                 + '<div id="durumTBack' + obj[i].fields["Borcode"] + '" style="height:20px; text-align: center; background: #f77;     margin-top: -8px;">'
+                                 + '<span id="durumT' + obj[i].fields["Borcode"] + '" style="font-size: 12px;color: #fff; font-weight: bold;"> Pasif </span>'
+                                 + '</div>'
+                                 + '</div>'
+                                 + '</div>';
+
+                        $("#DokAraclari").append(innerhtml);
+
+                        var iotSocket = new WebSocket( 'ws://' + window.location.host + '/robots/iot/' + obj[i].fields["Borcode"] + '/');
+                        iotSocket.open;
+
+                        socketList.push(iotSocket);
+
+                        iotSocket.onmessage = function(e) {
+                            var data = JSON.parse(e.data);
+                            var message = data['message'];
+                            var num = this.url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
+
+                            if($('#durumT'+ num) != undefined && $('#durumT'+ num) != null)
+                            {
+                                if((data['message'] == 'Evet' || data['message'] == 'Merhaba') && drewTObjectList.includes(num) == false)
+                                {
+                                    $('#durumT'+ num).html('Aktif');
+                                    $('#durumTBack'+ num).css('background', 'rgb(0, 179, 0)');
+                                    $('#divTransferredObject'+ num).css('border-color', 'rgb(0, 179, 0)');
+                                    drawTObject(num, 0, 0);
+                                    drewTObjectList.push(num);
+                                }
+                                else if(data['message'] == 'Evet' && drewTObjectList.includes(num) == true)
+                                {
+                                    $('#durumT'+ num).html('Aktif');
+                                    $('#durumTBack'+ num).css('background', 'rgb(0, 179, 0)');
+                                    $('#divTransferredObject'+ num).css('border-color', 'rgb(0, 179, 0)');
+                                }
+                                else if(data['message'] != 'Orada misin?')
+                                {
+                                    if(data['message'].includes("Son Konumum"))
+                                    {
+                                        var points = data['message'].replace('Son Konumum: x:', '').replace(' y:','').split(";");
+                                        moveTObject(num, points[0], points[1]);
+
+                                        $.ajax({
+                                            url: '/robots/setrobotposition/?robotname=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
+                                            dataType: 'json',
+                                            success: function (data) {
+                                            }
+                                        });
+                                    }
+
+                                }
+                            }
+
+                        };
+                        iotSocket.onclose = function(e) {
+                            console.error('iOT socket closed unexpectedly');
+                        };
+
+                        iotSocket.onopen = function(e) {
+                            var _this = this;
+                            var num = this.url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
+
+                            if($('#durumT'+ num) != undefined && $('#durumT'+ num) != null)
+                            {
+                                $('#durumT'+ num).html('Pasif');
+                                $('#durumTBack'+ num).css('background', '#f77');
+                                $('#divTransferredObject'+ num).css('border-color', '#f77');
+                                _this.send(JSON.stringify({
+                                    'message': 'Orada misin?'
+                                }));
+
+                                setInterval(function(){
+
+                                    $('#durumT'+ num).html('Pasif');
+                                    $('#durumTBack'+ num).css('background', '#f77');
+                                    $('#divTransferredObject'+ num).css('border-color', '#f77');
                                     _this.send(JSON.stringify({
                                         'message': 'Orada misin?'
                                     }));
@@ -493,7 +650,7 @@
                         {
                             var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
                             $('#canvas').append(svgHtml);
-                            svgPanZoom('#svgHtml');
+
                         }
 
                         var lineHtml ='';

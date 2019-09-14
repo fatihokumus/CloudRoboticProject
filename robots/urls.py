@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^getmap/(?P<mapid>[0-9]+)/$', views.getmap),
     url(r'^goallist/$', views.goallist),
     url(r'^getrobotlist/(?P<mapid>[0-9]+)/$', views.getrobotlist, name='getrobotlist'),
+    url(r'^gettransferredobjectlist/(?P<mapid>[0-9]+)/$', views.gettransferredobjectlist, name='gettransferredobjectlist'),
     url(r'^getobstaclelist/(?P<mapid>[0-9]+)/$', views.getobstaclelist, name='getobstaclelist'),
     url(r'^getworkstationlist/(?P<mapid>[0-9]+)/$', views.getworkstationlist, name='getworkstationlist'),
     url(r'^getwaitingstationlist/(?P<mapid>[0-9]+)/$', views.getwaitingstationlist, name='getwaitingstationlist'),

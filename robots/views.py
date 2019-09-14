@@ -16,6 +16,8 @@ from .models import WorkStation
 from .models import MapGoalPoint
 from .models import ChargingStation
 from .models import WaitingStation
+from .models import TransferredObjects
+
 from .PathPlanning.AStar.a_star import astar
 from .PathPlanning.Dijkstra.dijkstra import dijkstras
 from .PathPlanning.PotentialFieldPlanning.potential_field_planning import potential_field_planning
@@ -52,6 +54,12 @@ def getrobotlist(request, mapid):
     return JsonResponse(data, safe=False)
 
 
+def gettransferredobjectlist(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    data = serializers.serialize('json', TransferredObjects.objects.filter(Map=map).all())
+    return JsonResponse(data, safe=False)
+
+
 def getobstaclelist(request, mapid):
     map = Map.objects.get(pk=mapid)
     data = serializers.serialize('json', ObstaclePoint.objects.filter(Map=map).all())
@@ -82,6 +90,14 @@ def setrobotposition(request):
     map = Map.objects.get(pk=request.GET.get('mapid'))
     robot = Robot.objects.filter(Name=request.GET.get('robotname'), Map=map)
     robot.update(isActive = request.GET.get('isactive'), LastCoordX = request.GET.get('lastcoordx'), LastCoordY = request.GET.get('lastcoordy'))
+
+    return JsonResponse("ok", safe=False)
+
+
+def settobjectposition(request):
+    map = Map.objects.get(pk=request.GET.get('mapid'))
+    tobject = TransferredObjects.objects.filter(Barcode=request.GET.get('name'), Map=map)
+    tobject.update(isActive = request.GET.get('isactive'), LastPosX = request.GET.get('lastcoordx'), LastPosY = request.GET.get('lastcoordy'))
 
     return JsonResponse("ok", safe=False)
 
