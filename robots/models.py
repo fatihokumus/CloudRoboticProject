@@ -116,10 +116,10 @@ class TransferredObjects(models.Model):
 
 
 class TransferredObjectsTask(models.Model):
-    Code = models.CharField(max_length=250)
     TransferredObjects = models.ForeignKey(TransferredObjects, on_delete=models.CASCADE)
     isCompleted = models.BooleanField(default=False)
     isActive = models.BooleanField(default=False)
+    Order = models.CharField(max_length=500)
 
     def __str__(self):
         return self.Code

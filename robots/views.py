@@ -102,6 +102,13 @@ def settobjectposition(request):
     return JsonResponse("ok", safe=False)
 
 
+def settobjecttask(request):
+    map = Map.objects.get(pk=request.GET.get('mapid'))
+    tobject = TransferredObjects.objects.filter(Barcode=request.GET.get('barcode'), Map=map)
+
+    return JsonResponse("ok", safe=False)
+
+
 def getmin(list, field):
     counter = -1
     minlen = 1000000
