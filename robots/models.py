@@ -196,3 +196,32 @@ class RobotCharging(models.Model):
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, blank=True, null=True)
     ChargingStation = models.ForeignKey(ChargingStation, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+
+class StartStation(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    isFull = models.BooleanField(default=False)
+    Position = models.CharField(max_length=2000, blank=True)
+    CenterX = models.IntegerField(default=0)
+    CenterY = models.IntegerField(default=0)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.Code
+
+
+class EndStation(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    isFull = models.BooleanField(default=False)
+    Position = models.CharField(max_length=2000, blank=True)
+    CenterX = models.IntegerField(default=0)
+    CenterY = models.IntegerField(default=0)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.Code
+
