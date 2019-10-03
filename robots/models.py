@@ -104,7 +104,8 @@ class RobotLocation(models.Model):
     PositionY = models.FloatField()
 
 
-class TransferredObjects(models.Model):
+
+class TransferVehicle(models.Model):
     Borcode = models.CharField(max_length=250)
     isActive = models.BooleanField(default=False)
     LastPosX = models.IntegerField(null=True)
@@ -115,11 +116,53 @@ class TransferredObjects(models.Model):
         return self.Borcode
 
 
+class StartStation(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    isFull = models.BooleanField(default=False)
+    Position = models.CharField(max_length=2000, blank=True)
+    CenterX = models.IntegerField(default=0)
+    CenterY = models.IntegerField(default=0)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.Code
+
+
+class EndStation(models.Model):
+    Code = models.CharField(max_length=250)
+    Name = models.CharField(max_length=500)
+    isActive = models.BooleanField(default=False)
+    isFull = models.BooleanField(default=False)
+    Position = models.CharField(max_length=2000, blank=True)
+    CenterX = models.IntegerField(default=0)
+    CenterY = models.IntegerField(default=0)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.Code
+
+
+
+class TransferredObjects(models.Model):
+    Borcode = models.CharField(max_length=250)
+    isActive = models.BooleanField(default=False)
+    LastPosX = models.IntegerField(null=True)
+    LastPosY = models.IntegerField(null=True)
+    StartStation = models.ForeignKey(StartStation, on_delete=models.DO_NOTHING, related_name='StartStation_TO', blank=True, null=True)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+    TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TO', blank=True, null=True)
+    def __str__(self):
+        return self.Borcode
+
+
+
 class TransferredObjectsTask(models.Model):
     TransferredObjects = models.ForeignKey(TransferredObjects, on_delete=models.CASCADE)
     isCompleted = models.BooleanField(default=False)
     isActive = models.BooleanField(default=False)
-    Order = models.CharField(max_length=500)
+    Order = models.IntegerField(null=True)
 
     def __str__(self):
         return self.Code
@@ -140,16 +183,7 @@ class WorkStation(models.Model):
         return self.Code
 
 
-class TaskHistory(models.Model):
-    TransferredObjectsTask = models.ForeignKey(TransferredObjectsTask, on_delete=models.CASCADE, blank=False, null=False)
-    WorkStation = models.ForeignKey(WorkStation, on_delete=models.DO_NOTHING, related_name='WorkStation_TOTask', blank=True, null=True)
-    Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, related_name='Robot_TOTask', blank=True, null=True)
-    WorkOrder = models.IntegerField(null=True)
-    isCompleted = models.BooleanField(default=False)
-    isActive = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.TransferredObjectsTask.Code + " - " + str(self.WorkOrder)
 
 
 class WaitingStation(models.Model):
@@ -164,6 +198,24 @@ class WaitingStation(models.Model):
 
     def __str__(self):
         return self.Code
+
+
+
+class TaskHistory(models.Model):
+    TransferredObjectsTask = models.ForeignKey(TransferredObjectsTask, on_delete=models.CASCADE, blank=False, null=False)
+    TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TOTask', blank=True, null=True)
+    WorkStation = models.ForeignKey(WorkStation, on_delete=models.DO_NOTHING, related_name='WorkStation_TOTask', blank=True, null=True)
+    WaitingStation = models.ForeignKey(WaitingStation, on_delete=models.DO_NOTHING, related_name='WaitingStation_TOTask', blank=True, null=True)
+    EndStation = models.ForeignKey(EndStation, on_delete=models.DO_NOTHING, related_name='EndStation_TOTask', blank=True, null=True)
+    Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, related_name='Robot_TOTask', blank=True, null=True)
+    WorkOrder = models.IntegerField(null=True)
+    isCompleted = models.BooleanField(default=False)
+    isActive = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.TransferredObjectsTask.Code + " - " + str(self.WorkOrder)
+
+
 
 
 class TObjectWaiting(models.Model):
@@ -197,31 +249,4 @@ class RobotCharging(models.Model):
     Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, blank=True, null=True)
     ChargingStation = models.ForeignKey(ChargingStation, on_delete=models.DO_NOTHING, blank=True, null=True)
 
-
-class StartStation(models.Model):
-    Code = models.CharField(max_length=250)
-    Name = models.CharField(max_length=500)
-    isActive = models.BooleanField(default=False)
-    isFull = models.BooleanField(default=False)
-    Position = models.CharField(max_length=2000, blank=True)
-    CenterX = models.IntegerField(default=0)
-    CenterY = models.IntegerField(default=0)
-    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
-
-    def __str__(self):
-        return self.Code
-
-
-class EndStation(models.Model):
-    Code = models.CharField(max_length=250)
-    Name = models.CharField(max_length=500)
-    isActive = models.BooleanField(default=False)
-    isFull = models.BooleanField(default=False)
-    Position = models.CharField(max_length=2000, blank=True)
-    CenterX = models.IntegerField(default=0)
-    CenterY = models.IntegerField(default=0)
-    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
-
-    def __str__(self):
-        return self.Code
 
