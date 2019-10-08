@@ -16,7 +16,11 @@ from .models import WorkStation
 from .models import MapGoalPoint
 from .models import ChargingStation
 from .models import WaitingStation
+from .models import StartStation
+from .models import FinishStation
 from .models import TransferredObjects
+from .models import TransferVehicle
+from .models import TaskHistory
 
 from .PathPlanning.AStar.a_star import astar
 from .PathPlanning.Dijkstra.dijkstra import dijkstras
@@ -59,6 +63,11 @@ def gettransferredobjectlist(request, mapid):
     data = serializers.serialize('json', TransferredObjects.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
 
+def gettransfervehiclelist(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    data = serializers.serialize('json', TransferVehicle.objects.filter(Map=map).order_by('Barcode').all())
+    return JsonResponse(data, safe=False)
+
 
 def getobstaclelist(request, mapid):
     map = Map.objects.get(pk=mapid)
@@ -79,6 +88,17 @@ def getchargingstationlist(request, mapid):
     map = Map.objects.get(pk=mapid)
     data = serializers.serialize('json', ChargingStation.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
+
+def getstartstationlist(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    data = serializers.serialize('json', StartStation.objects.filter(Map=map).all())
+    return JsonResponse(data, safe=False)
+
+def getfinishstationlist(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    data = serializers.serialize('json', FinishStation.objects.filter(Map=map).all())
+    return JsonResponse(data, safe=False)
+
 
 def getgoallist(request, mapid):
     map = Map.objects.get(pk=mapid)
@@ -251,6 +271,40 @@ def maplist(request):
             chargingS = ChargingStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"], isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"], CenterY=point["CenterY"], Map=map)
             chargingS.save()
 
+        StartStation.objects.filter(Map=map).delete()
+        mapStartStation = request.data["StartStationPoints"]
+        for point in mapStartStation:
+            startS = StartStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"],
+                                        isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"],
+                                        CenterY=point["CenterY"], Map=map)
+            startS.save()
+
+        FinishStation.objects.filter(Map=map).delete()
+        mapFinishStation = request.data["FinishStationPoints"]
+        for point in mapFinishStation:
+            finishS = FinishStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"],
+                                  isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"],
+                                  CenterY=point["CenterY"], Map=map)
+            finishS.save()
+
+        return Response("ok", status=status.HTTP_200_OK)
+
+
+@api_view(['GET', 'POST'])
+def addtransferobject(request):
+    if request.method == 'POST':
+        map = Map.objects.get(pk=request.data["MapId"])
+        startStation = StartStation.objects.get(pk=request.data["StartStationId"])
+        transferVehicle = TransferVehicle.objects.get(pk=request.data["TransferVehicleId"])
+        entity = TransferredObjects(Barcode = request.data["Barcode"], isActive = True, LastPosX = request.data["LastPosX"], LastPosY = request.data["LastPosY"],StartStation =startStation, TransferVehicle= transferVehicle,   Map = map)
+        entity.save()
+
+        taskHistories = request.data["TaskHistories"]
+        for taskHistory in taskHistories:
+            p1 = TaskHistory(TransferredObject = entity, WorkOrder = taskHistory["WorkOrder"], isCompleted = False, isActive = True)
+            p1.save()
+
+
         return Response("ok", status=status.HTTP_200_OK)
 
 
@@ -263,6 +317,8 @@ def getmap(request, mapid):
         data["workstation"] = serializers.serialize('json', WorkStation.objects.filter(Map=map).all())
         data["waitingstation"] = serializers.serialize('json', WaitingStation.objects.filter(Map=map).all())
         data["chargingstation"] = serializers.serialize('json', ChargingStation.objects.filter(Map=map).all())
+        data["startstation"] = serializers.serialize('json', StartStation.objects.filter(Map=map).all())
+        data["finishstation"] = serializers.serialize('json', FinishStation.objects.filter(Map=map).all())
         return Response(data)
 
 
