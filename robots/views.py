@@ -68,6 +68,11 @@ def gettransfervehiclelist(request, mapid):
     data = serializers.serialize('json', TransferVehicle.objects.filter(Map=map).order_by('Barcode').all())
     return JsonResponse(data, safe=False)
 
+def gettransfervehicle(request, code):
+    vehicle = TransferVehicle.objects.filter(Code=code)[0]
+    data = serializers.serialize('json', vehicle)
+    return JsonResponse(data, safe=False)
+
 
 def getobstaclelist(request, mapid):
     map = Map.objects.get(pk=mapid)
@@ -262,29 +267,33 @@ def maplist(request):
         WaitingStation.objects.filter(Map=map).delete()
         mapWaitingStation = request.data["WaitingStationPoints"]
         for point in mapWaitingStation:
-            waitingS = WaitingStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"], isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"], CenterY=point["CenterY"], Map=map)
+            waitingS = WaitingStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"],
+                                      isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"],
+                                      CenterY=point["CenterY"], Map=map)
             waitingS.save()
 
         ChargingStation.objects.filter(Map=map).delete()
         mapChargeStation = request.data["ChargeStationPoints"]
         for point in mapChargeStation:
-            chargingS = ChargingStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"], isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"], CenterY=point["CenterY"], Map=map)
+            chargingS = ChargingStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"],
+                                        isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"],
+                                        CenterY=point["CenterY"], Map=map)
             chargingS.save()
 
         StartStation.objects.filter(Map=map).delete()
         mapStartStation = request.data["StartStationPoints"]
         for point in mapStartStation:
             startS = StartStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"],
-                                        isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"],
-                                        CenterY=point["CenterY"], Map=map)
+                                  isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"],
+                                  CenterY=point["CenterY"], Map=map)
             startS.save()
 
         FinishStation.objects.filter(Map=map).delete()
         mapFinishStation = request.data["FinishStationPoints"]
         for point in mapFinishStation:
             finishS = FinishStation(Code=point["Code"], Name=point["Name"], isActive=point["isActive"],
-                                  isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"],
-                                  CenterY=point["CenterY"], Map=map)
+                                    isFull=point["isFull"], Position=point["Position"], CenterX=point["CenterX"],
+                                    CenterY=point["CenterY"], Map=map)
             finishS.save()
 
         return Response("ok", status=status.HTTP_200_OK)
@@ -296,13 +305,27 @@ def addtransferobject(request):
         map = Map.objects.get(pk=request.data["MapId"])
         startStation = StartStation.objects.get(pk=request.data["StartStationId"])
         transferVehicle = TransferVehicle.objects.get(pk=request.data["TransferVehicleId"])
-        entity = TransferredObjects(Barcode = request.data["Barcode"], isActive = True, LastPosX = request.data["LastPosX"], LastPosY = request.data["LastPosY"],StartStation =startStation, TransferVehicle= transferVehicle,   Map = map)
+        entity = TransferredObjects(Barcode=request.data["Barcode"], isActive=True, LastPosX=request.data["LastPosX"],
+                                    LastPosY=request.data["LastPosY"], StartStation=startStation,
+                                    TransferVehicle=transferVehicle, Map=map)
         entity.save()
+
+        transferVehicle.isFull = True
+        transferVehicle.LastPosX = request.data["LastPosX"]
+        transferVehicle.LastPosY = request.data["LastPosY"]
+        transferVehicle.save()
 
         taskHistories = request.data["TaskHistories"]
         for taskHistory in taskHistories:
-            p1 = TaskHistory(TransferredObject = entity, WorkOrder = taskHistory["WorkOrder"], isCompleted = False, isActive = True)
-            p1.save()
+            workSatation = WorkStation.objects.filter(Code = taskHistory["WorkStationCode"])[0]
+            if taskHistory["WorkOrder"] == 1:
+                p1 = TaskHistory(TransferredObject=entity, TransferVehicle=transferVehicle, WorkStation =workSatation,
+                                 WorkOrder=taskHistory["WorkOrder"], isCompleted=False, isActive=True)
+                p1.save()
+            else:
+                p1 = TaskHistory(TransferredObject=entity, WorkStation=workSatation, WorkOrder=taskHistory["WorkOrder"], isCompleted=False,
+                                 isActive=True)
+                p1.save()
 
 
         return Response("ok", status=status.HTTP_200_OK)
