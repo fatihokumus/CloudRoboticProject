@@ -151,6 +151,7 @@ class TransferredObjects(models.Model):
     isActive = models.BooleanField(default=False)
     LastPosX = models.IntegerField(null=True)
     LastPosY = models.IntegerField(null=True)
+    Length = models.IntegerField(null=True)
     StartStation = models.ForeignKey(StartStation, on_delete=models.DO_NOTHING, related_name='StartStation_TO', blank=True, null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TO', blank=True, null=True)
@@ -167,6 +168,7 @@ class WorkStation(models.Model):
     EnterPosY = models.IntegerField()
     ExitPosX = models.IntegerField()
     ExitPosY = models.IntegerField()
+    SecondPerMeter = models.IntegerField(null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):

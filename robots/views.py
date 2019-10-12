@@ -306,7 +306,7 @@ def addtransferobject(request):
         startStation = StartStation.objects.get(pk=request.data["StartStationId"])
         transferVehicle = TransferVehicle.objects.get(pk=request.data["TransferVehicleId"])
         entity = TransferredObjects(Barcode=request.data["Barcode"], isActive=True, LastPosX=request.data["LastPosX"],
-                                    LastPosY=request.data["LastPosY"], StartStation=startStation,
+                                    LastPosY=request.data["LastPosY"], Length = request.data["Length"], StartStation=startStation,
                                     TransferVehicle=transferVehicle, Map=map)
         entity.save()
 
@@ -326,7 +326,6 @@ def addtransferobject(request):
                 p1 = TaskHistory(TransferredObject=entity, WorkStation=workSatation, WorkOrder=taskHistory["WorkOrder"], isCompleted=False,
                                  isActive=True)
                 p1.save()
-
 
         return Response("ok", status=status.HTTP_200_OK)
 
