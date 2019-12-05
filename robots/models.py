@@ -152,6 +152,7 @@ class TransferredObjects(models.Model):
     LastPosX = models.IntegerField(null=True)
     LastPosY = models.IntegerField(null=True)
     Length = models.IntegerField(null=True)
+    isNewObject = models.BooleanField(default=False)
     StartStation = models.ForeignKey(StartStation, on_delete=models.DO_NOTHING, related_name='StartStation_TO', blank=True, null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TO', blank=True, null=True)

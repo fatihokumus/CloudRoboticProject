@@ -111,6 +111,12 @@ def getgoallist(request, mapid):
     return JsonResponse(data, safe=False)
 
 
+def gettransferobjectlist(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    data = serializers.serialize('json', TransferredObjects.objects.filter(Map=map).all())
+    return JsonResponse(data, safe=False)
+
+
 def setrobotposition(request):
     map = Map.objects.get(pk=request.GET.get('mapid'))
     robot = Robot.objects.filter(Name=request.GET.get('robotname'), Map=map)
@@ -142,6 +148,25 @@ def getmin(list, field):
             minlen = len(list[i][field])
             counter = i
     return counter
+
+
+def allocatetasks(request, mapid):
+    ppalg = request.GET.get('ppalg')
+    optalg = request.GET.get('optalg')
+    goals = MapGoalPoint.objects.filter(Map=map).order_by('Code').all()
+    obstacles = ObstaclePoint.objects.filter(Map=map).all()
+    robots = Robot.objects.filter(Map=map).order_by('Name').all()
+    machines = WorkStation.objects.filter(Map=map).order_by('Code').all()
+    charges = ChargingStation.objects.filter(Map=map).order_by('Code').all()
+    waitings = WaitingStation.objects.filter(Map=map).order_by('Code').all()
+    vehicles = TransferVehicle.objects.filter(Map=map).order_by('Barcode').all()
+    tobjects = TransferredObjects.objects.filter(Map=map).order_by('Barcode').all()
+
+    #Boşta kumaş var mı?
+    freetobjects = TransferredObjects.objects.filter(Map=map, TransferVehicle__isnull=True).order_by('Barcode').all()
+
+
+    return JsonResponse("", safe=False)
 
 
 def getpathplan(request, mapid):
@@ -304,28 +329,19 @@ def addtransferobject(request):
     if request.method == 'POST':
         map = Map.objects.get(pk=request.data["MapId"])
         startStation = StartStation.objects.get(pk=request.data["StartStationId"])
-        transferVehicle = TransferVehicle.objects.get(pk=request.data["TransferVehicleId"])
         entity = TransferredObjects(Barcode=request.data["Barcode"], isActive=True, LastPosX=request.data["LastPosX"],
                                     LastPosY=request.data["LastPosY"], Length = request.data["Length"], StartStation=startStation,
-                                    TransferVehicle=transferVehicle, Map=map)
+                                    Map=map)
         entity.save()
 
-        transferVehicle.isFull = True
-        transferVehicle.LastPosX = request.data["LastPosX"]
-        transferVehicle.LastPosY = request.data["LastPosY"]
-        transferVehicle.save()
+
 
         taskHistories = request.data["TaskHistories"]
         for taskHistory in taskHistories:
             workSatation = WorkStation.objects.filter(Code = taskHistory["WorkStationCode"])[0]
-            if taskHistory["WorkOrder"] == 1:
-                p1 = TaskHistory(TransferredObject=entity, TransferVehicle=transferVehicle, WorkStation =workSatation,
-                                 WorkOrder=taskHistory["WorkOrder"], isCompleted=False, isActive=True)
-                p1.save()
-            else:
-                p1 = TaskHistory(TransferredObject=entity, WorkStation=workSatation, WorkOrder=taskHistory["WorkOrder"], isCompleted=False,
-                                 isActive=True)
-                p1.save()
+            p1 = TaskHistory(TransferredObject=entity, WorkStation=workSatation, WorkOrder=taskHistory["WorkOrder"], isCompleted=False,
+                             isActive=True)
+            p1.save()
 
         return Response("ok", status=status.HTTP_200_OK)
 
