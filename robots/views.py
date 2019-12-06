@@ -162,9 +162,8 @@ def allocatetasks(request, mapid):
     vehicles = TransferVehicle.objects.filter(Map=map).order_by('Barcode').all()
     tobjects = TransferredObjects.objects.filter(Map=map).order_by('Barcode').all()
 
-    #Boşta kumaş var mı?
-    freetobjects = TransferredObjects.objects.filter(Map=map, TransferVehicle__isnull=True).order_by('Barcode').all()
-
+    #Atanmamış görev var mı?
+    freetobjects = TaskHistory.objects.filter(Map=map, Robot__isnull=True, isCurrentJob = True).order_by('Barcode').all()
 
     return JsonResponse("", safe=False)
 
@@ -334,13 +333,15 @@ def addtransferobject(request):
                                     Map=map)
         entity.save()
 
-
-
         taskHistories = request.data["TaskHistories"]
         for taskHistory in taskHistories:
             workSatation = WorkStation.objects.filter(Code = taskHistory["WorkStationCode"])[0]
+            currentTask = False
+            if taskHistory["WorkOrder"] == 1:
+                currentTask = True
+
             p1 = TaskHistory(TransferredObject=entity, WorkStation=workSatation, WorkOrder=taskHistory["WorkOrder"], isCompleted=False,
-                             isActive=True)
+                             isActive=True, isMoving=False, isCurrentJob=currentTask,  Map=map)
             p1.save()
 
         return Response("ok", status=status.HTTP_200_OK)

@@ -152,7 +152,6 @@ class TransferredObjects(models.Model):
     LastPosX = models.IntegerField(null=True)
     LastPosY = models.IntegerField(null=True)
     Length = models.IntegerField(null=True)
-    isNewObject = models.BooleanField(default=False)
     StartStation = models.ForeignKey(StartStation, on_delete=models.DO_NOTHING, related_name='StartStation_TO', blank=True, null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TO', blank=True, null=True)
@@ -201,8 +200,11 @@ class TaskHistory(models.Model):
     WaitingStation = models.ForeignKey(WaitingStation, on_delete=models.DO_NOTHING, related_name='WaitingStation_TOTask', blank=True, null=True)
     FinishStation = models.ForeignKey(FinishStation, on_delete=models.DO_NOTHING, related_name='FinishStation_TOTask', blank=True, null=True)
     Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, related_name='Robot_TOTask', blank=True, null=True)
+    Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     WorkOrder = models.IntegerField(null=True)
     isCompleted = models.BooleanField(default=False)
+    isMoving = models.BooleanField(default=False)
+    isCurrentJob = models.BooleanField(default=False)
     isActive = models.BooleanField(default=False)
 
     def __str__(self):

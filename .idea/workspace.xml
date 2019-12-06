@@ -1,35 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="">
+    <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="development">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firstsite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/firstsite/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0002_auto_20181113_1351.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0003_auto_20181113_1355.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0004_auto_20181113_1459.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0005_robot_robotactivity_robotlocation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0006_robotmodel_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0007_auto_20181126_1429.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0008_mapping.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0009_auto_20181126_1434.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0010_auto_20181126_1437.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0011_auto_20190823_1843.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0012_auto_20190902_1627.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0013_robotcharging_tobjectwaiting.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0014_auto_20190902_1634.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0015_auto_20190905_1436.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0016_auto_20191003_1704.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0016_auto_20191008_1000.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0017_auto_20191008_1001.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0018_auto_20191008_1006.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0019_transfervehicle_isfull.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0020_auto_20191008_1347.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/migrations/0021_auto_20191008_1626.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbRobot.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/dbRobot.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/templates/iot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/robots/templates/iot/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,22 +14,43 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="753732385">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="3" />
+          <entry key="py" value="6" />
+          <entry key="sqlite3" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="3" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="16" />
+          <entry key="py" value="188" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="16" />
+          <entry key="Python" value="188" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/robots/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="165" column="9" selection-start-line="165" selection-start-column="9" selection-end-line="165" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="245">
+              <caret line="164" column="28" lean-forward="true" selection-start-line="164" selection-start-column="28" selection-end-line="164" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -61,69 +58,46 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="150" column="49" selection-start-line="150" selection-start-column="49" selection-end-line="150" selection-end-column="49" />
+            <state relative-caret-position="-139">
+              <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
+        <entry file="file://$PROJECT_DIR$/robots/templates/Index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="99" column="55" selection-start-line="99" selection-start-column="55" selection-end-line="99" selection-end-column="55" />
+            <state relative-caret-position="374">
+              <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/migrations/__init__.py">
+        <entry file="file://$PROJECT_DIR$/robots/templates/robot/index.html">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/robots/migrations/0001_initial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="110" column="44" lean-forward="true" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
-            </state>
-          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="817" selection-start-line="817" selection-end-line="817" />
+            <state relative-caret-position="290">
+              <caret line="145" column="30" selection-start-line="145" selection-start-column="30" selection-end-line="145" selection-end-column="30" />
               <folding>
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#1;n#!!top" />
-                <element signature="n#style#0;n#nav#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#select#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#nav#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#nav#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#nav#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#nav#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#nav#0;n#div#3;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#nav#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#nav#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#nav#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/templates/iot/room.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -140,14 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TransferredObjects</find>
-      <find>targetEle</find>
-      <find>targetDok</find>
-      <find>&quot;T</find>
-      <find>add</find>
-      <find>pasif</find>
-      <find>aktif</find>
-      <find>Pasif</find>
       <find>durumT</find>
       <find>drawRobot</find>
       <find>loadgo</find>
@@ -170,6 +136,14 @@
       <find>obstacles</find>
       <find>pathpl</find>
       <find>db.sqlite3</find>
+      <find>targetMenu</find>
+      <find>targetRobot</find>
+      <find>robotSlide</find>
+      <find>TransferredObjects</find>
+      <find>__is</find>
+      <find>__</find>
+      <find>taskhist</find>
+      <find>TaskHistory</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -180,18 +154,18 @@
       <list>
         <option value="$PROJECT_DIR$/robots/migrations/0021_auto_20191011_0934.py" />
         <option value="$PROJECT_DIR$/robots/urls.py" />
-        <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
-        <option value="$PROJECT_DIR$/robots/views.py" />
-        <option value="$PROJECT_DIR$/robots/models.py" />
         <option value="$PROJECT_DIR$/robots/migrations/0016_auto_20191003_1704.py" />
         <option value="$PROJECT_DIR$/robots/migrations/0001_initial.py" />
         <option value="$PROJECT_DIR$/firstsite/settings.py" />
+        <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
+        <option value="$PROJECT_DIR$/robots/models.py" />
+        <option value="$PROJECT_DIR$/robots/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1965" />
-    <option name="y" value="-21" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -219,7 +193,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,34 +215,7 @@
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
               <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="iot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
@@ -279,6 +225,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -509,11 +456,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.66237116" visible="true" weight="0.24438573" />
-      <window_info id="Structure" order="1" sideWeight="0.33762887" side_tool="true" visible="true" weight="0.24438573" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.65680474" visible="true" weight="0.24499473" />
+      <window_info id="Structure" order="1" sideWeight="0.34319526" side_tool="true" visible="true" weight="0.24499473" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -522,9 +469,9 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4963119" weight="0.32936078" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4953765" weight="0.3281471" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.47886392" visible="true" weight="0.45120227" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.52113605" side_tool="true" visible="true" weight="0.45120227" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4947313" weight="0.32719395" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.47839832" visible="true" weight="0.45070422" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5216017" side_tool="true" visible="true" weight="0.45070422" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49603698" weight="0.3281471" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -556,20 +503,6 @@
               </option>
               <option name="COLUMN_ORDER" />
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
           </value>
         </entry>
       </map>
@@ -676,14 +609,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0017_auto_20191008_1001.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0022_merge_20191011_0955.py" />
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0023_auto_20191011_0956.py" />
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0021_auto_20191011_0934.py" />
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0017_auto_20191008_1001.py" />
     <entry file="file://$PROJECT_DIR$/robots/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
@@ -691,71 +617,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robots/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="165" column="9" selection-start-line="165" selection-start-column="9" selection-end-line="165" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="150" column="49" selection-start-line="150" selection-start-column="49" selection-end-line="150" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0016_auto_20191008_1000.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0011_auto_20190823_1843.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="817" selection-start-line="817" selection-end-line="817" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#!!top" />
-            <element signature="n#style#0;n#nav#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#nav#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#nav#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#nav#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#nav#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#nav#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0021_auto_20191008_1626.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/migrations/0016_auto_20191003_1704.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0016_auto_20191008_1000.py" />
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0011_auto_20190823_1843.py" />
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0021_auto_20191008_1626.py" />
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0016_auto_20191003_1704.py" />
     <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
@@ -770,6 +635,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-51">
           <caret line="110" column="44" lean-forward="true" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0022_merge_20191011_0955.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0021_auto_20191011_0934.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0024_workstation_secondpermeter.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/migrations/0023_auto_20191011_0956.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/robot/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="145" column="30" selection-start-line="145" selection-start-column="30" selection-end-line="145" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#nav#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#nav#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#nav#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbRobot.sqlite3">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="17" column="3477" selection-start-line="17" selection-start-column="3477" selection-end-line="17" selection-end-column="3477" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-139">
+          <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="164" column="28" lean-forward="true" selection-start-line="164" selection-start-column="28" selection-end-line="164" selection-end-column="28" />
         </state>
       </provider>
     </entry>
