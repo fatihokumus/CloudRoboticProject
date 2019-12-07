@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="development">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbRobot.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/dbRobot.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,22 +11,30 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="753732385">
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="302" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="302" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/robots/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="169" column="11" lean-forward="true" selection-start-line="169" selection-start-column="11" selection-end-line="169" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="197" column="19" selection-start-line="197" selection-start-column="4" selection-end-line="197" selection-end-column="19" />
+            <state relative-caret-position="102">
+              <caret line="167" column="64" lean-forward="true" selection-start-line="167" selection-start-column="64" selection-end-line="167" selection-end-column="64" />
+              <folding>
+                <marker date="1575733692253" expanded="true" signature="6443:6447" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,8 +100,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
@@ -145,34 +152,7 @@
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
               <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="iot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
-              <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="robot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
@@ -413,11 +393,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.65756303" visible="true" weight="0.24438573" />
-      <window_info id="Structure" order="1" sideWeight="0.34243697" side_tool="true" visible="true" weight="0.24438573" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.65483236" visible="true" weight="0.24499473" />
+      <window_info id="Structure" order="1" sideWeight="0.34516767" side_tool="true" visible="true" weight="0.24499473" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -426,9 +406,9 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4963119" weight="0.32936078" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49405548" visible="true" weight="0.32673267" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49405548" visible="true" weight="0.32673267" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.47839832" weight="0.45070422" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5059445" side_tool="true" visible="true" weight="0.32673267" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5221286" side_tool="true" visible="true" weight="0.45070422" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49603698" weight="0.3281471" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -464,20 +444,9 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deployment" />
@@ -567,9 +536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="68" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
-          <folding>
-            <element signature="n#style#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -616,7 +582,7 @@
     <entry file="file://$PROJECT_DIR$/robots/templates/Index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -625,7 +591,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
+        <state relative-caret-position="2465">
           <caret line="145" column="30" selection-start-line="145" selection-start-column="30" selection-end-line="145" selection-end-column="30" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -654,15 +620,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/robots/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="197" column="19" selection-start-line="197" selection-start-column="4" selection-end-line="197" selection-end-column="19" />
+        <state relative-caret-position="17">
+          <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robots/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="169" column="11" lean-forward="true" selection-start-line="169" selection-start-column="11" selection-end-line="169" selection-end-column="11" />
+        <state relative-caret-position="102">
+          <caret line="167" column="64" lean-forward="true" selection-start-line="167" selection-start-column="64" selection-end-line="167" selection-end-column="64" />
+          <folding>
+            <marker date="1575733692253" expanded="true" signature="6443:6447" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -164,13 +164,22 @@ def allocatetasks(request, mapid):
 
     #Atanmamış görev var mı?
     freetobjects = TaskHistory.objects.filter(Map=map, Robot__isnull=True, isCurrentJob = True).order_by('Barcode').all()
-    #for obj in freetobjects
-        #if obj["TransferVehicle"] is None:
-            #Sisteme yeni dahil olmuş kumaş, en uygun dok arabası getirilmeli.
+
+    #eğer bir dok arabası atanmamışsa en uygun dok arabasını seç
+    #meşgul olmayan dok arabaları neler?
+    #eğer meşgul olmayan dok arabası varsa en yakın zamanda boşalacak dok araları (iş sayısı kadar)?
+
+    #meşgul lmayan robotlar?
+
+
             
 
 
     return JsonResponse("", safe=False)
+
+
+
+
 
 
 def getpathplan(request, mapid):
