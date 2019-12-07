@@ -164,6 +164,11 @@ def allocatetasks(request, mapid):
 
     #Atanmamış görev var mı?
     freetobjects = TaskHistory.objects.filter(Map=map, Robot__isnull=True, isCurrentJob = True).order_by('Barcode').all()
+    #for obj in freetobjects
+        #if obj["TransferVehicle"] is None:
+            #Sisteme yeni dahil olmuş kumaş, en uygun dok arabası getirilmeli.
+            
+
 
     return JsonResponse("", safe=False)
 
