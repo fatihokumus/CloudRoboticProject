@@ -164,6 +164,12 @@ def allocatetasks(request, mapid):
 
     #Atanmamış görev var mı?
     freetobjects = TaskHistory.objects.filter(Map=map, Robot__isnull=True, isCurrentJob = True).order_by('Barcode').all()
+    #eğer atanmamış görev sayısı birden fazlaysa optimizasyon yap
+       #Dok arabası olmayan görev listesini al.
+           #Görevlere en yakın dok arabasını ata ve başlangıç görev noktası olarak dokun konumunu al. Görevin sürecini boş dok arabası iletiliyor olarak ata.
+
+    #eğer atanmamış görev sayısı birden fazla değilse en kısa mesafedeki robotu ata
+
 
     #eğer bir dok arabası atanmamışsa en uygun dok arabasını seç
     #meşgul olmayan dok arabaları neler?
@@ -171,14 +177,7 @@ def allocatetasks(request, mapid):
 
     #meşgul lmayan robotlar?
 
-
-            
-
-
     return JsonResponse("", safe=False)
-
-
-
 
 
 
