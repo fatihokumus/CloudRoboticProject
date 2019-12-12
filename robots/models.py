@@ -45,6 +45,8 @@ class Robot(models.Model):
     isActive = models.BooleanField(default=False)
     LastCoordX = models.IntegerField(null=True)
     LastCoordY = models.IntegerField(null=True)
+    isBusy = models.BooleanField(default=False)
+    isActive = models.BooleanField(default=False)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     def __str__(self):
         return self.Name + ' - ' + self.Code
@@ -53,6 +55,7 @@ class Robot(models.Model):
 class RobotActivity(models.Model):
     Time = models.DateField()
     Robot = models.ForeignKey(Robot, on_delete=models.CASCADE)
+
 
 class ObstaclePoint(models.Model):
     Left = models.IntegerField()
@@ -108,7 +111,7 @@ class RobotLocation(models.Model):
 class TransferVehicle(models.Model):
     Barcode = models.CharField(max_length=250)
     isActive = models.BooleanField(default=False)
-    isFull = models.BooleanField(default=False)
+    isBusy = models.BooleanField(default=False)
     LastPosX = models.IntegerField(null=True)
     LastPosY = models.IntegerField(null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -146,7 +149,7 @@ class FinishStation(models.Model):
 
 
 
-class TransferredObjects(models.Model):
+class TransferredObject(models.Model):
     Barcode = models.CharField(max_length=250)
     isActive = models.BooleanField(default=False)
     LastPosX = models.IntegerField(null=True)
@@ -193,18 +196,28 @@ class WaitingStation(models.Model):
 
 
 
+class TaskType(models.Model):
+    Code = models.CharField(max_length=50)
+    Name = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.Code + " - " + str(self.Name)
+
+
+
 class TaskHistory(models.Model):
-    TransferredObject = models.ForeignKey(TransferredObjects, on_delete=models.CASCADE, blank=False, null=False)
+    TransferredObject = models.ForeignKey(TransferredObject, on_delete=models.CASCADE, blank=True, null=True)
     TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TOTask', blank=True, null=True)
     WorkStation = models.ForeignKey(WorkStation, on_delete=models.DO_NOTHING, related_name='WorkStation_TOTask', blank=True, null=True)
+    StartStation = models.ForeignKey(StartStation, on_delete=models.DO_NOTHING, related_name='StartStation_TOTask', blank=True, null=True)
     WaitingStation = models.ForeignKey(WaitingStation, on_delete=models.DO_NOTHING, related_name='WaitingStation_TOTask', blank=True, null=True)
     FinishStation = models.ForeignKey(FinishStation, on_delete=models.DO_NOTHING, related_name='FinishStation_TOTask', blank=True, null=True)
     Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, related_name='Robot_TOTask', blank=True, null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+    #TaskStatus = 001-TaskCreated, 002-FirstTask, 003-WaitingTaskToExecuting, 004-RobotMovingToVehicle, 005-RobotBindingToVehicle, 006-RobotTakingVehicleToStart, 007-WaitingTaskBindingToVehicle, 008-WaitingTaskBindedToVehicle, 009-RobotMovingToTaskBindedToVehicle, 010-TaskMovingToNext, 011-TaskCreatedForMachineOutput, 012-RobotTakingVehicleToMachineOutput, 013-WaitingTaskWorkingTimeOnMachine, 014-TaskCompleted
+    TaskStatus = models.IntegerField(null=True)
     WorkOrder = models.IntegerField(null=True)
-    isCompleted = models.BooleanField(default=False)
-    isMoving = models.BooleanField(default=False)
-    isCurrentJob = models.BooleanField(default=False)
+    WorkTimeEndPoint = models.IntegerField(null=True)
     isActive = models.BooleanField(default=False)
 
     def __str__(self):
@@ -212,12 +225,11 @@ class TaskHistory(models.Model):
 
 
 
-
 class TObjectWaiting(models.Model):
     StartDateTime = models.DateTimeField()
     EnfDateTime = models.DateTimeField()
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
-    TransferredObjects = models.ForeignKey(TransferredObjects, on_delete=models.DO_NOTHING, blank=True, null=True)
+    TransferredObject = models.ForeignKey(TransferredObject, on_delete=models.DO_NOTHING, blank=True, null=True)
     WaitingStation = models.ForeignKey(WaitingStation, on_delete=models.DO_NOTHING, blank=True, null=True)
 
 
