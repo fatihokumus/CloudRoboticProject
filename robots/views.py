@@ -152,9 +152,9 @@ def getmin(list, field):
     return counter
 
 
-def getpermutationmat():
-    robots = ['a1', 'a2', 'a3']
-    goals = ['b1', 'b2', 'b3', 'b4']
+def getpermutationmat(list):
+    robots = list["robot"][:]
+    goals = list["task"][:]
 
     # kombinasyon matrisi
     combin = []
@@ -212,6 +212,8 @@ def getpermutationmat():
                 prob[satir][sutun] = combin[sutun][k % height]
                 satir = satir + 1
 
+
+
     return prob
 
 
@@ -253,7 +255,8 @@ def allocatetasks(request, mapid):
 
     # eğer atanmamış görev sayısı birden fazlaysa optimizasyon yap
     if len(waitingTasks)>1:
-        models = [];
+        models = []
+        perms = []
         #Tüm görevlerin tüm boş robotlara lan uzaklıklarını hesapla
         for task in waitingTasks:
             for robot in freeRobots:
@@ -262,8 +265,15 @@ def allocatetasks(request, mapid):
                 model["robot"] = robot
                 model["task"] = task
                 model["path"] = path
+                models.append(model)
+                perm={}
+                perm["robot"] = robot.Code
+                perm["task"] = task.pk
+                perm["path"] = len(path)
+                perms.append(perm)
 
-        getpermutationmat()
+
+        optlist = getpermutationmat(perms)
 
            #Görevlere en yakın dok arabasını ata ve görev noktası olarak dokun konumuna güncelle. Görevin sürecini boş dok arabası iletiliyor olarak ata.
        #Görevleri listele
