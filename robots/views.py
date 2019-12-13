@@ -28,6 +28,8 @@ from .PathPlanning.PotentialFieldPlanning.potential_field_planning import potent
 
 import json
 import numpy
+import math
+
 
 def index(request):
     all_robots = Robot.objects.all()
@@ -150,6 +152,70 @@ def getmin(list, field):
     return counter
 
 
+def getpermutationmat():
+    robots = ['a1', 'a2', 'a3']
+    goals = ['b1', 'b2', 'b3', 'b4']
+
+    # kombinasyon matrisi
+    combin = []
+
+    # hangi dizi daha az ise o kadar atama yapılacağı için aşağıdaki temp değişkenler kullanılacak.
+    temp1 = []
+    temp2 = []
+
+    # Atama sayısı gruplardaki en az sayı kimdesyse o kadar olacağı için ayarlama yaptık
+    if len(robots) > len(goals):
+        temp1 = goals
+        temp2 = robots
+    else:
+        temp1 = robots
+        temp2 = goals
+
+    # İlk olarak kombinasyon matrisi oluşturulur.
+    for i in range(len(temp1)):
+        satir = []
+        for k in range(len(temp2)):
+            satir.append((temp1[i], temp2[k]))
+        combin.append(satir)
+
+    # kaç sütunlu
+    width = len(combin[:])
+
+    # kaç satırlı
+    height = len(combin[0][:])
+
+    # Öncelikle Olasılık Matrisi oluşturulur. matrisin n x m boyutundadır. r=robot sayısı h=hedef saysı olarak alırsak;
+    # eğer r < h is n=h^r ve m=r olur.
+    # eğer r > h is n=r^h ve m=h olur.
+    # eğer r = h is n=r^r ve m=r olur.
+
+    # Olasılık matrisi kaç satırlı olacak
+    l = int(math.pow(height, width - 1))
+
+    # Olasılık matrisini oluştur. İlk sütun değerlerini ata. diğer sütunlara 1 ata.
+    prob = []
+    for i in range(height):
+        for j in range(l):
+            satir = []
+            satir.append(combin[0][i])
+            for k in range(width - 1):
+                satir.append('1')
+            prob.append(satir)
+
+    # Olasılık matrisinin diğer sütunlarının verilerini ata.
+    for i in range(width - 1):
+        sutun = i + 1
+        m = int(math.pow(height, width - 1 - sutun))
+        satir = 0
+        for k in range(int(len(prob) / m)):
+            for ss in range(m):
+                prob[satir][sutun] = combin[sutun][k % height]
+                satir = satir + 1
+
+    return prob
+
+
+
 def allocatetasks(request, mapid):
     ppalg = request.GET.get('ppalg')
     optalg = request.GET.get('optalg')
@@ -197,15 +263,8 @@ def allocatetasks(request, mapid):
                 model["task"] = task
                 model["path"] = path
 
-        a = ['a', 'b', 'c']
-        b = ['d', 'e', 'f']
-        c = []
-        for i in range(len(a)):
-            d=[]
-            for k in range(len(b)):
-                d.push((a[i], b[k]))
-            c.push(d)
-        print(c)
+        getpermutationmat()
+
            #Görevlere en yakın dok arabasını ata ve görev noktası olarak dokun konumuna güncelle. Görevin sürecini boş dok arabası iletiliyor olarak ata.
        #Görevleri listele
        #Görevi olmayan robotları getir.
