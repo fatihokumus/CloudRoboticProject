@@ -25,7 +25,7 @@ from .models import TaskHistory
 from .PathPlanning.AStar.a_star import astar
 from .PathPlanning.Dijkstra.dijkstra import dijkstras
 from .PathPlanning.PotentialFieldPlanning.potential_field_planning import potential_field_planning
-from pydstarlite import dstarlite, grid
+from pydstarlite import dstarlite, grid, utility
 
 import json
 import numpy
@@ -168,6 +168,8 @@ def getOptimumPath(map, startX, startY, finishX, finishY):
     fx = int(finishX / map.Distance)
     fy = int(finishY / map.Distance)
     maze, obstList = getmapmaze(map)
+    maze[sx][sy] = 'A'
+    maze[fx][fy] = 'Z'
     start = (sx, sy)
     end = (fx, fy)
     nmap = numpy.array(maze)
@@ -179,11 +181,8 @@ def getOptimumPath(map, startX, startY, finishX, finishY):
 
     grid_size = 1
     robot_radius = 1  #
-    GRID = grid.SquareGrid(map.Width, map.Height)
-    GRID["height"] = int(map.Height/map.Distance)
-    GRID["walls"] = obstList
-    GRID["width"] = int(map.Width/map.Distance)
-    dstar = dstarlite.DStarLite(GRID, start, end)
+    GRAPH, START, END = utility.grid_from_string(nmap)
+    dstar = dstarlite.DStarLite(GRAPH, START, END)
     path = [p for p, o, w in dstar.move_to_goal()]
 
     #if path != False:
@@ -220,10 +219,10 @@ def SetWorkStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (xc * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (yc * map.Distance / 2)) / map.Distance)
-                maze[cenX][cenY] = 1
-                obstList.append((cenX, cenY))
+                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
+                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                maze[cenX][cenY] = '#'
+                obstList.add((cenY, cenX))
 
 
 
@@ -253,10 +252,10 @@ def SetWaitingStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (xc * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (yc * map.Distance / 2)) / map.Distance)
-                maze[cenX][cenY] = 1
-                obstList.append((cenX, cenY))
+                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
+                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                maze[cenX][cenY] = '#'
+                obstList.add((cenY,cenX))
 
 
 def SetChargingStationAsObstacle(maze, map, obstList):
@@ -285,10 +284,10 @@ def SetChargingStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (xc * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (yc * map.Distance / 2)) / map.Distance)
-                maze[cenX][cenY] = 1
-                obstList.append((cenX, cenY))
+                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
+                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                maze[cenX][cenY] = '#'
+                obstList.add((cenY,cenX))
 
 
 
@@ -318,10 +317,10 @@ def SetStartStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (xc * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (yc * map.Distance / 2)) / map.Distance)
-                maze[cenX][cenY] = 1
-                obstList.append((cenX, cenY))
+                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
+                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                maze[cenX][cenY] = '#'
+                obstList.add((cenY,cenX))
 
 
 
@@ -352,29 +351,27 @@ def SetFinishStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (xc * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (yc * map.Distance / 2)) / map.Distance)
-                maze[cenX][cenY] = 1
-                obstList.append((cenX, cenY))
+                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
+                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                maze[cenX][cenY] = '#'
+                obstList.add((cenY,cenX))
 
 
 def getmapmaze(map):
 
     obstacles = ObstaclePoint.objects.filter(Map=map).all()
-    chargingStations = ChargingStation.objects.filter(Map=map).order_by('Code').all()
-    waitingStations = WaitingStation.objects.filter(Map=map).order_by('Code').all()
 
     width = int(map.Width / map.Distance)
     height = int(map.Height / map.Distance)
-    obstList=[]
+    obstList=set()
 
 
-    maze = [[0 for x in range(height)] for y in range(width)]
+    maze = [['.' for x in range(height)] for y in range(width)]
 
     #Serbest olarak eklenen engelleri haritada engel noktası olarak belirle
     for i in range(len(obstacles)):
-        maze[obstacles[i].CenterX][obstacles[i].CenterY] = 1
-        obstList.append((obstacles[i].CenterX, obstacles[i].CenterY,))
+        maze[obstacles[i].CenterX][obstacles[i].CenterY] = '#'
+        obstList.add((obstacles[i].CenterY,obstacles[i].CenterX))
 
     #Çalışma istasyonlarını (makineleri) haritada engel noktası olarak belirle
     SetWorkStationAsObstacle(maze,map,obstList)
