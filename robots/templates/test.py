@@ -1,4 +1,6 @@
 import math
+from pydstarlite import dstarlite, utility
+
 
 robots = ['a1', 'a2', 'a3']
 goals = ['b1', 'b2', 'b3','b4']
@@ -68,17 +70,37 @@ for i in range(width-1):
             satir = satir + 1
 
 
-k=0
-for satir in prob:
+num=0
+for row in range(len(prob)):
+    row = prob[num]
     comp = False
-    for sutun in satir:
-        el = [x for x in satir if x[1] == sutun[1]]
+    for col in row:
+        el = [x for x in row if x[1] == col[1]]
         if(len(el)>1):
             comp = True
     if comp == True:
-        prob.pop(k)
-    k = k+1
+        prob.remove(row)
+        num=num-1
+    num = num+1
 
 for j in prob:
     print(j)
 
+
+
+GRAPH, START, END = utility.grid_from_string("""
+    ..........
+    ...######.
+    .......A#.
+    ...######.
+    ...#....#.
+    ...#....#.
+    ........#.
+    ........#.
+    ........#Z
+    ........#.
+    """)
+dstar = dstarlite.DStarLite(GRAPH, START, END)
+path = [p for p, o, w in dstar.move_to_goal()]
+
+print(path)

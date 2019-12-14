@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'^addtransferobject/$', views.addtransferobject, name='addtransferobject'),
     url(r'^gettransferobjectlist/(?P<mapid>[0-9]+)/$', views.gettransferobjectlist, name='gettransferobjectlist'),
     url(r'^getpathplan/(?P<mapid>[0-9]+)/$', views.getpathplan, name='getpathplan'),
+    url(r'^allocatetasks/(?P<mapid>[0-9]+)/$', views.allocatetasks, name='allocatetasks'),
     url(r'^setrobotposition/$', views.setrobotposition, name='setrobotposition'),
+    url(r'^settobjectposition/$', views.settobjectposition, name='settobjectposition'),
 ]

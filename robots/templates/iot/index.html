@@ -129,7 +129,7 @@
 
 
 
-                <button id="btnMultiTaskAllocation" onclick="PathPlan('astar')" class="btn btn-success" type="button" style="float:left; margin-right:10px; margin-top:0px">
+                <button id="btnMultiTaskAllocation" onclick="AllocateTasks('astar','pso')" class="btn btn-success" type="button" style="float:left; margin-right:10px; margin-top:0px">
                   Görevleri Dağıt
                 </button>
                 <!--<ul class="nav navbar-nav">
@@ -654,7 +654,7 @@
                                         moveRobot(num, points[0], points[1]);
 
                                         $.ajax({
-                                            url: '/robots/settobjectposition/?name=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
+                                            url: '/robots/setrobotposition/?robotname=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
                                             dataType: 'json',
                                             success: function (data) {
                                             }
@@ -752,17 +752,17 @@
                                     $('#durumTBack'+ num).css('background', 'rgb(0, 179, 0)');
                                     $('#divTransferredObject'+ num).css('border-color', 'rgb(0, 179, 0)');
 
-                                    $.ajax({
-                                        url: '/robots/gettransfervehicle/' + num,
-                                        dataType: 'json',
-                                        success: function (data) {
-                                            var obj = JSON.parse(data);
-                                            if(obj.fields["isFull"] == true)
-                                            {
-                                                $('#divTransferredObjectImage' + num).prop('src', '/static/images/dok-arabasi.png')
-                                            }
-                                        }
-                                    });
+                                    //$.ajax({
+                                    //    url: '/robots/gettransfervehicle/' + num,
+                                    //    dataType: 'json',
+                                    //    success: function (data) {
+                                    //       var obj = JSON.parse(data);
+                                    //        if(obj.fields["isFull"] == true)
+                                    //        {
+                                    //            $('#divTransferredObjectImage' + num).prop('src', '/static/images/dok-arabasi.png')
+                                    //        }
+                                    //    }
+                                    //});
                                 }
                                 else if(data['message'] != 'Orada misin?')
                                 {
@@ -772,11 +772,12 @@
                                         moveTObject(num, points[0], points[1]);
 
                                         $.ajax({
-                                            url: '/robots/setrobotposition/?robotname=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
+                                            url: '/robots/settobjectposition/?name=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
                                             dataType: 'json',
                                             success: function (data) {
                                             }
                                         });
+
                                     }
 
                                 }
@@ -819,7 +820,75 @@
 
         function AllocateTasks(ppalg, optalg)
         {
+            var mapid = currentmapid;
+            if(socketList.length>0)
+            {
+                socketList[0].send(JSON.stringify({ 'message': 'ClearPath'}));
+            }
 
+            $.ajax({
+                url: '/robots/allocatetasks/' + mapid +'?ppalg=' + ppalg +'&optalg=' + optalg,
+                dataType: 'json',
+                success: function (data) {
+                    $('.pathline').remove();
+                    $('.path').remove();
+
+                    if(data.length>0)
+                    {
+                        if($('#svgHtml').length <=0)
+                        {
+                            var svgHtml = '<svg id="svgHtml" class="svgHtml" width="' + currentwidth + '" height="' + currentheight + '" ></svg>';
+                            $('#canvas').append(svgHtml);
+
+                        }
+
+                        var lineHtml ='';
+                        for(var j = 0; j < data.length; j++)
+                        {
+
+
+                            for(var i = 0; i < data[j]['path'].length; i++)
+                            {
+                                //drawPath(data[j]['path'][i][0], data[j]['path'][i][1])
+                                if(i>0)
+                                {
+                                    var xpoint = ((data[j]['path'][i][0]*currentdistance) + (currentdistance/2));
+                                    var ypoint = ((data[j]['path'][i][1]*currentdistance) + (currentdistance/2));
+                                    var oldxpoint = ((data[j]['path'][i-1][0]*currentdistance) + (currentdistance/2));
+                                    var oldypoint = ((data[j]['path'][i-1][1]*currentdistance) + (currentdistance/2));
+
+                                    var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+                                    newLine.setAttribute('id','line' + i);
+                                    newLine.setAttribute('x1',xpoint);
+                                    newLine.setAttribute('y1',ypoint);
+                                    newLine.setAttribute('x2',oldxpoint);
+                                    newLine.setAttribute('y2',oldypoint);
+                                    newLine.setAttribute("stroke", "red");
+                                    newLine.setAttribute("class", "pathline");
+                                    $("#svgHtml").append(newLine);
+
+                                    //lineHtml += '<line class="pathline" x1="' + xpoint + '" y1="' + ypoint + '" x2="' + oldxpoint + '" y2="' + oldypoint + '" stroke="red"/>'
+                                }
+                            }
+
+
+                             jsondata = JSON.stringify(data[j]['path']);
+                             for(var t = 0; t < socketList.length; t++)
+                             {
+                                var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
+                                if(num == data[j]['robot'])
+                                {
+                                    socketList[t].send(JSON.stringify({
+                                            'message': 'Rota:' + algo + ':' + num + ':' + jsondata
+                                        }));
+                                }
+                             }
+                        }
+                        //$('#svgHtml').append(lineHtml);
+                        //$('#svgHtml').css('left','0');
+                    }
+                }
+            });
         }
 
 

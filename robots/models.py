@@ -204,7 +204,7 @@ class TaskType(models.Model):
         return self.Code + " - " + str(self.Name)
 
 
-
+# TaskStatus = 001-TaskCreated, 002-FirstTask, 003-WaitingTaskToExecuting, 004-RobotMovingToVehicle, 005-RobotBindingToVehicle, 006-RobotTakingVehicleToStart, 007-WaitingTaskBindingToVehicle, 008-WaitingTaskBindedToVehicle, 009-RobotMovingToTaskBindedToVehicle, 010-TaskMovingToNext, 011-TaskCreatedForMachineOutput, 012-RobotTakingVehicleToMachineOutput, 013-WaitingTaskWorkingTimeOnMachine, 014-TaskCompleted
 class TaskHistory(models.Model):
     TransferredObject = models.ForeignKey(TransferredObject, on_delete=models.CASCADE, blank=True, null=True)
     TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TOTask', blank=True, null=True)
@@ -214,14 +214,13 @@ class TaskHistory(models.Model):
     FinishStation = models.ForeignKey(FinishStation, on_delete=models.DO_NOTHING, related_name='FinishStation_TOTask', blank=True, null=True)
     Robot = models.ForeignKey(Robot, on_delete=models.DO_NOTHING, related_name='Robot_TOTask', blank=True, null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
-    #TaskStatus = 001-TaskCreated, 002-FirstTask, 003-WaitingTaskToExecuting, 004-RobotMovingToVehicle, 005-RobotBindingToVehicle, 006-RobotTakingVehicleToStart, 007-WaitingTaskBindingToVehicle, 008-WaitingTaskBindedToVehicle, 009-RobotMovingToTaskBindedToVehicle, 010-TaskMovingToNext, 011-TaskCreatedForMachineOutput, 012-RobotTakingVehicleToMachineOutput, 013-WaitingTaskWorkingTimeOnMachine, 014-TaskCompleted
     TaskStatus = models.IntegerField(null=True)
     WorkOrder = models.IntegerField(null=True)
     WorkTimeEndPoint = models.IntegerField(null=True)
     isActive = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.TransferredObject.Barcode + " - " + str(self.WorkOrder)
+        return str(self.WorkOrder)
 
 
 

@@ -11,5 +11,14 @@
       </option>
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="robots.PathPlanning.pydstarlite.dstarlite.utility" />
+          <option value="robots.PathPlanning.pydstarlite.dstarlite.*" />
+          <option value="robots.PathPlanning.pydstarlite.utility.priority_queue" />
+        </list>
+      </option>
+    </inspection_tool>
   </profile>
 </component>
