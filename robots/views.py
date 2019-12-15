@@ -170,17 +170,28 @@ def getOptimumPath(map, startX, startY, finishX, finishY):
     maze, obstList = getmapmaze(map)
     maze[sx][sy] = 'A'
     maze[fx][fy] = 'Z'
-    start = (sx, sy)
-    end = (fx, fy)
-    nmap = numpy.array(maze)
+    #start = (sx, sy)
+    #end = (fx, fy)
+    #nmap = numpy.array(maze)
 
-    path = []
+    #path = []
 
     # if algo == "astar":
     #path = astar(nmap, start, end)
 
-    grid_size = 1
-    robot_radius = 1  #
+    #grid_size = 1
+    #robot_radius = 1  #
+    nmap = ""
+    for row in maze[:]:
+        srow = ""
+        for col in row:
+            srow = srow + col
+
+        nmap = nmap  + srow + "\n"
+
+
+
+
     GRAPH, START, END = utility.grid_from_string(nmap)
     dstar = dstarlite.DStarLite(GRAPH, START, END)
     path = [p for p, o, w in dstar.move_to_goal()]
@@ -219,8 +230,8 @@ def SetWorkStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                cenX = int((left + (j * map.Distance)) / map.Distance)
+                cenY = int((top + (t* map.Distance)) / map.Distance)
                 maze[cenX][cenY] = '#'
                 obstList.add((cenY, cenX))
 
@@ -252,8 +263,8 @@ def SetWaitingStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                cenX = int((left + (j * map.Distance)) / map.Distance)
+                cenY = int((top + (t * map.Distance)) / map.Distance)
                 maze[cenX][cenY] = '#'
                 obstList.add((cenY,cenX))
 
@@ -284,8 +295,8 @@ def SetChargingStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                cenX = int((left + (j * map.Distance)) / map.Distance)
+                cenY = int((top + (t * map.Distance)) / map.Distance)
                 maze[cenX][cenY] = '#'
                 obstList.add((cenY,cenX))
 
@@ -317,8 +328,8 @@ def SetStartStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                cenX = int((left + (j * map.Distance)) / map.Distance)
+                cenY = int((top + (t * map.Distance)) / map.Distance)
                 maze[cenX][cenY] = '#'
                 obstList.add((cenY,cenX))
 
@@ -351,8 +362,8 @@ def SetFinishStationAsObstacle(maze, map, obstList):
 
         for j in range(xc):
             for t in range(yc):
-                cenX = int((left + (j * map.Distance / 2)) / map.Distance)
-                cenY = int((top + (t * map.Distance / 2)) / map.Distance)
+                cenX = int((left + (j * map.Distance)) / map.Distance)
+                cenY = int((top + (t * map.Distance)) / map.Distance)
                 maze[cenX][cenY] = '#'
                 obstList.add((cenY,cenX))
 
@@ -392,10 +403,18 @@ def getmapmaze(map):
 
 
 
-def getoptimumallocation(list):
-    robots = list["robot"][:]
-    goals = list["task"][:]
+def unique(list1):
+    unique_list = []
+    for x in list1:
+        if x not in unique_list:
+            unique_list.append(x)
+    return unique_list
 
+
+
+def getoptimumallocation(list):
+    robots = unique([d['robot'] for d in list])
+    goals = unique([d['goal'] for d in list])
     # kombinasyon matrisi
     combin = []
 
@@ -473,15 +492,15 @@ def getoptimumallocation(list):
         sumPath = 0
         models = []
         for col in row:
-            model = []
+            model = {}
             if len(robots) > len(goals):
                 goal = col[0]
                 robot = col[1]
             else:
                 goal = col[1]
                 robot = col[0]
-            el = [x for x in list if x["robot"] == robot and x["task"] == goal]
-            sum = sum + int(el["pathlength"])
+            el = [x for x in list if x["robot"] == robot and x["goal"] == goal][0]
+            sumPath = sumPath + int(el["pathlength"])
             model["robot"] = robot
             model["goal"] = goal
             models.append(model)
@@ -490,13 +509,14 @@ def getoptimumallocation(list):
             #    sum = 100000000
 
         if sumPath < cost:
+            cost = sumPath
             currentrow = models
 
     return currentrow
 
 
 def FindNearestVehicle(map, finishX, finishY):
-    vehicles = TransferVehicle.objects.filter(Map=map, isBusy=False).all()
+    vehicles = TransferVehicle.objects.filter(Map=map, isBusy=False, isActive = True).all()
     if len(vehicles) < 1:
         return None
     else:
@@ -510,6 +530,14 @@ def FindNearestVehicle(map, finishX, finishY):
         return bestVehicle
 
 
+
+def resetmap(request, mapid):
+    map = Map.objects.get(pk=mapid)
+    TransferredObject.objects.filter(Map = map).delete()
+    TransferVehicle.objects.filter(Map = map).update(isBusy = False, isActive=False, LastPosX=0, LastPosY=0)
+    Robot.objects.filter(Map=map).update(isBusy=False, isActive=False, LastCoordX=0, LastCoordY=0)
+
+    return JsonResponse("", safe=False)
 
 def allocatetasks(request, mapid):
     ppalg = request.GET.get('ppalg')
@@ -539,6 +567,8 @@ def allocatetasks(request, mapid):
         p1 = TaskHistory(TransferredObject=task.TransferredObject, StartStation=task.StartStation, WorkOrder=order,
                          TransferVehicle=vehicle, TaskStatus=3, isActive=True, Map= task.Map)
         p1.save()
+        vehicle.isBusy = True
+        vehicle.save()
         #Eski görevi TaskCreated (Görev Oluşturuldu) olarak güncelle
         task.TaskStatus = 1
         task.save()
@@ -551,26 +581,43 @@ def allocatetasks(request, mapid):
     # eğer atanmamış görev sayısı birden fazlaysa optimizasyon yap
     if len(waitingTasks)>1:
         models = []
+        list = []
+
         #Tüm görevlerin tüm boş robotlara lan uzaklıklarını hesapla
         for task in waitingTasks:
             for robot in freeRobots:
                 if robot.LastCoordX == task.TransferVehicle.LastPosX and robot.LastCoordY == task.TransferVehicle.LastPosY:
                     model = {}
                     model["robot"] = robot
-                    model["task"] = task
+                    model["task"] = task.pk
                     model["path"] = []
                     model["pathlength"] = 0
                     models.append(model)
+                    elm = {}
+                    elm["robot"] = robot.Code
+                    elm["goal"] = task.pk
+                    elm["pathlength"] = 0
+                    list.append(elm)
                 else:
                     path = getOptimumPath(map, robot.LastCoordX, robot.LastCoordY, task.TransferVehicle.LastPosX, task.TransferVehicle.LastPosY)
+                    #lengt = 0
+                    #for i in range(len(path) - 1):
+                    #    x = path[i][0] - path[i+1][0]
+                    #    y = path[i][1] - path[i+1][1]
+                    #    lengt = lengt + math.sqrt((x*x)+ (y*y))
                     model = {}
-                    model["robot"] = robot
-                    model["task"] = task
+                    model["robot"] = robot.Code
+                    model["task"] = task.pk
                     model["path"] = path
                     model["pathlength"] = len(path)
                     models.append(model)
+                    elm = {}
+                    elm["robot"] = robot.Code
+                    elm["goal"] = task.pk
+                    elm["pathlength"] = len(path)
+                    list.append(elm)
 
-        optlist = getoptimumallocation(models)
+        optlist = getoptimumallocation(list)
         returnlist = []
         for col in optlist:
             el = [x for x in models if x["robot"] == col["robot"] and x["task"] == col["goal"]][0]
@@ -601,11 +648,7 @@ def allocatetasks(request, mapid):
 
     #return JsonResponse(models, safe=False)
 
-    return JsonResponse("", safe=False)
-
-
-
-
+    return JsonResponse(returnlist, safe=False)
 
 
 

@@ -132,6 +132,9 @@
                 <button id="btnMultiTaskAllocation" onclick="AllocateTasks('astar','pso')" class="btn btn-success" type="button" style="float:left; margin-right:10px; margin-top:0px">
                   Görevleri Dağıt
                 </button>
+                <button id="btnReset" onclick="ResetMap()" class="btn btn-success" type="button" style="float:left; margin-right:10px; margin-top:0px">
+                  Haritayı Sıfırla
+                </button>
                 <!--<ul class="nav navbar-nav">
                     <li class="nav-item"><a onclick="PathPlan('astar')">A* Path Planning</a></li>
                     <li class="nav-item"><a onclick="PathPlan('dijkstra')" >Dijkstra Path Planning</a></li>
@@ -603,7 +606,7 @@
                 url: '/robots/getrobotlist/' + mapid,
                 dataType: 'json',
                 success: function (data) {
-                    socketList = [];
+
 
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
@@ -704,7 +707,7 @@
                 url: '/robots/gettransfervehiclelist/' + mapid,
                 dataType: 'json',
                 success: function (data) {
-                    socketList = [];
+
 
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
@@ -817,6 +820,25 @@
             });
         }
 
+        function getRandomColor() {
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        }
+
+        function ResetMap()
+        {
+            $.ajax({
+                url: '/robots/resetmap/' + currentmapid,
+                dataType: 'json',
+                success: function (data) {
+
+                }
+            });
+        }
 
         function AllocateTasks(ppalg, optalg)
         {
@@ -846,16 +868,16 @@
                         for(var j = 0; j < data.length; j++)
                         {
 
-
+                            var renk = getRandomColor();
                             for(var i = 0; i < data[j]['path'].length; i++)
                             {
                                 //drawPath(data[j]['path'][i][0], data[j]['path'][i][1])
                                 if(i>0)
                                 {
-                                    var xpoint = ((data[j]['path'][i][0]*currentdistance) + (currentdistance/2));
-                                    var ypoint = ((data[j]['path'][i][1]*currentdistance) + (currentdistance/2));
-                                    var oldxpoint = ((data[j]['path'][i-1][0]*currentdistance) + (currentdistance/2));
-                                    var oldypoint = ((data[j]['path'][i-1][1]*currentdistance) + (currentdistance/2));
+                                    var xpoint = ((data[j]['path'][i][1]*currentdistance) + (currentdistance/2));
+                                    var ypoint = ((data[j]['path'][i][0]*currentdistance) + (currentdistance/2));
+                                    var oldxpoint = ((data[j]['path'][i-1][1]*currentdistance) + (currentdistance/2));
+                                    var oldypoint = ((data[j]['path'][i-1][0]*currentdistance) + (currentdistance/2));
 
                                     var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
                                     newLine.setAttribute('id','line' + i);
@@ -863,7 +885,7 @@
                                     newLine.setAttribute('y1',ypoint);
                                     newLine.setAttribute('x2',oldxpoint);
                                     newLine.setAttribute('y2',oldypoint);
-                                    newLine.setAttribute("stroke", "red");
+                                    newLine.setAttribute("stroke", renk);
                                     newLine.setAttribute("class", "pathline");
                                     $("#svgHtml").append(newLine);
 
@@ -879,7 +901,7 @@
                                 if(num == data[j]['robot'])
                                 {
                                     socketList[t].send(JSON.stringify({
-                                            'message': 'Rota:' + algo + ':' + num + ':' + jsondata
+                                            'message': 'Rota:' + ppalg + ':' + num + ':' + jsondata
                                         }));
                                 }
                              }

@@ -4,9 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/robots/views.py" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="">
+    <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="development">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/templates/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/templates/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbRobot.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/dbRobot.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/templates/iot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/robots/templates/iot/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,54 +17,25 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="753732385">
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="Python Console" value="37" />
-          <entry key="html" value="51" />
-          <entry key="py" value="2570" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="HTML" value="51" />
-          <entry key="Python" value="2607" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="html" value="1" />
-          <entry key="py" value="24" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="HTML" value="1" />
-          <entry key="Python" value="24" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
+            <state relative-caret-position="116">
+              <caret line="194" selection-start-line="194" selection-end-line="194" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <marker date="1576335866032" expanded="true" signature="13137:16688" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="18" column="113" lean-forward="true" selection-start-line="18" selection-start-column="113" selection-end-line="18" selection-end-column="113" />
             </state>
           </provider>
         </entry>
@@ -70,26 +43,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://C:/python/Lib/site-packages/django/core/handlers/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="124" selection-start-line="124" selection-end-line="124" />
+            <state relative-caret-position="142">
+              <caret line="114" selection-start-line="114" selection-end-line="114" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="65">
+              <caret line="903" column="70" selection-start-line="903" selection-start-column="70" selection-end-line="903" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/python/Lib/site-packages/pydstarlite/dstarlite.py">
+        <entry file="file://C:/python/Lib/site-packages/django/core/handlers/exception.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="142">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/python/Lib/site-packages/pydstarlite/priority_queue.py">
+        <entry file="file://C:/python/Lib/site-packages/django/utils/deprecation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="228">
+              <caret line="93" selection-start-line="93" selection-end-line="93" />
             </state>
           </provider>
         </entry>
@@ -97,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/templates/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="101" column="8" lean-forward="true" selection-start-line="90" selection-end-line="101" selection-end-column="8" />
+            <state relative-caret-position="1717">
+              <caret line="102" selection-start-line="102" selection-end-line="102" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -118,21 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>AllocateTasks</find>
-      <find>getpath</find>
-      <find>split</find>
-      <find>p1 = TaskHistory</find>
-      <find>FindNearestVehicle</find>
-      <find>astar(nmap, start, end)</find>
-      <find>getpermutationmat</find>
-      <find>gettransfervehicle</find>
-      <find>currentmapid</find>
-      <find>setrobotposition</find>
-      <find>settobjectposition</find>
-      <find>allo</find>
-      <find>rx, ry</find>
-      <find>plot</find>
-      <find>grid</find>
       <find>__main__</find>
       <find>show_animation</find>
       <find>class</find>
@@ -143,11 +110,26 @@
       <find>obstList</find>
       <find>obstList.app</find>
       <find>obstList.add</find>
-      <find>getOptimumPath</find>
       <find>maze[cenX][cenY] =</find>
       <find>/ map.Distance</find>
-      <find>SetWorkStationAsObstacle</find>
       <find>getmapmaze</find>
+      <find>SetWorkStationAsObstacle</find>
+      <find>list</find>
+      <find>alloca</find>
+      <find>sumPath</find>
+      <find>distance</find>
+      <find>getoptimumallocation</find>
+      <find>getOptimumPath</find>
+      <find>AllocateTasks</find>
+      <find>$.ajax(</find>
+      <find>reset</find>
+      <find>allocatetasks</find>
+      <find>FindNearestVehicle</find>
+      <find>rota</find>
+      <find>socketList</find>
+      <find>getrobotsofmap</find>
+      <find>algo + ':' + num +</find>
+      <find>'Rota:' + algo + ':' + num</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,21 +141,21 @@
         <option value="$PROJECT_DIR$/robots/models.py" />
         <option value="$PROJECT_DIR$/firstsite/settings.py" />
         <option value="$PROJECT_DIR$/robots/admin.py" />
-        <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
-        <option value="$PROJECT_DIR$/robots/urls.py" />
         <option value="$PROJECT_DIR$/robots/PathPlanning/PotentialFieldPlanning/potential_field_planning.py" />
         <option value="$PROJECT_DIR$/robots/PathPlanning/pydstarlite/dstarlite.py" />
         <option value="$PROJECT_DIR$/robots/PathPlanning/pydstarlite/utility.py" />
         <option value="$PROJECT_DIR$/robots/templates/test.py" />
+        <option value="$PROJECT_DIR$/robots/urls.py" />
         <option value="$PROJECT_DIR$/robots/views.py" />
+        <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="240" />
+    <option name="y" value="127" />
+    <option name="width" value="1440" />
+    <option name="height" value="774" />
   </component>
   <component name="ProjectId" id="1PdQUsWDDDrEkS1GW4QdpLl6MB9" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -215,21 +197,20 @@
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
               <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="PathPlanning" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
               <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="PathPlanning" type="462c0819:PsiDirectoryNode" />
-              <item name="AStar" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
               <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="PathPlanning" type="462c0819:PsiDirectoryNode" />
-              <item name="PotentialFieldPlanning" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
@@ -243,6 +224,13 @@
               <item name="robots" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="iot" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doctoraproject" type="462c0819:PsiDirectoryNode" />
+              <item name="robots" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="doctoraproject" type="b2602c69:ProjectViewProjectNode" />
@@ -560,23 +548,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6486486" visible="true" weight="0.24499473" />
-      <window_info id="Structure" order="1" sideWeight="0.35135135" side_tool="true" visible="true" weight="0.24499473" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.64788735" visible="true" weight="0.17965654" />
+      <window_info id="Structure" order="1" sideWeight="0.35211268" side_tool="true" visible="true" weight="0.17965654" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.79241306" weight="0.30010834" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.8898841" visible="true" weight="0.39869988" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7912814" weight="0.29985857" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.88903564" visible="true" weight="0.39745402" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49578503" weight="0.32936078" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4926238" weight="0.3261105" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.47576398" weight="0.4496208" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.11011591" side_tool="true" visible="true" weight="0.39869988" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49315068" weight="0.20476706" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49578503" weight="0.3281471" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4926238" weight="0.32531825" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.47576398" weight="0.4483734" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.110964336" side_tool="true" weight="0.39745402" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49315068" weight="0.2036775" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -611,9 +599,20 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deployment" />
@@ -628,36 +627,27 @@
           <line>105</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/robots/templates/test.py</url>
-          <line>102</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/robots/views.py</url>
-          <line>191</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/robots/views.py</url>
-          <line>185</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/robots/views.py</url>
-          <line>172</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="left + (xc * map.Distance / 2)" language="Python" />
+        <watch expression="col[&quot;robot&quot;]" language="Python" />
+        <watch expression="col[&quot;goal&quot;]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>col[&quot;goal&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>col[&quot;robot&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>left + (xc * map.Distance / 2)</expression-string>
         <language-id>Python</language-id>
@@ -698,16 +688,6 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>obmap[28][0]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>max(len(goals) for goals in tasks]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
@@ -721,38 +701,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robots/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="173" selection-start-line="3" selection-start-column="173" selection-end-line="3" selection-end-column="173" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/python/Lib/site-packages/django/db/models/fields/related_descriptors.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="190" selection-start-line="190" selection-end-line="190" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/python/Lib/site-packages/django/utils/deprecation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="659" column="29" lean-forward="true" selection-start-line="659" selection-start-column="29" selection-end-line="659" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="27" column="84" selection-start-line="27" selection-start-column="84" selection-end-line="27" selection-end-column="84" />
         </state>
       </provider>
     </entry>
@@ -777,59 +729,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/python/Lib/site-packages/pydstarlite/dstarlite.py" />
+    <entry file="file://C:/python/Lib/site-packages/pydstarlite/priority_queue.py" />
     <entry file="file://$PROJECT_DIR$/robots/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="115" column="12" selection-start-line="115" selection-start-column="4" selection-end-line="115" selection-end-column="12" />
+        <state relative-caret-position="86">
+          <caret line="206" column="13" lean-forward="true" selection-start-line="206" selection-start-column="13" selection-end-line="206" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/python/Lib/site-packages/django/core/handlers/exception.py">
+    <entry file="file://$PROJECT_DIR$/robots/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/python/Lib/site-packages/pydstarlite/dstarlite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/python/Lib/site-packages/pydstarlite/priority_queue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/python/Lib/site-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="124" selection-start-line="124" selection-end-line="124" />
+        <state relative-caret-position="51">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robots/templates/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="101" column="8" lean-forward="true" selection-start-line="90" selection-end-line="101" selection-end-column="8" />
+        <state relative-caret-position="1717">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/python/Lib/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/django/core/handlers/exception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/django/utils/deprecation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="18" column="113" lean-forward="true" selection-start-line="18" selection-start-column="113" selection-end-line="18" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/robots/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
+        <state relative-caret-position="116">
+          <caret line="194" selection-start-line="194" selection-end-line="194" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <marker date="1576335866032" expanded="true" signature="13137:16688" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="903" column="70" selection-start-line="903" selection-start-column="70" selection-end-line="903" selection-end-column="70" />
         </state>
       </provider>
     </entry>
