@@ -25,3 +25,4 @@
 # pip install matplotlib
 # pip install channels-redis
 # pip install djangorestframework-jwt
+# python setup.py install
