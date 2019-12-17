@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^resetmap/(?P<mapid>[0-9]+)/$', views.resetmap, name='resetmap'),
     url(r'^setrobotposition/$', views.setrobotposition, name='setrobotposition'),
     url(r'^settobjectposition/$', views.settobjectposition, name='settobjectposition'),
+    url(r'^skiptonextjob/$', views.skiptonextjob, name='skiptonextjob'),
 ]

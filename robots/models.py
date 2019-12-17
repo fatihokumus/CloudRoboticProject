@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 # Create your models here.
 
@@ -46,15 +47,16 @@ class Robot(models.Model):
     LastCoordX = models.IntegerField(null=True)
     LastCoordY = models.IntegerField(null=True)
     isBusy = models.BooleanField(default=False)
-    isActive = models.BooleanField(default=False)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['Code', 'Map'], name='idx_unique_robot_map_code'),
+        ]
+
     def __str__(self):
         return self.Name + ' - ' + self.Code
 
-
-class RobotActivity(models.Model):
-    Time = models.DateField()
-    Robot = models.ForeignKey(Robot, on_delete=models.CASCADE)
 
 
 class ObstaclePoint(models.Model):
@@ -101,10 +103,11 @@ class Mapping(models.Model):
 
 
 class RobotLocation(models.Model):
-    RobotActivity = models.ForeignKey(RobotActivity, on_delete=models.CASCADE)
+    Robot = models.ForeignKey(Robot, on_delete=models.CASCADE, related_name='robotlocation_robot', blank=True, null=True)
     Sticker = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING)
     PositionX = models.FloatField()
     PositionY = models.FloatField()
+    LocationTime = models.DateTimeField(auto_now_add=True)
 
 
 
@@ -115,6 +118,11 @@ class TransferVehicle(models.Model):
     LastPosX = models.IntegerField(null=True)
     LastPosY = models.IntegerField(null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['Barcode', 'Map'], name='idx_unique_tvehicle_map_code'),
+        ]
 
     def __str__(self):
         return self.Barcode
@@ -158,6 +166,7 @@ class TransferredObject(models.Model):
     StartStation = models.ForeignKey(StartStation, on_delete=models.DO_NOTHING, related_name='StartStation_TO', blank=True, null=True)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
     TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TO', blank=True, null=True)
+    CreatedOn = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.Barcode
 
@@ -204,7 +213,7 @@ class TaskType(models.Model):
         return self.Code + " - " + str(self.Name)
 
 
-# TaskStatus = 001-TaskCreated, 002-FirstTask, 003-WaitingTaskToExecuting, 004-RobotMovingToVehicle, 005-RobotBindingToVehicle, 006-RobotTakingVehicleToStart, 007-WaitingTaskBindingToVehicle, 008-WaitingTaskBindedToVehicle, 009-RobotMovingToTaskBindedToVehicle, 010-TaskMovingToNext, 011-TaskCreatedForMachineOutput, 012-RobotTakingVehicleToMachineOutput, 013-WaitingTaskWorkingTimeOnMachine, 014-TaskCompleted
+# TaskStatus = 001-TaskCreated, 002-FirstTask, 003-WaitingTaskToExecuting, 004-RobotMovingToVehicle, 005-RobotTakingVehicleToTask, 006-TaskCompleted
 class TaskHistory(models.Model):
     TransferredObject = models.ForeignKey(TransferredObject, on_delete=models.CASCADE, blank=True, null=True)
     TransferVehicle = models.ForeignKey(TransferVehicle, on_delete=models.DO_NOTHING, related_name='TransferVehicle_TOTask', blank=True, null=True)
@@ -218,10 +227,26 @@ class TaskHistory(models.Model):
     WorkOrder = models.IntegerField(null=True)
     WorkTimeEndPoint = models.IntegerField(null=True)
     isActive = models.BooleanField(default=False)
+    WorkTime = models.DateTimeField(null=True)
 
     def __str__(self):
         return str(self.WorkOrder)
 
+
+#Robotstatus = 001-RobotAssignedAndGoingToVehicle, 002-RobotReachedToVehicleAndGoingToTask, 003-RobotReachedToTaskAndCompleted
+class RobotTaskHistory(models.Model):
+    Robot = models.ForeignKey(Robot, on_delete=models.CASCADE, blank=True, null=True)
+    TaskHistory = models.ForeignKey(TaskHistory,  on_delete=models.CASCADE, related_name='TaskHistory_RobotTaskHistory', blank=True, null=True)
+    RobotStatus =  models.IntegerField(default=1)
+
+    def __int__(self):
+        return int(self.RobotStatus)
+
+#Robotstatus = 001-RobotAssignedAndGoingToVehicle, 002-RobotReachedToVehicleAndGoingToTask, 003-RobotReachedToTask, 004-JobCompleted
+class RobotTaskHistoryLog(models.Model):
+    RobotTaskHistory = models.ForeignKey(RobotTaskHistory, on_delete=models.CASCADE, blank=False, null=False)
+    RobotStatus = models.IntegerField(default=1)
+    LogTime = models.DateTimeField(auto_now_add=True)
 
 
 class TObjectWaiting(models.Model):

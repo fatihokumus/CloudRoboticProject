@@ -21,6 +21,8 @@ from .models import FinishStation
 from .models import TransferredObject
 from .models import TransferVehicle
 from .models import TaskHistory
+from .models import RobotTaskHistory
+from .models import RobotTaskHistoryLog
 
 from .PathPlanning.AStar.a_star import astar
 from .PathPlanning.Dijkstra.dijkstra import dijkstras
@@ -30,13 +32,12 @@ from pydstarlite import dstarlite, grid, utility
 import json
 import numpy
 import math
-
+import datetime
 
 def index(request):
     all_robots = Robot.objects.all()
     context = {'all_robots' : all_robots,}
     return HttpResponse(render(request,'robot/index.html', context))
-
 
 def detail(request, robot_id):
     try:
@@ -54,12 +55,10 @@ def iot(request):
     context = {'MapList' : mapList}
     return HttpResponse(render(request, 'iot/index.html', context))
 
-
 def getrobotlist(request, mapid):
     map = Map.objects.get(pk=mapid)
     data = serializers.serialize('json', Robot.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
-
 
 def gettransferredobjectlist(request, mapid):
     map = Map.objects.get(pk=mapid)
@@ -75,7 +74,6 @@ def gettransfervehicle(request, code):
     vehicle = TransferVehicle.objects.filter(Code=code)[0]
     data = serializers.serialize('json', vehicle)
     return JsonResponse(data, safe=False)
-
 
 def getobstaclelist(request, mapid):
     map = Map.objects.get(pk=mapid)
@@ -107,28 +105,95 @@ def getfinishstationlist(request, mapid):
     data = serializers.serialize('json', FinishStation.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
 
-
 def getgoallist(request, mapid):
     map = Map.objects.get(pk=mapid)
     data = serializers.serialize('json', MapGoalPoint.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
-
 
 def gettransferobjectlist(request, mapid):
     map = Map.objects.get(pk=mapid)
     data = serializers.serialize('json', TransferredObject.objects.filter(Map=map).all())
     return JsonResponse(data, safe=False)
 
-
 def setrobotposition(request):
     map = Map.objects.get(pk=request.GET.get('mapid'))
     robot = Robot.objects.get(Code=request.GET.get('robotname'), Map=map)
     robot.isActive = request.GET.get('isactive')
-    robot.LastCoordX = LastCoordX = request.GET.get('lastcoordx')
-    robot.LastCoordY = LastCoordY = request.GET.get('lastcoordy')
+    robot.LastCoordX = request.GET.get('lastcoordx')
+    robot.LastCoordY = request.GET.get('lastcoordy')
     robot.save()
+    model ={}
+    if robot.isBusy == True:
+        rtask = RobotTaskHistory.objects.get(Robot=robot, RobotStatus__lt=3)
+
+
+        if rtask.TaskHistory.TransferVehicle != None and rtask.TaskHistory.TaskStatus == 5:
+            rtask.TaskHistory.TransferVehicle.LastPosX = request.GET.get('lastcoordx')
+            rtask.TaskHistory.TransferVehicle.LastPosY = request.GET.get('lastcoordy')
+            rtask.TaskHistory.TransferVehicle.save()
+            model["vehicle"] = rtask.TaskHistory.TransferVehicle.Barcode
+        else:
+            model["vehicle"] = ""
+
+        if rtask.TaskHistory.TransferredObject != None and rtask.TaskHistory.TaskStatus == 5:
+            rtask.TaskHistory.TransferredObject.LastPosX = request.GET.get('lastcoordx')
+            rtask.TaskHistory.TransferredObject.LastPosY = request.GET.get('lastcoordy')
+            rtask.TaskHistory.TransferredObject.save()
+            model["object"] = rtask.TaskHistory.TransferredObject.Barcode
+        else:
+            model["object"] = ""
+    else:
+        model["vehicle"] = ""
+        model["object"] = ""
+
 
     return JsonResponse("ok", safe=False)
+
+def skiptonextjob(request):
+    map = Map.objects.get(pk=request.GET.get('mapid'))
+    robot = Robot.objects.get(Code=request.GET.get('robotname'), Map=map)
+
+    #Robotun hareket halinde olduğu task history'yi getir. Eğer 3'ün altındaysa hareket halindedir. Eğer 3'se işlem tamamlanmış demektir.
+    rth = RobotTaskHistory.objects.filter(Robot = robot, RobotStatus__lt = 3).all()
+    #History'nin statusunu bir artır.
+    retlist = []
+    if rth != None:
+        robotTaskHistory = rth[0]
+        robotTaskHistory.RobotStatus = robotTaskHistory.RobotStatus + 1
+        robotTaskHistory.save()
+
+        t1 = RobotTaskHistoryLog(RobotTaskHistory=robotTaskHistory, RobotStatus=robotTaskHistory.RobotStatus, LogTime=datetime.datetime.now())
+        t1.save()
+
+        #ÜstTaskHistorynin statusunu 1 artır.
+        robotTaskHistory.TaskHistory.TaskStatus = robotTaskHistory.TaskHistory.TaskStatus + 1
+        robotTaskHistory.TaskHistory.save()
+
+        if robotTaskHistory.RobotStatus < 3:
+            #Robot dok arabasını görev yerine götürüyorsa yol çiz ve robota emir olarak gönder.
+            if robotTaskHistory.TaskHistory.TaskStatus == 5:
+                path = getOptimumPath(map, robot.LastCoordX, robot.LastCoordY, robotTaskHistory.TaskHistory.TransferredObject.LastPosX,
+                                  robotTaskHistory.TaskHistory.TransferredObject.LastPosY)
+            ret = {}
+            ret["robot"] = robot.Code
+            ret["task"] = robotTaskHistory.TaskHistory.pk
+            ret["path"] = path
+            retlist.append(ret)
+
+        #  robotTaskHistory.TaskHistory.TaskStatus = 6 ise görev tamamlanmış demektir. Aynı ürünün bir sonraki işine geçilir. Bir sonraki işi aktifleştirmek için TaskStatus alanı 3 (WaitingTaskToExecuting) yapılır.
+        if robotTaskHistory.TaskHistory.TaskStatus == 6:
+            taskHistory = TaskHistory.objects.get(TransferredObject = robotTaskHistory.TaskHistory.TransferredObject, WorkOrder=(robotTaskHistory.TaskHistory.WorkOrder + 1))
+            if taskHistory != None:
+                taskHistory.TaskStatus = 3
+                taskHistory.WorkTime = datetime.datetime.now() + datetime.timedelta(seconds=10)
+                taskHistory.save()
+
+        #Robotu özgürleştir.
+        robot.isBusy=False
+        robot.save()
+        #TODO: robotu en yakın şarj istasyonuna gönder.
+
+    return JsonResponse(retlist, safe=False)
 
 
 def settobjectposition(request):
@@ -158,8 +223,6 @@ def getmin(list, field):
             minlen = len(list[i][field])
             counter = i
     return counter
-
-
 
 
 def getOptimumPath(map, startX, startY, finishX, finishY):
@@ -203,7 +266,6 @@ def getOptimumPath(map, startX, startY, finishX, finishY):
     return path
 
 
-
 def SetWorkStationAsObstacle(maze, map, obstList):
     workStations = WorkStation.objects.filter(Map=map).all()
     for workStation in workStations:
@@ -234,7 +296,6 @@ def SetWorkStationAsObstacle(maze, map, obstList):
                 cenY = int((top + (t* map.Distance)) / map.Distance)
                 maze[cenX][cenY] = '#'
                 obstList.add((cenY, cenX))
-
 
 
 def SetWaitingStationAsObstacle(maze, map, obstList):
@@ -301,7 +362,6 @@ def SetChargingStationAsObstacle(maze, map, obstList):
                 obstList.add((cenY,cenX))
 
 
-
 def SetStartStationAsObstacle(maze, map, obstList):
     startStations = StartStation.objects.filter(Map=map).all()
     for startStation in startStations:
@@ -332,8 +392,6 @@ def SetStartStationAsObstacle(maze, map, obstList):
                 cenY = int((top + (t * map.Distance)) / map.Distance)
                 maze[cenX][cenY] = '#'
                 obstList.add((cenY,cenX))
-
-
 
 
 def SetFinishStationAsObstacle(maze, map, obstList):
@@ -402,14 +460,12 @@ def getmapmaze(map):
     return maze, obstList
 
 
-
 def unique(list1):
     unique_list = []
     for x in list1:
         if x not in unique_list:
             unique_list.append(x)
     return unique_list
-
 
 
 def getoptimumallocation(list):
@@ -530,7 +586,6 @@ def FindNearestVehicle(map, finishX, finishY):
         return bestVehicle
 
 
-
 def resetmap(request, mapid):
     map = Map.objects.get(pk=mapid)
     TransferredObject.objects.filter(Map = map).delete()
@@ -539,18 +594,11 @@ def resetmap(request, mapid):
 
     return JsonResponse("", safe=False)
 
+
 def allocatetasks(request, mapid):
     ppalg = request.GET.get('ppalg')
     optalg = request.GET.get('optalg')
     map = Map.objects.get(pk=mapid)
-    #goals = MapGoalPoint.objects.filter(Map=map).order_by('Code').all()
-    #obstacles = ObstaclePoint.objects.filter(Map=map).all()
-    #robots = Robot.objects.filter(Map=map).order_by('Name').all()
-    #machines = WorkStation.objects.filter(Map=map).order_by('Code').all()
-    #charges = ChargingStation.objects.filter(Map=map).order_by('Code').all()
-    #waitings = WaitingStation.objects.filter(Map=map).order_by('Code').all()
-    #vehicles = TransferVehicle.objects.filter(Map=map).order_by('Barcode').all()
-    #tobjects = TransferredObject.objects.filter(Map=map).order_by('Barcode').all()
 
     #Sisteme yeni dahil olmuş kumaş var mı?
     firstTasks = TaskHistory.objects.filter(Map=map, TaskStatus = 2).order_by('TaskStatus').all()
@@ -565,7 +613,7 @@ def allocatetasks(request, mapid):
 
         #Görevi oluştur. Task Statusunu WaitingTaskToExecuting (Görev İcra Edilmeyi Bekliyor) olarak belirle.
         p1 = TaskHistory(TransferredObject=task.TransferredObject, StartStation=task.StartStation, WorkOrder=order,
-                         TransferVehicle=vehicle, TaskStatus=3, isActive=True, Map= task.Map)
+                         TransferVehicle=vehicle, TaskStatus=3, WorkTime = datetime.datetime.now(), isActive=True, Map= task.Map)
         p1.save()
         vehicle.isBusy = True
         vehicle.save()
@@ -574,15 +622,15 @@ def allocatetasks(request, mapid):
         task.save()
 
     #bekleyen görevleri listele
-    waitingTasks = TaskHistory.objects.filter(Map=map, TaskStatus__in=[3,11]).order_by('TaskStatus').all()
+    waitingTasks = TaskHistory.objects.filter(Map=map, TaskStatus = 3, WorkTime__lte=datetime.datetime.now()).order_by('TaskStatus').all()
     #boş robotları listele
     freeRobots = Robot.objects.filter(Map=map, isBusy=False, isActive=True).order_by('Code').all()
 
+    returnlist = []
     # eğer atanmamış görev sayısı birden fazlaysa optimizasyon yap
-    if len(waitingTasks)>1:
+    if len(waitingTasks)>=1:
         models = []
         list = []
-
         #Tüm görevlerin tüm boş robotlara lan uzaklıklarını hesapla
         for task in waitingTasks:
             for robot in freeRobots:
@@ -599,23 +647,35 @@ def allocatetasks(request, mapid):
                     elm["pathlength"] = 0
                     list.append(elm)
                 else:
-                    path = getOptimumPath(map, robot.LastCoordX, robot.LastCoordY, task.TransferVehicle.LastPosX, task.TransferVehicle.LastPosY)
-                    #lengt = 0
-                    #for i in range(len(path) - 1):
-                    #    x = path[i][0] - path[i+1][0]
-                    #    y = path[i][1] - path[i+1][1]
-                    #    lengt = lengt + math.sqrt((x*x)+ (y*y))
-                    model = {}
-                    model["robot"] = robot.Code
-                    model["task"] = task.pk
-                    model["path"] = path
-                    model["pathlength"] = len(path)
-                    models.append(model)
-                    elm = {}
-                    elm["robot"] = robot.Code
-                    elm["goal"] = task.pk
-                    elm["pathlength"] = len(path)
-                    list.append(elm)
+                    if task.WorkStation !=None:
+                        path = getOptimumPath(map, robot.LastCoordX, robot.LastCoordY, task.WorkStation.EnterPosX,
+                                              task.WorkStation.EnterPosY)
+                        model = {}
+                        model["robot"] = robot.Code
+                        model["task"] = task.pk
+                        model["path"] = path
+                        model["pathlength"] = len(path)
+                        models.append(model)
+                        elm = {}
+                        elm["robot"] = robot.Code
+                        elm["goal"] = task.pk
+                        elm["pathlength"] = len(path)
+                        list.append(elm)
+                    else:
+                        path = getOptimumPath(map, robot.LastCoordX, robot.LastCoordY, task.TransferVehicle.LastPosX,
+                                              task.TransferVehicle.LastPosY)
+                        model = {}
+                        model["robot"] = robot.Code
+                        model["task"] = task.pk
+                        model["path"] = path
+                        model["pathlength"] = len(path)
+                        models.append(model)
+                        elm = {}
+                        elm["robot"] = robot.Code
+                        elm["goal"] = task.pk
+                        elm["pathlength"] = len(path)
+                        list.append(elm)
+
 
         optlist = getoptimumallocation(list)
         returnlist = []
@@ -625,7 +685,23 @@ def allocatetasks(request, mapid):
             ret["robot"] = el["robot"]
             ret["task"]  = el["task"]
             ret["path"]  = el["path"]
+            taskHistory = TaskHistory.objects.get(pk=int(el["task"]))
+            robot = Robot.objects.get(Map = map, Code=el["robot"])
+            taskHistory.Robot = robot
+            taskHistory.TaskStatus = 4
+            taskHistory.save()
+
+            robot.isBusy = True
+            robot.save()
+
+            p1 = RobotTaskHistory(Robot=robot, TaskHistory=taskHistory, RobotStatus=1)
+            p1.save()
+
+            t1 = RobotTaskHistoryLog(RobotTaskHistory=p1, RobotStatus=1, LogTime=datetime.datetime.now())
+            t1.save()
+
             returnlist.append(ret)
+
 
 
 
