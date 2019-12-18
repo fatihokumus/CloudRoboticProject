@@ -669,7 +669,19 @@
                                                 {
                                                     if(data["vehicle"]!="")
                                                     {
-                                                        moveTObject(data["vehicle"], points[0], points[1] )
+                                                        moveTObject(data["vehicle"], points[0], points[1]);
+                                                        for(var t = 0; t < socketList.length; t++)
+                                                        {
+                                                            var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
+                                                            if(num == data["vehicle"])
+                                                            {
+                                                                socketList[t].send(
+                                                                    JSON.stringify(
+                                                                    {
+                                                                       'message': 'Konum Değiştir:'+ data["vehicle"] + ':' + points[0] + ':' + points[1]
+                                                                    }));
+                                                            }
+                                                        }
                                                     }
                                                     if(data["object"]!="")
                                                     {
@@ -924,10 +936,10 @@
 
         function StartAllocation()
         {
-            setInterval(AllocateTasks('DStar','Self'), 5000);
+            setInterval(AllocateTasks, 5000);
         }
 
-        function AllocateTasks(ppalg, optalg)
+        function AllocateTasks()
         {
             var mapid = currentmapid;
             if(socketList.length>0)
@@ -936,7 +948,7 @@
             }
 
             $.ajax({
-                url: '/robots/allocatetasks/' + mapid +'?ppalg=' + ppalg +'&optalg=' + optalg,
+                url: '/robots/allocatetasks/' + mapid,    //+'?ppalg=' + ppalg +'&optalg=' + optalg,
                 dataType: 'json',
                 success: function (data) {
                     $('.pathline').remove();
@@ -987,6 +999,7 @@
                                 var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
                                 if(num == data[j]['robot'])
                                 {
+                                    ppalg = "DStar";
                                     socketList[t].send(JSON.stringify({
                                             'message': 'Rota:' + ppalg + ':' + num + ':' + jsondata
                                         }));

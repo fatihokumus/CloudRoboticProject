@@ -6,7 +6,6 @@
       <change beforePath="$PROJECT_DIR$/dbRobot.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/dbRobot.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/templates/iot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/robots/templates/iot/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -344,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576502320595</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="development">
+      <created>1576589610852</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1576589610853</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView">
@@ -405,6 +411,11 @@
           <url>file://$PROJECT_DIR$/robots/templates/test.py</url>
           <line>105</line>
           <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/robots/views.py</url>
+          <line>199</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

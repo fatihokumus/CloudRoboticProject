@@ -227,6 +227,7 @@ class TaskHistory(models.Model):
     WorkOrder = models.IntegerField(null=True)
     WorkTimeEndPoint = models.IntegerField(null=True)
     isActive = models.BooleanField(default=False)
+    isExitTask = models.BooleanField(default=False)
     WorkTime = models.DateTimeField(null=True)
 
     def __str__(self):

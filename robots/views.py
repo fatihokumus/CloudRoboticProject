@@ -124,8 +124,7 @@ def setrobotposition(request):
     robot.save()
     model ={}
     if robot.isBusy == True:
-        rtask = RobotTaskHistory.objects.get(Robot=robot, RobotStatus__lt=3)
-
+        rtask = RobotTaskHistory.objects.filter(Robot=robot, RobotStatus__lt=3)
 
         if rtask.TaskHistory.TransferVehicle != None and rtask.TaskHistory.TaskStatus == 5:
             rtask.TaskHistory.TransferVehicle.LastPosX = request.GET.get('lastcoordx')
@@ -147,7 +146,7 @@ def setrobotposition(request):
         model["object"] = ""
 
 
-    return JsonResponse("ok", safe=False)
+    return JsonResponse(model, safe=False)
 
 def skiptonextjob(request):
     map = Map.objects.get(pk=request.GET.get('mapid'))
@@ -159,6 +158,8 @@ def skiptonextjob(request):
     retlist = []
     if rth != None:
         robotTaskHistory = rth[0]
+
+
         robotTaskHistory.RobotStatus = robotTaskHistory.RobotStatus + 1
         robotTaskHistory.save()
 
@@ -166,11 +167,23 @@ def skiptonextjob(request):
         t1.save()
 
         #ÜstTaskHistorynin statusunu 1 artır.
-        robotTaskHistory.TaskHistory.TaskStatus = robotTaskHistory.TaskHistory.TaskStatus + 1
+        stat = robotTaskHistory.TaskHistory.TaskStatus + 1
+        #if taskHistory != None:
+        #    #Eğer görevin Start istasyonu dolu ama bir sonraki görevin Start istasyonu dolu değilse bu başlangıç noktasında demektir. Bu durumda 004-RobotMovingToVehicle adımı atlanır
+        #    if robotTaskHistory.TaskHistory.StartStation != None and taskHistory.StartStation == None and stat == 4:
+        #        stat = stat + 1
+        #else:
+        #    # Teslimat noktasına gidecek demektir.
+        #    if stat == 4:
+        #        stat = stat + 1
+        #    #Teslimat noktası ataması burada yapılacak.
+
+        robotTaskHistory.TaskHistory.TaskStatus = stat
         robotTaskHistory.TaskHistory.save()
 
         if robotTaskHistory.RobotStatus < 3:
             #Robot dok arabasını görev yerine götürüyorsa yol çiz ve robota emir olarak gönder.
+            path = []
             if robotTaskHistory.TaskHistory.TaskStatus == 5:
                 path = getOptimumPath(map, robot.LastCoordX, robot.LastCoordY, robotTaskHistory.TaskHistory.TransferredObject.LastPosX,
                                   robotTaskHistory.TaskHistory.TransferredObject.LastPosY)
@@ -182,11 +195,16 @@ def skiptonextjob(request):
 
         #  robotTaskHistory.TaskHistory.TaskStatus = 6 ise görev tamamlanmış demektir. Aynı ürünün bir sonraki işine geçilir. Bir sonraki işi aktifleştirmek için TaskStatus alanı 3 (WaitingTaskToExecuting) yapılır.
         if robotTaskHistory.TaskHistory.TaskStatus == 6:
-            taskHistory = TaskHistory.objects.get(TransferredObject = robotTaskHistory.TaskHistory.TransferredObject, WorkOrder=(robotTaskHistory.TaskHistory.WorkOrder + 1))
+            taskHistory = TaskHistory.objects.filter(TransferredObject=robotTaskHistory.TaskHistory.TransferredObject,
+                                                  WorkOrder=(robotTaskHistory.TaskHistory.WorkOrder + 1))
             if taskHistory != None:
-                taskHistory.TaskStatus = 3
-                taskHistory.WorkTime = datetime.datetime.now() + datetime.timedelta(seconds=10)
-                taskHistory.save()
+                # Eğer Start istasyonu varsa bu ilk görevdir. Bu görev aynı dok aracı ile ifa edilir.
+                for thist in taskHistory:
+                    if robotTaskHistory.TaskHistory.StartStation != None and thist.isExitTask == False:
+                        thist.TransferVehicle = robotTaskHistory.TaskHistory.TransferVehicle
+                    thist.TaskStatus = 3
+                    thist.WorkTime = datetime.datetime.now() + datetime.timedelta(seconds=10)
+                    thist.save()
 
         #Robotu özgürleştir.
         robot.isBusy=False
@@ -582,6 +600,7 @@ def FindNearestVehicle(map, finishX, finishY):
             path = getOptimumPath(map, vehicle.LastPosX, vehicle.LastPosY, finishX, finishY)
             if bestPath > len(path):
                 bestVehicle = vehicle
+                bestPath = len(path)
 
         return bestVehicle
 
@@ -606,8 +625,11 @@ def allocatetasks(request, mapid):
     # Dok arabası olmayan görev listesini al.
     for task in firstTasks:
         #Her görev için en uygun dok arabasını görevin başlangıç noktasına götürecek yeni görev oluştur.
-        #Görev sırasını bir eksiği olarak alıp daha öncelikli yapıyoruz
-        order = task.WorkOrder - 1
+
+        order = task.WorkOrder
+        #Görev sırasını bir eksiği olarak alıp daha öncelikli yapıyoruz. Eğer makine çıkış noktası ise öncelik aynı kalıyor
+        if task.isExitTask == False:
+            order = task.WorkOrder - 1
         #En yakın dok arabasını bul.
         vehicle = FindNearestVehicle(map, task.StartStation.CenterX, task.StartStation.CenterY)
 
@@ -619,7 +641,10 @@ def allocatetasks(request, mapid):
         vehicle.save()
         #Eski görevi TaskCreated (Görev Oluşturuldu) olarak güncelle
         task.TaskStatus = 1
+        task.TransferVehicle = vehicle
         task.save()
+
+
 
     #bekleyen görevleri listele
     waitingTasks = TaskHistory.objects.filter(Map=map, TaskStatus = 3, WorkTime__lte=datetime.datetime.now()).order_by('TaskStatus').all()
@@ -688,7 +713,20 @@ def allocatetasks(request, mapid):
             taskHistory = TaskHistory.objects.get(pk=int(el["task"]))
             robot = Robot.objects.get(Map = map, Code=el["robot"])
             taskHistory.Robot = robot
-            taskHistory.TaskStatus = 4
+            taskHistoryNext = TaskHistory.objects.get(TransferredObject=taskHistory.TransferredObject,
+                                                  WorkOrder=(taskHistory.WorkOrder + 1))
+            if taskHistoryNext != None:
+                #Eğer bir sonraki görevin Start istasyonu dolu değilse bu ilk görev değil demektir. Bu durumda 004-RobotMovingToVehicle adımı atlanır
+                if taskHistoryNext.StartStation == None:
+                    #Başka bir dok arabasını makinenin çıkış noktasına yönlendir.
+
+                    taskHistory.TaskStatus = 5
+                else:
+                    taskHistory.TaskStatus = 4
+            else:
+                # Teslimat noktasına gidecek demektir.
+                taskHistory.TaskStatus = 5
+                #Teslimat noktası ataması burada yapılacak.
             taskHistory.save()
 
             robot.isBusy = True
@@ -903,8 +941,14 @@ def addtransferobject(request):
                 startStationTask = startStation
 
             p1 = TaskHistory(TransferredObject=entity, WorkStation=workSatation, WorkOrder=taskHistory["WorkOrder"],
-                             StartStation=startStationTask, TaskStatus=taskStatus, isActive=True, Map=map)
+                             StartStation=startStationTask, TaskStatus=taskStatus, isActive=True, isExitTask = False, Map=map)
             p1.save()
+
+            if workSatation != None:
+                #Dok arabalarını makinenin çıkış noktasına götürmek için yeni bir iş oluşturuyoruz. TaskStatusu=2 yaparak en uygun dok arabasını atamasını sağlıyoruz.
+                p2 = TaskHistory(TransferredObject=entity, WorkStation=workSatation, WorkOrder=taskHistory["WorkOrder"],
+                                 StartStation=startStationTask, TaskStatus=2, isActive=True, isExitTask = True, Map=map)
+                p2.save()
 
         return Response("ok", status=status.HTTP_200_OK)
 
