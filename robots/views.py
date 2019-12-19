@@ -200,7 +200,7 @@ def skiptonextjob(request):
             ret["task"] = robotTaskHistory.TaskHistory.pk
             ret["path"] = path
             retlist.append(ret)
-
+        #TODO:makinenin çıkış noktasına gitmek için bir iş daha oluşturulmayacak.
         #  robotTaskHistory.TaskHistory.TaskStatus = 6 ise görev tamamlanmış demektir. Aynı ürünün bir sonraki işine geçilir. Bir sonraki işi aktifleştirmek için TaskStatus alanı 3 (WaitingTaskToExecuting) yapılır.
         if robotTaskHistory.TaskHistory.TaskStatus == 6:
             if robotTaskHistory.TaskHistory.isExitTask == True:
