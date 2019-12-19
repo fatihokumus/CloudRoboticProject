@@ -2,8 +2,8 @@ import math
 from pydstarlite import dstarlite, utility
 
 
-robots = ['a1', 'a2', 'a3']
-goals = ['b1', 'b2', 'b3','b4']
+robots = ['a1', 'a2', 'a3', 'a4','a5','a6']
+goals = ['b1', 'b2']
 
 #kombinasyon matrisi
 combin = []
@@ -87,20 +87,3 @@ for j in prob:
     print(j)
 
 
-
-GRAPH, START, END = utility.grid_from_string("""
-    ...........
-    ...######..
-    .......A#..
-    ...######..
-    ...#....#..
-    ...#....#..
-    ........#..
-    ........#..
-    ........#Z.
-    ........#..
-    """)
-dstar = dstarlite.DStarLite(GRAPH, START, END)
-path = [p for p, o, w in dstar.move_to_goal()]
-
-print(path)
