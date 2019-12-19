@@ -48,7 +48,7 @@ class Robot(models.Model):
     LastCoordY = models.IntegerField(null=True)
     isBusy = models.BooleanField(default=False)
     Map = models.ForeignKey(Map, on_delete=models.DO_NOTHING, blank=True, null=True)
-
+    
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['Code', 'Map'], name='idx_unique_robot_map_code'),
@@ -228,6 +228,7 @@ class TaskHistory(models.Model):
     WorkTimeEndPoint = models.IntegerField(null=True)
     isActive = models.BooleanField(default=False)
     isExitTask = models.BooleanField(default=False)
+    isTaskGoingToVehicle = models.BooleanField(default=False)
     WorkTime = models.DateTimeField(null=True)
 
     def __str__(self):
