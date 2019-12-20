@@ -441,7 +441,7 @@
                 xp : x,
                 yp : y
             };
-            var html = "<div class='animate' id='tobject-" + name + "'><span style='font-size: 12px;color: #002e80;position: inherit;top: 0px;'>" + name + "</span><img style='margin-top: 18px;'  src='/static/images/dok-arabasi.png' width='"+ currentdistance +"' height='"+ currentdistance +"' /></div>";
+            var html = "<div class='animate' id='tobject-" + name + "'><span style='font-size: 12px;color: #002e80;position: inherit;top: 0px;'>" + name + "</span><img style='margin-top: 18px;'  src='/static/images/bos_dok_arabasi.png' width='"+ currentdistance +"' height='"+ currentdistance +"' /></div>";
 
             $('#canvas').append(html);
 
@@ -668,7 +668,8 @@
                                             url: '/robots/setrobotposition/?robotname=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
                                             dataType: 'json',
                                             success: function (data) {
-                                                if(data.length>0)
+
+                                                if(data)
                                                 {
                                                     if(data["vehicle"]!="")
                                                     {
@@ -747,6 +748,7 @@
                                                                var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
                                                                if(num == data[j]['robot'])
                                                                {
+                                                                    console.log(num)
                                                                     socketList[t].send(JSON.stringify({
                                                                            'message': 'Rota:' + ppalg + ':' + num + ':' + jsondata
                                                                        }));
@@ -809,11 +811,13 @@
                     var obj = JSON.parse(data);
                     for(var i = 0; i < obj.length; i++)
                     {
-                        var dokImage = '/static/images/dok-arabasi.png';
-                        if(obj[i].fields["isFull"] == false)
-                        {
-                            var dokImage = '/static/images/bos_dok_arabasi.png';
-                        }
+                        var dokImage = '/static/images/bos_dok_arabasi.png';
+
+                        //var dokImage = '/static/images/dok-arabasi.png';
+                        //if(obj[i].fields["isFull"] == false)
+                        //{
+                        //    dokImage = '/static/images/bos_dok_arabasi.png';
+                        //}
                         var innerhtml = '<div>'
                                  + '<div id="divTransferredObject' + obj[i].fields["Barcode"] + '" class="tObjectdiv">'
                                  + '<div style="height: 19px;margin-top: -4px;"><span style="font-size: 12px;"> ' + obj[i].fields["Barcode"] + '</span></div>'
