@@ -13,7 +13,7 @@
     }
     .labelRFID {
       position: absolute;
-      background-color: #000;
+      background-color: #ababab;
       width: 2px;
       height: 2px;
     }
@@ -82,6 +82,7 @@
       height:100%;
       background-color:#e0e0e0;
     }
+
     </style>
 
 {% endblock javascript %}
@@ -201,6 +202,7 @@
         robotimageList = [];
         var dokOpened = false;
         var robotOpened = false;
+        var robotLineList = [];
 
         var main = function() {
 
@@ -274,8 +276,8 @@
             var newText = document.createElementNS('http://www.w3.org/2000/svg','text');
             newText.setAttribute('x',x+3);
             newText.setAttribute('y',y+15);
-            newText.setAttribute('fill',"black");
-            newText.setAttribute('font-size','13');
+            newText.setAttribute('fill',"#333333");
+            newText.setAttribute('font-size','11');
             newText.setAttribute('font-weight','bold');
             newText.textContent  = 'M' + code;
             $("#svgHtml").append(newText);
@@ -298,15 +300,15 @@
 
             var newPolygon = document.createElementNS('http://www.w3.org/2000/svg','polygon');
             newPolygon.setAttribute('points',str);
-            newPolygon.setAttribute('style',"fill:#ff00e5;stroke:purple;stroke-width:1");
+            newPolygon.setAttribute('style',"fill:#fdcaf8;stroke:#d081d0;stroke-width:1");
             newPolygon.setAttribute("class", "polygon");
             $("#svgHtml").append(newPolygon);
 
             var newText = document.createElementNS('http://www.w3.org/2000/svg','text');
             newText.setAttribute('x',x-13);
             newText.setAttribute('y',y+5);
-            newText.setAttribute('fill',"black");
-            newText.setAttribute('font-size','13');
+            newText.setAttribute('fill',"#333333");
+            newText.setAttribute('font-size','11');
             newText.setAttribute('font-weight','bold');
             newText.textContent  = 'W' + code;
             $("#svgHtml").append(newText);
@@ -336,8 +338,8 @@
             var newText = document.createElementNS('http://www.w3.org/2000/svg','text');
             newText.setAttribute('x',x-13);
             newText.setAttribute('y',y+5);
-            newText.setAttribute('fill',"black");
-            newText.setAttribute('font-size','13');
+            newText.setAttribute('fill',"#333333");
+            newText.setAttribute('font-size','11');
             newText.setAttribute('font-weight','bold');
             newText.textContent  = 'C' + code;
             $("#svgHtml").append(newText);
@@ -366,8 +368,8 @@
             var newText = document.createElementNS('http://www.w3.org/2000/svg','text');
             newText.setAttribute('x',x-13);
             newText.setAttribute('y',y+5);
-            newText.setAttribute('fill',"black");
-            newText.setAttribute('font-size','13');
+            newText.setAttribute('fill',"#333333");
+            newText.setAttribute('font-size','11');
             newText.setAttribute('font-weight','bold');
             newText.textContent  = 'S' + code;
             $("#svgHtml").append(newText);
@@ -396,8 +398,8 @@
             var newText = document.createElementNS('http://www.w3.org/2000/svg','text');
             newText.setAttribute('x',x-13);
             newText.setAttribute('y',y+5);
-            newText.setAttribute('fill',"black");
-            newText.setAttribute('font-size','13');
+            newText.setAttribute('fill',"#333333");
+            newText.setAttribute('font-size','11');
             newText.setAttribute('font-weight','bold');
             newText.textContent  = 'F' + code;
             $("#svgHtml").append(newText);
@@ -662,30 +664,30 @@
                                     if(data['message'].includes("Son Konumum"))
                                     {
                                         var points = data['message'].replace('Son Konumum: x:', '').replace(' y:','').split(";");
-                                        moveRobot(num, points[0], points[1]);
+
 
                                         $.ajax({
                                             url: '/robots/setrobotposition/?robotname=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
                                             dataType: 'json',
                                             success: function (data) {
-
+                                                moveRobot(num, points[0], points[1]);
                                                 if(data)
                                                 {
                                                     if(data["vehicle"]!="")
                                                     {
                                                         moveTObject(data["vehicle"], points[0], points[1]);
-                                                        for(var t = 0; t < socketList.length; t++)
-                                                        {
-                                                            var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
-                                                            if(num == data["vehicle"])
-                                                            {
-                                                                socketList[t].send(
-                                                                    JSON.stringify(
-                                                                    {
-                                                                       'message': 'Konum Değiştir:'+ data["vehicle"] + ':' + points[0] + ':' + points[1]
-                                                                    }));
-                                                            }
-                                                        }
+                                                        //for(var t = 0; t < socketList.length; t++)
+                                                        //{
+                                                        //    var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
+                                                        //    if(num == data["vehicle"])
+                                                        //    {
+                                                        //        socketList[t].send(
+                                                        //            JSON.stringify(
+                                                        //            {
+                                                        //               'message': 'Konum Değiştir:'+ data["vehicle"] + ':' + points[0] + ':' + points[1]
+                                                        //            }));
+                                                        //    }
+                                                        //}
                                                     }
                                                     if(data["object"]!="")
                                                     {
@@ -726,18 +728,43 @@
                                                                 var oldypoint = ((data[j]['path'][i-1][0]*currentdistance) + (currentdistance/2));
 
                                                                 var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
-                                                                newLine.setAttribute('id','line' + i);
+                                                                newLine.setAttribute('id','line' + data[j]['robot'] + i);
                                                                 newLine.setAttribute('x1',xpoint);
                                                                 newLine.setAttribute('y1',ypoint);
                                                                 newLine.setAttribute('x2',oldxpoint);
                                                                 newLine.setAttribute('y2',oldypoint);
                                                                 newLine.setAttribute("stroke", renk);
-                                                                newLine.setAttribute("class", "pathline");
+                                                                newLine.setAttribute("class", "pathline  robot" + data[j]['robot']);
                                                                 $("#svgHtml").append(newLine);
+
+
 
                                                                 //lineHtml += '<line class="pathline" x1="' + xpoint + '" y1="' + ypoint + '" x2="' + oldxpoint + '" y2="' + oldypoint + '" stroke="red"/>'
                                                             }
+
+
                                                         }
+
+                                                        //var timeN = new Date();
+                                                        //timeN.setSeconds(timeN.getSeconds() + 1);
+                                                        //model = {};
+                                                        //model["Robot"] = data[j]['robot'];
+                                                        //model["Time"] = timeN;
+                                                        //robotLineList.push(model);
+                                                        //console.log(robotLineList);
+//
+                                                        //setTimeout(function(){
+                                                        //    var timeC = new Date();
+                                                        //    for(var a=0; a<robotLineList.length; a++)
+                                                        //    {
+                                                        //       if(robotLineList[a]["Time"] <= timeC )
+                                                        //       {
+                                                        //            $(".robot"+robotLineList[a]["Robot"]).remove();
+                                                        //            robotLineList.pop(robotLineList[a]);
+                                                        //       }
+                                                        //    }
+//
+                                                        //},2000);
 
                                                         if(data[j]['path'].length > 0)
                                                         {
@@ -748,7 +775,6 @@
                                                                var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
                                                                if(num == data[j]['robot'])
                                                                {
-                                                                    console.log(num)
                                                                     socketList[t].send(JSON.stringify({
                                                                            'message': 'Rota:' + ppalg + ':' + num + ':' + jsondata
                                                                        }));
@@ -992,12 +1018,33 @@
                                     newLine.setAttribute('x2',oldxpoint);
                                     newLine.setAttribute('y2',oldypoint);
                                     newLine.setAttribute("stroke", renk);
-                                    newLine.setAttribute("class", "pathline");
+                                    newLine.setAttribute("class", "pathline robot"+ data[j]['robot']);
                                     $("#svgHtml").append(newLine);
 
                                     //lineHtml += '<line class="pathline" x1="' + xpoint + '" y1="' + ypoint + '" x2="' + oldxpoint + '" y2="' + oldypoint + '" stroke="red"/>'
                                 }
                             }
+
+                            ////var timeN = new Date();
+                            ////timeN.setSeconds(timeN.getSeconds() + 1);
+                            ////model = {};
+                            ////model["Robot"] = data[j]['robot'];
+                            ////model["Time"] = timeN;
+                            ////robotLineList.push(model);
+                            ////console.log(robotLineList);
+////
+                            ////setTimeout(function(){
+                            ////    var timeC = new Date();
+                            ////    for(var a=0; a<robotLineList.length; a++)
+                            ////    {
+                            ////       if(robotLineList[a]["Time"] <= timeC )
+                            ////       {
+                            ////            $(".robot"+robotLineList[a]["Robot"]).remove();
+                            ////            robotLineList.pop(robotLineList[a]);
+                            ////       }
+                            ////    }
+////
+                            //},2000);
 
 
                              jsondata = JSON.stringify(data[j]['path']);
@@ -1068,13 +1115,33 @@
                                     newLine.setAttribute('x2',oldxpoint);
                                     newLine.setAttribute('y2',oldypoint);
                                     newLine.setAttribute("stroke", "red");
-                                    newLine.setAttribute("class", "pathline");
+                                    newLine.setAttribute("class", "pathline robot"+data[j]['robot']);
                                     $("#svgHtml").append(newLine);
 
                                     //lineHtml += '<line class="pathline" x1="' + xpoint + '" y1="' + ypoint + '" x2="' + oldxpoint + '" y2="' + oldypoint + '" stroke="red"/>'
                                 }
                             }
 
+                            //var timeN = new Date();
+                            //timeN.setSeconds(timeN.getSeconds() + 1);
+                            //model = {};
+                            //model["Robot"] = data[j]['robot'];
+                            //model["Time"] = timeN;
+                            //robotLineList.push(model);
+                            //console.log(robotLineList);
+//
+                            //setTimeout(function(){
+                            //    var timeC = new Date();
+                            //    for(var a=0; a<robotLineList.length; a++)
+                            //    {
+                            //       if(robotLineList[a]["Time"] <= timeC )
+                            //       {
+                            //            $(".robot"+robotLineList[a]["Robot"]).remove();
+                            //            robotLineList.pop(robotLineList[a]);
+                            //       }
+                            //    }
+//
+                            //},2000);
 
                              jsondata = JSON.stringify(data[j]['path']);
                              for(var t = 0; t < socketList.length; t++)
