@@ -665,37 +665,27 @@
                                     {
                                         var points = data['message'].replace('Son Konumum: x:', '').replace(' y:','').split(";");
 
-
-                                        $.ajax({
-                                            url: '/robots/setrobotposition/?robotname=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
-                                            dataType: 'json',
-                                            success: function (data) {
-                                                moveRobot(num, points[0], points[1]);
-                                                if(data)
-                                                {
-                                                    if(data["vehicle"]!="")
+                                        setTimeout(function(){
+                                            $.ajax({
+                                                url: '/robots/setrobotposition/?robotname=' + num + '&mapid=' + currentmapid + '&isactive=True' + '&lastcoordx=' + points[0] + '&lastcoordy=' + points[1],
+                                                dataType: 'json',
+                                                success: function (data) {
+                                                    moveRobot(num, points[0], points[1]);
+                                                    if(data)
                                                     {
-                                                        moveTObject(data["vehicle"], points[0], points[1]);
-                                                        //for(var t = 0; t < socketList.length; t++)
-                                                        //{
-                                                        //    var num = socketList[t].url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
-                                                        //    if(num == data["vehicle"])
-                                                        //    {
-                                                        //        socketList[t].send(
-                                                        //            JSON.stringify(
-                                                        //            {
-                                                        //               'message': 'Konum Değiştir:'+ data["vehicle"] + ':' + points[0] + ':' + points[1]
-                                                        //            }));
-                                                        //    }
-                                                        //}
-                                                    }
-                                                    if(data["object"]!="")
-                                                    {
-                                                        moveTransferObject(data["object"], points[0], points[1] )
+                                                        if(data["vehicle"]!="")
+                                                        {
+                                                            moveTObject(data["vehicle"], points[0], points[1]);
+                                                        }
+                                                        if(data["object"]!="")
+                                                        {
+                                                            moveTransferObject(data["object"], points[0], points[1] )
+                                                        }
                                                     }
                                                 }
-                                            }
-                                        });
+                                            });
+                                        },300);
+
                                     }
                                     if(data['message'].includes("Görev bitti"))
                                     {
