@@ -2,8 +2,8 @@ import math
 from pydstarlite import dstarlite, utility
 
 
-robots = ['a1', 'a2', 'a3', 'a4','a5','a6']
-goals = ['b1', 'b2']
+robots = ['a1', 'a2', 'a3', 'a4']
+goals = ['b1', 'b2', 'b3']
 
 #kombinasyon matrisi
 combin = []
@@ -28,14 +28,18 @@ for i in range(len(temp1)):
         satir.append([temp1[i], temp2[k]])
     combin.append(satir)
 
+for j in combin:
+    print(j)
 
+print("\n\n")
 
 #kaç sütunlu
 width = len(combin[:])
+print(width)
 
 #kaç satırlı
 height = len(combin[0][:])
-
+print(height)
 
 
 
@@ -58,7 +62,9 @@ for i in range(height):
             satir.append('1')
         prob.append(satir)
 
-
+for j in prob:
+    print(j)
+print("\n\n")
 #Olasılık matrisinin diğer sütunlarının verilerini ata.
 for i in range(width-1):
     sutun = i+1
@@ -69,6 +75,9 @@ for i in range(width-1):
             prob[satir][sutun] = combin[sutun][k % height]
             satir = satir + 1
 
+for j in prob:
+    print(j)
+print("\n\n")
 
 num=0
 for row in range(len(prob)):
