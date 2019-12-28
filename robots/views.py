@@ -616,6 +616,7 @@ def getoptimumallocation(list):
 
 
 def FindNearestVehicle(map, finishX, finishY):
+    #Görevi olmayan ve boş transfer araçlarını listele
     vehicles = TransferVehicle.objects.filter(Map=map, isBusy=False, isActive = True).all()
     if len(vehicles) < 1:
         return None
@@ -623,11 +624,13 @@ def FindNearestVehicle(map, finishX, finishY):
         bestVehicle=None
         bestPath = 100000000
         for vehicle in vehicles:
+            #Transfer aracının gideceği konuma olan en yakın yol planını hesapla
             path = getOptimumPath(map, vehicle.LastPosX, vehicle.LastPosY, finishX, finishY)
+            #Eğer yeni yol bestPath'den daha kısaysa bestPath'i güncelle
             if bestPath > len(path):
                 bestVehicle = vehicle
                 bestPath = len(path)
-
+        #En yakın aracı gönder
         return bestVehicle
 
 
