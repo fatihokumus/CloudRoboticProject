@@ -2,7 +2,7 @@ import math
 from pydstarlite import dstarlite, utility
 
 
-robots = ['a1', 'a2', 'a3', 'a4']
+robots = ['a1', 'a2', 'a3']
 goals = ['b1', 'b2', 'b3']
 
 #kombinasyon matrisi
