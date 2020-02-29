@@ -82,32 +82,22 @@ class MapGoalPoint(models.Model):
     def __str__(self):
         return "Map: " + self.Map.Name + "   /   Code: " + str(self.Code) + "   /   Location: " + str(self.Left) + " - " + str(self.Right) + " - " + str(self.Top) + " - " + str(self.Bottom)
 
-class Sticker(models.Model):
+
+class Tag(models.Model):
     Code = models.CharField(max_length=250)
-    UniqueCode = models.CharField(max_length=500)
-    Map = models.ForeignKey(Map, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.Code
-
-
-class Mapping(models.Model):
-    CurrentSticker = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING, related_name='custom_sticker')
-    Left = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING, related_name='left_sticker', blank=True, null=True)
-    Right = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING, related_name='right_sticker', blank=True, null=True)
-    Top = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING, related_name='top_sticker', blank=True, null=True)
-    Down = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING, related_name='down_sticker', blank=True, null=True)
+    PositionX = models.IntegerField(blank=False)
+    PositionY = models.IntegerField(blank=False)
     Map = models.ForeignKey(Map, on_delete=models.CASCADE)
     def __str__(self):
-        return self.CurrentSticker.Code
+        return "Map: " + self.Map.Name + "   /   Location: " + str(self.PositionX) + " , " + str(self.PositionY) + " /  Code: " + str(self.Code)
 
 
 class RobotLocation(models.Model):
     Robot = models.ForeignKey(Robot, on_delete=models.CASCADE, related_name='robotlocation_robot', blank=True, null=True)
-    Sticker = models.ForeignKey(Sticker, on_delete=models.DO_NOTHING)
     PositionX = models.FloatField()
     PositionY = models.FloatField()
     LocationTime = models.DateTimeField(auto_now_add=True)
+
 
 
 

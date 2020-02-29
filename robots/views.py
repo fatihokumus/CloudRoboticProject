@@ -23,6 +23,7 @@ from .models import TransferVehicle
 from .models import TaskHistory
 from .models import RobotTaskHistory
 from .models import RobotTaskHistoryLog
+from .models import Tag
 
 from .PathPlanning.AStar.a_star import astar
 from .PathPlanning.Dijkstra.dijkstra import dijkstras
@@ -1021,6 +1022,17 @@ def addtransferobject(request):
         return Response("ok", status=status.HTTP_200_OK)
 
 
+
+@api_view(['GET'])
+def gettaglist(request, robotid):
+    if request.method == 'GET':
+        data = {}
+        robot = Robot.objects.get(pk=robotid)
+        data["tags"] = serializers.serialize('json', Tag.objects.filter(Map=robot.Map).only('PositionX','PositionY','Code'))
+        return Response(data)
+
+
+
 @api_view(['GET'])
 def getmap(request, mapid):
     if request.method == 'GET':
@@ -1033,6 +1045,8 @@ def getmap(request, mapid):
         data["startstation"] = serializers.serialize('json', StartStation.objects.filter(Map=map).all())
         data["finishstation"] = serializers.serialize('json', FinishStation.objects.filter(Map=map).all())
         return Response(data)
+
+
 
 
 @api_view(['GET', 'POST'])

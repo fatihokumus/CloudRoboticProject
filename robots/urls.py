@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^setrobotposition/$', views.setrobotposition, name='setrobotposition'),
     url(r'^settobjectposition/$', views.settobjectposition, name='settobjectposition'),
     url(r'^skiptonextjob/$', views.skiptonextjob, name='skiptonextjob'),
+    url(r'^gettaglist/(?P<robotid>[0-9]+)/$', views.gettaglist),
 ]
