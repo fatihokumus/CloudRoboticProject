@@ -147,9 +147,12 @@
             </div>
             <div id ="mapcanvas" style="margin-bottom: 15px;">
             </div>
+
         </div>
 
-
+        <div style="height:800px; width:200px;float:left;margin-top: 57px;margin-left: 25px;">
+            <textarea id="txtLog" hidden style="height:100%; width:200px;border: 1px solid;"></textarea>
+        </div>
         <div class="pull-right" style="width:200px;float:left;">
             <button id="btnDokList" class="btn btn-primary pull-right" type="button" style="margin-top: 15px;">
               Dok Araçları
@@ -517,6 +520,7 @@
 
         function getrobotsofmap(btn, mapid, width, height, distance)
         {
+            $('#txtLog').show();
             drewRobotList = [];
             drewTObjectList = [];
             drewtransferObjectList = [];
@@ -641,6 +645,7 @@
                         iotSocket.onmessage = function(e) {
                             var data = JSON.parse(e.data);
                             var message = data['message'];
+                            $('#txtLog').appen(data['message']);
                             var num = this.url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
 
                             if($('#durum'+ num) != undefined && $('#durum'+ num) != null)
