@@ -26,7 +26,7 @@ SECRET_KEY = 'j7acw-0sytzmk@xpogl9)x-z44am4(9q90jqt=xu578zft&k_='
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['10.1.1.44', '10.1.1.29', 'localhost', '127.0.0.1', 'fatih.tuga.com.tr']
+ALLOWED_HOSTS = ['10.1.1.44','10.1.1.18','192.168.43.144', '10.1.1.29', 'localhost', '127.0.0.1', 'fatih.tuga.com.tr']
 
 
 # Application definition
