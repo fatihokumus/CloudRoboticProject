@@ -432,7 +432,7 @@
                 yp : y
             };
             robotimageList.push(model);
-            var html = "<div class='animate' id='robot-" + robotname + "'><span style='font-size: 12px;color: #002e80;position: inherit;top: 0px;'>" + robotname + "</span><img style='margin-top: 18px;'  src='/static/images/turtlebot_2_lg.png' width='"+ currentdistance +"' height='"+ currentdistance +"' /></div>";
+            var html = "<div class='animate' id='robot-" + robotname + "'><span style='font-size: 12px;color: #002e80;position: inherit;top: 0px;'>" + robotname + "</span><img style='margin-top: 18px;'  src='/static/images/turtlebot_2_lg.png' width='50' height='50' /></div>";
 
             $('#canvas').append(html);
 
@@ -645,7 +645,7 @@
                         iotSocket.onmessage = function(e) {
                             var data = JSON.parse(e.data);
                             var message = data['message'];
-                            $('#txtLog').appen(data['message']);
+                            $('#txtLog').append(data['message']);
                             var num = this.url.replace('ws://' + window.location.host + '/robots/iot/','').replace('/','');
 
                             if($('#durum'+ num) != undefined && $('#durum'+ num) != null)
