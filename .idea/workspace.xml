@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="973cda34-2fa1-4951-8fd0-7313e8713f6e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/robots/Turtlebot/Navigation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/Turtlebot/RovileNavigation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/Turtlebot/RovileNavigationTest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/Turtlebot/Turn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/Turtlebot/WebSocket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dbRobot.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/dbRobot.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firstsite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/firstsite/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/templates/iot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/robots/templates/iot/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/templates/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/templates/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,36 +22,37 @@
     <session id="-957355657">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="2" />
-          <entry key="py" value="9" />
+          <entry key="html" value="3" />
+          <entry key="py" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="2" />
-          <entry key="Python" value="9" />
+          <entry key="HTML" value="3" />
+          <entry key="Python" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="155" />
-          <entry key="py" value="397" />
+          <entry key="html" value="303" />
+          <entry key="py" value="1683" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="155" />
-          <entry key="Python" value="397" />
+          <entry key="HTML" value="303" />
+          <entry key="Python" value="1683" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
-          <entry key="project.open.time.5" value="3" />
-          <entry key="project.open.time.6" value="4" />
+          <entry key="project.closed" value="12" />
+          <entry key="project.open.time.5" value="4" />
+          <entry key="project.open.time.6" value="5" />
           <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
     </session>
@@ -56,7 +62,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/templates/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
+            <state>
               <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -66,15 +72,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/templates/Index.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7378">
-              <caret line="434" column="264" selection-start-line="434" selection-start-column="264" selection-end-line="434" selection-end-column="264" />
+            <state relative-caret-position="162">
+              <caret line="972" column="44" lean-forward="true" selection-start-line="972" selection-start-column="44" selection-end-line="972" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -86,33 +87,82 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robots/tests.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/robots/Turtlebot/Navigation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-648">
+              <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+              <folding>
+                <element signature="e#1595#1607#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage.py">
+        <entry file="file://$PROJECT_DIR$/robots/Turtlebot/RovileNavigation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="289">
+              <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
+        <entry file="file://$PROJECT_DIR$/robots/Turtlebot/RovileNavigationTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="42" column="33" lean-forward="true" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
+            <state relative-caret-position="403">
+              <caret line="75" column="50" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/Turtlebot/Turn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="25" column="42" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/Turtlebot/WebSocket.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="62" column="4" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="43" />
+              <folding>
+                <element signature="e#1#25#0" expanded="true" />
+                <marker date="1589890916477" expanded="true" signature="592:1047" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/python/Lib/codecs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="323" selection-start-line="323" selection-end-line="323" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robots/templates/robot/index.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robots/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="83" column="4" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="4" />
+            <state relative-caret-position="177">
+              <caret line="265" column="30" lean-forward="true" selection-start-line="265" selection-start-column="30" selection-end-line="265" selection-end-column="30" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -132,19 +182,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>skipto</find>
-      <find>skip</find>
-      <find>consol</find>
-      <find>pathline</find>
-      <find>robotLineList</find>
-      <find>0/svg','lin</find>
-      <find>moveR</find>
-      <find>moveRobot</find>
-      <find>line</find>
-      <find>/svg','line'</find>
-      <find>2000/svg','line'</find>
-      <find>document.createElementNS</find>
-      <find>setrobotposition</find>
       <find>allo</find>
       <find>allocate</find>
       <find>FindNearestVehicle</find>
@@ -162,6 +199,19 @@
       <find>daphne</find>
       <find>robot</find>
       <find>192.168.43.144</find>
+      <find>labelRFID</find>
+      <find>AllocateTasks</find>
+      <find>ResetMap</find>
+      <find>rota</find>
+      <find>Temp</find>
+      <find>$(&quot;#svgHtml&quot;)</find>
+      <find>newLine</find>
+      <find>temp</find>
+      <find>json</find>
+      <find>for</find>
+      <find>len</find>
+      <find>lastDegree</find>
+      <find>lastdegre</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,17 +225,21 @@
         <option value="$PROJECT_DIR$/robots/admin.py" />
         <option value="$PROJECT_DIR$/robots/urls.py" />
         <option value="$PROJECT_DIR$/robots/views.py" />
-        <option value="$PROJECT_DIR$/firstsite/settings.py" />
-        <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
         <option value="$PROJECT_DIR$/robots/templates/test.py" />
+        <option value="$PROJECT_DIR$/firstsite/settings.py" />
+        <option value="$PROJECT_DIR$/robots/Turtlebot/Navigation.py" />
+        <option value="$PROJECT_DIR$/robots/templates/iot/index.html" />
+        <option value="$PROJECT_DIR$/robots/Turtlebot/WebSocket.py" />
+        <option value="$PROJECT_DIR$/robots/Turtlebot/Turn.py" />
+        <option value="$PROJECT_DIR$/robots/Turtlebot/RovileNavigation.py" />
+        <option value="$PROJECT_DIR$/robots/Turtlebot/RovileNavigationTest.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectId" id="1PdQUsWDDDrEkS1GW4QdpLl6MB9" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -211,7 +265,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -228,12 +281,13 @@
               <item name="CloudRoboticProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="CloudRoboticProject" type="462c0819:PsiDirectoryNode" />
               <item name="robots" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="Turtlebot" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -244,18 +298,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\DjangoProjects\CloudRoboticProject\robots\Turtlebot" />
+      <recent name="F:\DjangoProjects\doctoraproject\robots\PathPlanning" />
+      <recent name="C:\DjangoProjects\doctoraproject\robots\static\images" />
+      <recent name="C:\DjangoProjects\doctoraproject\firstsite" />
+      <recent name="F:\DjangoProjects\firstsite\robots\static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\DjangoProjects\doctoraproject\robots\PathPlanning" />
       <recent name="C:\GithubProject\doctoraproject\robots\static\images" />
       <recent name="F:\DjangoProjects\doctoraproject\robots\PathPlanning\PotentialFieldPlanning" />
       <recent name="F:\DjangoProjects\doctoraproject\robots\PathPlanning\Dijkstra" />
       <recent name="C:\DjangoProjects\doctoraproject\robots\PathPlanning" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\DjangoProjects\doctoraproject\robots\PathPlanning" />
-      <recent name="C:\DjangoProjects\doctoraproject\robots\static\images" />
-      <recent name="C:\DjangoProjects\doctoraproject\firstsite" />
-      <recent name="F:\DjangoProjects\firstsite\robots\static" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -270,7 +325,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.WebSocket">
+    <configuration name="WebSocket" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="firstsite" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/robots/Turtlebot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/robots/Turtlebot/WebSocket.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="dstarlite" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="firstsite" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -360,9 +436,11 @@
       <item itemvalue="Python.dstarlite" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.test2" />
+      <item itemvalue="Python.WebSocket" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.WebSocket" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.test2" />
         <item itemvalue="Python.dstarlite" />
@@ -656,7 +734,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584183517926</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="development">
+      <created>1586274248154</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1586274248154</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -672,19 +757,19 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6107492" visible="true" weight="0.24499473" />
-      <window_info id="Structure" order="1" sideWeight="0.38925081" side_tool="true" visible="true" weight="0.24499473" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.60431653" visible="true" weight="0.13804004" />
+      <window_info id="Structure" order="1" sideWeight="0.39568347" side_tool="true" visible="true" weight="0.13804004" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.78187567" weight="0.3347779" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.88514227" weight="0.39761648" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7808219" weight="0.3347779" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8840885" visible="true" weight="0.39761648" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49578503" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.48998946" weight="0.32502708" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4731296" weight="0.44853738" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.21812434" side_tool="true" visible="true" weight="0.3347779" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.115911484" side_tool="true" visible="true" weight="0.39761648" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49315068" weight="0.20476706" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -730,12 +815,23 @@
     <option name="LAST_COMMIT_MESSAGE" value="development" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/robots/Turtlebot/WebSocket.py</url>
+          <line>63</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="robotTaskHistory" language="Python" />
         <watch expression="robotTaskHistory.TaskHistory.TransferredObject" />
         <watch expression="robotTaskHistory.TaskHistory.WorkOrder" />
         <watch expression="string.count('A')" />
+        <watch expression="data" />
+        <watch expression="message" />
       </configuration>
     </watches-manager>
   </component>
@@ -818,32 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/Index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7378">
-          <caret line="434" column="264" selection-start-line="434" selection-start-column="264" selection-end-line="434" selection-end-column="264" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/robots/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -854,20 +924,111 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/robot/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/Index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/templates/iot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="972" column="44" lean-forward="true" selection-start-line="972" selection-start-column="44" selection-end-line="972" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/site-packages/websocket/_app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="344" selection-start-line="344" selection-end-line="344" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/python/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="323" selection-start-line="323" selection-end-line="323" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/robots/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="83" column="4" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="4" />
+        <state relative-caret-position="177">
+          <caret line="265" column="30" lean-forward="true" selection-start-line="265" selection-start-column="30" selection-end-line="265" selection-end-column="30" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/firstsite/settings.py">
+    <entry file="file://$PROJECT_DIR$/robots/Turtlebot/Navigation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="42" column="33" lean-forward="true" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
+        <state relative-caret-position="-648">
+          <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+          <folding>
+            <element signature="e#1595#1607#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/Turtlebot/WebSocket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="62" column="4" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="43" />
+          <folding>
+            <element signature="e#1#25#0" expanded="true" />
+            <marker date="1589890916477" expanded="true" signature="592:1047" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/Turtlebot/RovileNavigation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/Turtlebot/Turn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="42" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robots/Turtlebot/RovileNavigationTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="75" column="50" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
         </state>
       </provider>
     </entry>

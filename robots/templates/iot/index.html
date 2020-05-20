@@ -14,8 +14,8 @@
     .labelRFID {
       position: absolute;
       background-color: #ababab;
-      width: 2px;
-      height: 2px;
+      width: 8px;
+      height: 8px;
     }
 
     .path {
@@ -138,6 +138,9 @@
                 </button>
                 <button id="btnReset" onclick="ResetMap()" class="btn btn-success" type="button" style="float:left; margin-right:10px; margin-top:0px">
                   Haritayı Sıfırla
+                </button>
+                <button id="btnMultiTaskAllocation3" onclick="TempTask()" class="btn btn-success" type="button" style="float:left; margin-right:10px; margin-top:0px">
+                  Başlat
                 </button>
                 <!--<ul class="nav navbar-nav">
                     <li class="nav-item"><a onclick="PathPlan('astar')">A* Path Planning</a></li>
@@ -960,6 +963,31 @@
 
                 }
             });
+        }
+
+        function TempTask()
+        {
+            path = [[100,100],[500,300],[400,300],[400,500],[500,500],[700,500],[700,100]];
+            socketList[0].send(JSON.stringify({
+                                            'message': 'Rota:' + JSON.stringify(path)
+                                        }));
+            for(var j = 1; j < path.length; j++)
+            {
+                var xpoint = path[j][0];
+                var ypoint = path[j][1];
+                var oldxpoint = path[j-1][0];
+                var oldypoint = path[j-1][1];
+
+                var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+                newLine.setAttribute('id','line'+ j);
+                newLine.setAttribute('x1',xpoint);
+                newLine.setAttribute('y1',ypoint);
+                newLine.setAttribute('x2',oldxpoint);
+                newLine.setAttribute('y2',oldypoint);
+                newLine.setAttribute("stroke", "red");
+                $("#svgHtml").append(newLine);
+
+            }
         }
 
         function StartAllocation()
